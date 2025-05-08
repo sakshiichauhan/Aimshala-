@@ -1,4 +1,4 @@
-import { Clock4, Pencil, Video} from "lucide-react";
+import { Clock4, Pencil, Video } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import ActiveTag from "../../components/ActiveTag";
 import DeactiveTag from "../../components/DeactivateTag";
@@ -11,6 +11,7 @@ import Delete from "@/assets/Icons/delete.svg";
 import Add from "@/assets/Icons/plus.svg"
 import CloudChatIcon from "@/assets/Icons/Cloud.svg"
 import Docs from "@/assets/Icons/Docs.svg"
+import Location from "@/assets/location.svg"
 import { Separator } from "@/components/ui/separator";
 
 export default function Expertise() {
@@ -96,11 +97,16 @@ export default function Expertise() {
                                     <Video />
                                     <span>1:1 Call</span>
                                 </div>
+                                <Separator orientation="vertical" />
                                 <div className="flex items-center gap-2">
                                     <Clock4 />
                                     <span>30 mins</span>
+                                    <Separator orientation="vertical" />
                                 </div>
-                                <span>Price: $XX.XX</span>
+                                <div className="text-[#626262]">
+                                    <span className="font-medium text-">Price: <span className=""> ₹999</span></span>
+                                    <span className="font-normal text-[] line-through"> ₹999</span>
+                                </div>
                             </div>
                         </div>
 
@@ -110,15 +116,18 @@ export default function Expertise() {
                             </div>
                             <div className="flex items-center gap-5">
                                 <div className="flex items-center gap-2">
-                                    <Video />
+                                    <img src={Location} alt="" className="inline-flex justify-center items-center" />
                                     <span>In-Person</span>
                                 </div>
+                                <Separator orientation="vertical" />
                                 <div className="flex items-center gap-2">
                                     <Clock4 />
                                     <span>1:1 Call</span>
                                 </div>
-                                <div>
-                                    <span>Price: $XX.XX</span>
+                                <Separator orientation="vertical" />
+                                <div className="text-[#626262]">
+                                    <span className="font-medium text-">Price: <span className=""> ₹999</span></span>
+                                    <span className="font-normal text-[] line-through"> ₹999</span>
                                 </div>
                             </div>
                         </div>

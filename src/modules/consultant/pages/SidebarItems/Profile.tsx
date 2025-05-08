@@ -12,6 +12,7 @@ import ProfileResource from "./ProfileTabs/ProfileResource";
 import suitecase from "@/assets/Icons/ConsultantProfile/suitcase.png"
 import Bag from "@/assets/Icons/ConsultantProfile/bag.png"
 import at from "@/assets/Icons/ConsultantProfile/mynaui_at.png"
+import { Separator } from "@/components/ui/separator";
 export default function Profile() {
   const tabs = [
     { label: "About", id: "about", path: "/consultant/profile/about" },
@@ -26,7 +27,7 @@ export default function Profile() {
       path: "/consultant/profile/resources",
     },
     {
-      label: "CareerFeed",
+      label: "Career Feed",
       id: "career-feeds",
       path: "/consultant/profile/career-feeds",
     },
@@ -169,20 +170,22 @@ export default function Profile() {
           BM '24 | Accenture, Wipro (PPI)
         </p>
         {/* Experience Info */}
-        <div className="m-3 ml-5 flex items-center flex-wrap gap-4 text-[#4D4D4D] text-[16px]">
-  <span className="flex items-center gap-1">
-    <img src={suitecase} alt="experience icon" className="h-4 w-4" />
-    1 year of Experience
-  </span>
-  <span className="flex items-center gap-1">
-    <img src={at} alt="experience icon" className="h-4 w-4" />
-    johndoe123
-  </span>
-  <span className="flex items-center gap-1">
-    <img src={Bag} alt="experience icon" className="h-4 w-4" />
-    Business And Management
-  </span>
-</div>
+        <div className="m-5 ml-5 flex items-center flex-wrap gap-4 text-[#4D4D4D] text-[16px]">
+          <span className="flex items-center gap-1">
+            <img src={suitecase} alt="experience icon" className="h-5 w-5" />
+            1 year of Experience
+          </span>
+          <Separator orientation="vertical"/>
+          <span className="flex items-center gap-1">
+            <img src={at} alt="experience icon" className="h-5 w-5" />
+            johndoe123
+          </span>
+          <Separator orientation="vertical"/>
+          <span className="flex items-center gap-1">
+            <img src={Bag} alt="experience icon" className="h-5 w-5" />
+            Business And Management
+          </span>
+        </div>
 
 
         {/* Location */}
@@ -212,15 +215,14 @@ export default function Profile() {
       </div>
 
       {/* Tabs Navigation */}
-      <div className="rounded-2xl p-2 bg-white/80 mt-4">
+      <div className="rounded-2xl p-4 bg-white/80 mt-4">
         <nav className="flex flex-wrap gap-6 ml-2 text-[#787878] text-[20px]">
           {tabs.map((tab) => (
             <Link
               key={tab.id}
               to={tab.path}
-              className={`cursor-pointer bg-white hover:text-[#93268F] font-semibold ${
-                activeTab === tab.id ? "text-[#93268F]" : ""
-              }`}
+              className={`cursor-pointer bg-white hover:text-[#93268F] font-semibold ${activeTab === tab.id ? "text-[#93268F] bg-[#93268F]" : ""
+                }`}
             >
               {tab.label}
             </Link>
