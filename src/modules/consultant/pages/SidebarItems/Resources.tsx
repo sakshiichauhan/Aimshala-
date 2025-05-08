@@ -4,6 +4,9 @@ import {
     ChartBarIcon,
     AcademicCapIcon,
 } from "@heroicons/react/outline";
+import CareerCluster from "@/assets/Resources/CareerIcon.svg"
+import TrendingCareer from "@/assets/Resources/Trending.svg";
+import FuturePredection from "@/assets/Resources/Future.svg";
 
 // Primary Sector Images
 import Agriculture from "@/assets/Resources/Primary/image1.jpg";
@@ -59,6 +62,8 @@ import Exams from '@/modules/consultant/pages/SidebarItems/Resource/Exams';
 import Scholarship from '@/modules/consultant/pages/SidebarItems/Resource/Scholarship';
 import Colleges from '@/modules/consultant/pages/SidebarItems/Resource/Colleges';
 import { Heart } from "lucide-react";
+import { LikeButton } from "../../components/LikeButton";
+import { Separator } from "@/components/ui/separator";
 
 const sectors = [
     {
@@ -193,19 +198,23 @@ export default function Resources() {
 
     return (
         <div className="px-6 sm:px-8 mx-auto font-poppins border rounded-2xl mt-20 bg-white">
-            <div className="w-full min-h-[120px] p-6 mb-6 bg-white ">
-                <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 mb-2">Resources</h2>
+            <div className="w-full mt-5 mb-6 bg-white">
+                <h2 className="text-2xl md:text-4xl font-semibold text-gray-900 mb-2">Resources</h2>
                 <p className="text-xl text-gray-600">Help with educational planning.</p>
             </div>
 
+            <div className="mb-4">
+                <Separator />
+            </div>
+
             {/* Primary Tabs */}
-            <div className="max-w-[1360px] h-[53px] inline-flex bg-white border border-gray-300 rounded-xl shadow-sm mb-6">
+            <div className="max-w-[1360px] h-[53px] inline-flex bg-white border border-gray-300 rounded-[12px] shadow-sm mb-6 mt-2">
                 {primaryTabs.map((tab, index) => (
                     <button key={index} onClick={() => {
-                            console.log("Setting tab to:", tab.item);
-                            setActivePrimaryTab(tab.item);
-                            setActiveSecondaryTab("Career Cluster");
-                        }}
+                        console.log("Setting tab to:", tab.item);
+                        setActivePrimaryTab(tab.item);
+                        setActiveSecondaryTab("Career Cluster");
+                    }}
                         className={`px-8 h-full flex items-center text-xl transition-colors duration-200 rounded-[inherit] ${activePrimaryTab === tab.item
                             ? "text-[#94278F] font-medium bg-[#93268F0F]"
                             : "text-gray-500 hover:text-gray-700"
@@ -216,8 +225,8 @@ export default function Resources() {
                 ))}
             </div>
 
-              {/* Section Title */}
-                <div className="flex items-center mb-6">
+            {/* Section Title */}
+            <div className="flex items-center mb-6">
                 <h3 className="text-2xl font-semibold text-gray-800">{activePrimaryTab}</h3>
                 <div className="flex-grow ml-4 h-0.5 bg-yellow-400" />
             </div>
@@ -233,9 +242,9 @@ export default function Resources() {
                                     : "text-[#94278F] hover:bg-[#94278F] hover:text-white"
                                     }`}
                             >
-                                {tab.item === "Career Cluster" && <BriefcaseIcon className="w-8 h-8" />}
-                                {tab.item === "Trending Careers" && <ChartBarIcon className="w-8 h-8" />}
-                                {tab.item === "Future Career Prediction" && <AcademicCapIcon className="w-8 h-8" />}
+                                {tab.item === "Career Cluster" && <img src={CareerCluster} className={`${activeSecondaryTab === tab.item ? 'filter brightness-0 invert' : ''}`} />}
+                                {tab.item === "Trending Careers" && <img src={TrendingCareer} className={`${activeSecondaryTab === tab.item ? 'filter brightness-0 invert' : ''}`} />}
+                                {tab.item === "Future Career Prediction" && <img src={FuturePredection} className={`${activeSecondaryTab === tab.item ? 'filter brightness-0 invert' : ''}`} />}
                                 <span>{tab.item}</span>
                             </button>
                         ))}
@@ -310,13 +319,9 @@ export default function Resources() {
 
                                             <div className="absolute inset-0 bg-gradient-to-r from-[#FFFFFF] via-[#FFFFFF]/60 to-transparent" />
 
-                                            <button
-                                                type="button"
-                                                className="absolute top-4 right-4 z-20 grid h-9 w-9 place-items-center
-                                                rounded-full bg-white shadow"
-                                            >
-                                                <Heart className="h-4 w-4 fill-[#93268F] stroke-none" />
-                                            </button>
+                                            <div className="absolute top-4 right-4 z-60 bg-white rounded-full">
+                                                <LikeButton />
+                                            </div>
 
                                             <div className="relative z-30 p-6">
                                                 <p className="text-[14px] font-semibold text-gray-400">
@@ -363,13 +368,9 @@ export default function Resources() {
 
                                             <div className="absolute inset-0 bg-gradient-to-l from-[#FFFFFF] via-[#FFFFFF]/60 to-transparent" />
 
-                                            <button
-                                                type="button"
-                                                className="absolute top-4 right-4 z-20 grid h-9 w-9 place-items-center
-                                                rounded-full bg-white shadow"
-                                            >
-                                                <Heart className="h-4 w-4 fill-[#93268F] stroke-none" />
-                                            </button>
+                                            <div className="absolute top-4 right-4 z-60">
+                                                <LikeButton />
+                                            </div>
 
                                             <div className="relative z-30 p-6">
                                                 <p className="text-[14px] font-semibold text-gray-400">

@@ -18,12 +18,13 @@ const summaries = [
 
 export default function Sessions() {
     return <section className="border mt-20 rounded-2xl font-poppins p-4 m-2 bg-white">
-        <div>
-            <p className="font-bold text-[28px]">Sessions</p>
+        <div className="p-2 border-b-1">
+            <p className="font-semibold text-[28px]">Sessions</p>
             <p className="text-[20px] text-[#787878]">Manage bookings</p>
         </div>
-        <div className="mt-6 p-2 space-y-8">
-            <div className="flex  gap-10">
+        
+        <div className="mt-6 p-2 space-y-6">
+            <div className="flex justify-between gap-10">
                 {summaries.map((s) => (
                     <div key={s.value} className="flex justify-between border w-[330px] h-[95px] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex gap-4">

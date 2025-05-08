@@ -72,7 +72,7 @@ export default function Sidebar() {
             </div>
 
             {/* Help */}
-            <Separator className="mt-4"/>
+            <Separator className="mt-4 shadow-sm"/>
             <div className="mt-2 p-2 bg-white flex items-center space-x-2 justify-center">
                 <img src={Help} alt="Help" className="w-5 h-5 text-[#0FBBC3]" />
                 <p className="text-[12px] font-semibold text-[#0FBBC3]">Questions? Learn more</p>

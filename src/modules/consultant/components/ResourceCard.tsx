@@ -1,9 +1,7 @@
-import { Pencil } from "lucide-react";
-
-import { EllipsisVertical } from "lucide-react";
-
-import { FileText } from "lucide-react";
 import ActiveTag from "./ActiveTag";
+import Docs from "@/assets/Icons/Docs.svg"
+import Edit from "@/assets/Icons/edit.svg"
+
 
 interface ResourceCardProps {
     title: string;
@@ -15,10 +13,10 @@ interface ResourceCardProps {
 
 export function ResourceCard({ title, description, discountedPrice, price }: ResourceCardProps) {
     return (
-        <div className="w-full bg-white shadow-md rounded-lg overflow-hidden border">
+        <div className="w-full bg-white  rounded-lg overflow-hidden border">
             <div className="p-4 flex items-center gap-5">
                 <div className="bg-[#D8D8D833] rounded-lg p-2">
-                    <FileText size={60} className="text-black" />
+                    <img src={Docs} className="w-15"/>
                 </div>
                 <div className="flex-1">
                     <div className="mb-2">
@@ -27,9 +25,10 @@ export function ResourceCard({ title, description, discountedPrice, price }: Res
                                 <h1 className="text-[20px] font-semibold">{title}</h1>
                                 <span><ActiveTag/></span>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <EllipsisVertical className="text-[var(--color-purple)] cursor-pointer" />
-                                <Pencil className="text-[var(--color-purple)] cursor-pointer" />
+                            <div className="flex items-center">
+                                <button>
+                                    <img src={Edit} alt="edit " />
+                                </button>
                             </div>
                         </div>
                         <h2 className="text-[16px] text-[#747677] mt-1">{description}</h2>

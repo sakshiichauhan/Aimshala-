@@ -1,4 +1,4 @@
-import { Clock4, EllipsisVertical, FileText, MessageCircleMore, Pencil, Plus, Video, X } from "lucide-react";
+import { Clock4, EllipsisVertical, FileText, Pencil, Plus, Video, X } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import ActiveTag from "../../components/ActiveTag";
 import DeactiveTag from "../../components/DeactivateTag";
@@ -6,8 +6,12 @@ import { useState } from 'react';
 import activate from "@/assets/Icons/activate.svg";
 import deactivate from "@/assets/Icons/deactivate.svg"
 import { Doubts } from "../Popups/Expertise/Doubts";
-
-
+import Edit from "@/assets/Icons/edit.svg";
+import Delete from "@/assets/Icons/delete.svg";
+import Add from "@/assets/Icons/plus.svg"
+import CloudChatIcon from "@/assets/Icons/Cloud.svg"
+import Docs from "@/assets/Icons/Docs.svg"
+import { Separator } from "@/components/ui/separator";
 
 export default function Expertise() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,117 +31,43 @@ export default function Expertise() {
                 </div>
 
                 {/* Main title */}
-                <div className="flex justify-center items-center space-x-4">
-                    <h1 className="text-[28px] min-w-[350px]">Manage Your Expertise</h1>
+                <div className="flex justify-center items-center">
+                    <h1 className="text-[28px] min-w-[330px]">Manage Your Expertise</h1>
                     <span className="flex-1 h-[2px] bg-[#FFCB07]"></span>
                 </div>
 
-                {/* Doubt Pucho section */}
-                <div className="border border-gray-200 rounded-lg">
-                    <div className="flex justify-between items-center p-4">
-                        <div className="flex items-center gap-3">
-                            <h1 className="text-[32px] font-bold">Doubt Pucho</h1>
-                            <ActiveTag />
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <div className="relative">
-                                <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                    <EllipsisVertical className="text-[var(--color-purple)]" />
-                                </button>
-                                {isMenuOpen && (
-                                    <div className="absolute right-7 -top-1 mt-2 w-48 rounded-md shadow-lg bg-white">
-                                        <ul className="py-1 ">
-                                            {[
-                                                { icon: <Pencil />, label: 'Edit', action: () => { setIsEditOpen(true) } },
-                                                { icon: <img src={activate} alt="activate" className="w-6 h-6" />, label: <span className="text-blue-500">Activate</span>, action: () => { /* handle activate */ } },
-                                                { icon: <img src={deactivate} alt="activate" className="w-6 h-6" />, label: <span className="text-red-500"> Deactivate</span>, action: () => { /* handle deactivate */ } }
-                                            ].map((item, index) => (
-                                                <li key={index}>
-                                                    <button
-                                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                                                        onClick={() => {
-                                                            item.action();
-                                                            setIsMenuOpen(false);
-                                                        }}
-                                                    >
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="">{item.icon}</span>
-                                                            <span>{item.label}</span>
-                                                        </div>
-                                                    </button>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
-                            <button>
-                                <Pencil className="text-[var(--color-purple)]" />
-                            </button>
-                        </div>
-                    </div>
-                    <div className="border-t p-4 flex items-center gap-5">
-                        <div className="bg-[#D8D8D833] rounded-lg p-2">
-                            <MessageCircleMore size={60} className="text-[var(--color-purple)]" />
-                        </div>
+                {/* Career counselling section */}
+                <div className="border border-gray-200 rounded-lg p-2">
+                    <div className="flex justify-between items-center">
                         <div>
-                            <div>
-                                <h1 className="text-[20px]"> Ask Query</h1>
-                                <h2 className="text-[16px] text-[#747677]">Some Query</h2>
-                            </div>
-                            <div>
-                                <span className="text-[16px]"> Query Response Time</span>
-                                <span className="text-[16px]"> Follow Up</span>
-                                <span className="text-[16px] inline-flex gap-2">
-                                    <span>Price</span>
-                                    <span>Discounted Price</span>
-                                </span>
-                            </div>
+                            <h1 className="text-[32px] font-semibold">Career Consultation</h1>
+                            <h3 className="text-[16px] text-[#747677]">Assist with Career Choices</h3>
                         </div>
-                    </div>
-                </div>
-
-                {/* Resources section */}
-                <div className="border border-gray-200 rounded-lg">
-                    <div className="flex justify-between items-center p-4">
-                        <h1 className="text-[32px] font-bold">Resources</h1>
-                        <Plus className="text-[var(--color-purple)]" />
-                    </div>
-                    <div className="border-t p-4 flex items-center gap-5">
-                        <div className="bg-[#D8D8D833] rounded-lg p-2">
-                            <FileText size={60} className="text-[var(--color-purple)]" />
-                        </div>
-                        <div className="flex-1">
-                            <div className="mb-2">
-                                <div className="flex justify-between items-center">
-                                    <h1 className="text-[20px]">Resource Title</h1>
-                                    <div className="flex items-center gap-3">
-                                        <EllipsisVertical className="text-[var(--color-purple)]" />
-                                        <Pencil className="text-[var(--color-purple)]" />
-                                    </div>
-                                </div>
-                                <h2 className="text-[16px] text-[#747677]">Resource Description</h2>
-                            </div>
-                            <div className="flex gap-4 text-[16px]">
-                                <span>Price: $XX.XX</span>
-                                <span>Discounted: $XX.XX</span>
-                            </div>
+                        <div className="flex items-center gap-3">
+                            <button>
+                                <img src={Edit} alt="edit icon" />
+                            </button>
+                            <button>
+                                <img src={Delete} alt="delete icon" />
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 {/* Academic consultant section */}
-                <div className="border border-gray-200 rounded-lg">
-                    <div className="flex justify-between items-center p-4">
-                        <div className="flex items-center gap-3">
-                            <h1 className="text-[32px] font-bold">Academic Consultant</h1>
+                <div className="border border-gray-200 rounded-[12px]">
+                    <div className="flex justify-between items-center px-4 py-1.5">
+                        <div className="flex items-center gap-2">
+                            <h1 className="text-[32px] font-semibold">Academic Consultant</h1>
                             <ActiveTag />
                             <DeactiveTag />
                         </div>
-                        <Plus className="text-[var(--color-purple)]" />
+                        <button>
+                            <img src={Add} alt="add icon" />
+                        </button>
                     </div>
-                    <div className="p-4 space-y-4">
-                        <p>Help with Educational Planning</p>
+                    <div className="p-4 space-y-2">
+                        <p className="text-[#747677]">Help with Educational Planning</p>
 
                         <div className="border rounded-lg p-2">
                             <div className="">
@@ -195,16 +125,105 @@ export default function Expertise() {
                     </div>
                 </div>
 
-                {/* Career counselling section */}
-                <div className="border border-gray-200 rounded-lg p-4">
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <h1 className="text-[32px] font-bold">Career Consultation</h1>
-                            <h3 className="text-[16px] text-[#747677]">Assist with Career Choices</h3>
+                {/* Doubt Pucho section */}
+                <div className="border border-gray-200 rounded-lg">
+                    <div className="flex justify-between items-center p-4">
+                        <div className="flex items-center gap-3">
+                            <h1 className="text-[32px] font-semibold">Doubt Pucho</h1>
+                            <ActiveTag />
                         </div>
                         <div className="flex items-center gap-3">
-                            <EllipsisVertical className="text-[var(--color-purple)]" />
-                            <Pencil className="text-[var(--color-purple)]" />
+                            <div className="relative">
+                                <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                    <img src={Add} alt="" />
+                                </button>
+                                {isMenuOpen && (
+                                    <div className="absolute right-7 -top-1 mt-2 w-48 rounded-md shadow-lg bg-white">
+                                        <ul className="py-1 ">
+                                            {[
+                                                { icon: <Pencil />, label: 'Edit', action: () => { setIsEditOpen(true) } },
+                                                { icon: <img src={activate} alt="activate" className="w-6 h-6" />, label: <span className="text-blue-500">Activate</span>, action: () => { /* handle activate */ } },
+                                                { icon: <img src={deactivate} alt="activate" className="w-6 h-6" />, label: <span className="text-red-500"> Deactivate</span>, action: () => { /* handle deactivate */ } }
+                                            ].map((item, index) => (
+                                                <li key={index}>
+                                                    <button
+                                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                        onClick={() => {
+                                                            item.action();
+                                                            setIsMenuOpen(false);
+                                                        }}
+                                                    >
+                                                        <div className="flex items-center gap-3">
+                                                            <span className="">{item.icon}</span>
+                                                            <span>{item.label}</span>
+                                                        </div>
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t p-4 flex items-center gap-5">
+                        <div className="bg-[#D8D8D833] rounded-lg p-6">
+                            <img src={CloudChatIcon} alt="messages" className="w-10" />
+                        </div>
+                        <div>
+                            <div>
+                                <h1 className="text-[20px]"> Ask Query</h1>
+                                <h2 className="text-[16px] text-[#747677]">Some Query</h2>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <span className="text-[16px] font-semibold">Query Response Time : <span className="font-normal">48 hours</span></span>
+                                <Separator orientation="vertical" className="h-4" />
+                                <span className="text-[16px] font-semibold">Follow Up : <span className="font-normal">None</span></span>
+                                <Separator orientation="vertical" className="h-4" />
+                                <span className="text-[16px] inline-flex items-center gap-2">
+                                    <span className="font-semibold">Price:</span>
+                                    <span className="font-normal">$99</span>
+                                    <span className="text-[#747677] line-through font-normal">$1500</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Resources section */}
+                <div className="border border-gray-200 rounded-lg">
+                    <div className="flex justify-between items-center p-4">
+                        <h1 className="text-[32px] font-semibold">Resources</h1>
+                        <button>
+                            <img src={Edit} alt="" />
+                        </button>
+                    </div>
+                    <div className="border-t p-4 flex items-center gap-5">
+                        <div className="bg-[#D8D8D833] rounded-lg p-2">
+                            <img src={Docs} alt="docs" className="w-15" />
+                        </div>
+                        <div className="flex-1">
+                            <div className="mb-2">
+                                <div className="flex justify-between items-center">
+                                    <div className="flex w-full gap-2 items-center">
+                                        <h1 className="text-[20px]">Title: 10th Class Math Exam Syllabus</h1>
+                                        <ActiveTag />
+                                    </div>
+                                    <div className="flex items-center justify-center gap-3 mt-2">
+                                        <button>
+                                            <img src={Edit} alt="edit" />
+                                        </button>
+                                        <button>
+                                            <img src={Delete} alt="delete" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                            </div>
+                            <div className="flex gap-4 text-[16px]">
+                                <span className="font-semibold">Price: <span className="font-normal text-[#747677]">$99</span></span>
+                                <span className="line-through text-[#747677]"> $ 150</span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ export default function Calender() {
         }
     ]);
 
-    const handleSelectSlot = ({ start, end }) => {
+    const handleSelectSlot = ({ start, end }: { start: Date; end: Date }) => {
         const title = window.prompt('New Event name');
         if (title) {
             setEvents([
@@ -30,7 +30,7 @@ export default function Calender() {
     };
 
     return (
-        <div className='border rounded-2xl p-4 mt-20 font-poppins'>
+        <div className='border rounded-2xl p-4 mt-20 font-poppins bg-white'>
             <div className="flex items-center gap-2 w-full ">
                 <h2 className="text-[24px] whitespace-nowrap">Upcoming Sessions</h2>
                 <Separator className="bg-[#FFCB07] flex-1" />
