@@ -8,6 +8,7 @@ import deactivate from "@/assets/Icons/deactivate.svg"
 import { Doubts } from "../Popups/Expertise/Doubts";
 
 
+
 export default function Expertise() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);

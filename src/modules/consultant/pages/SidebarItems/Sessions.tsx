@@ -22,12 +22,12 @@ export default function Sessions() {
             <p className="font-bold text-[28px]">Sessions</p>
             <p className="text-[20px] text-[#787878]">Manage bookings</p>
         </div>
-        <div className="mt-6 p-2 space-y-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
+        <div className="mt-6 p-2 space-y-8">
+            <div className="flex  gap-10">
                 {summaries.map((s) => (
-                    <div key={s.value} className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="flex gap-6">
-                            <div className="bg-[#93268F]/5 h-20 w-20 rounded-xl inline-flex justify-center items-center">
+                    <div key={s.value} className="flex justify-between border w-[330px] h-[95px] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="flex gap-4">
+                            <div className="bg-[#93268F]/5  rounded-xl inline-flex justify-center items-center">
                                 <img src={s.icon} alt="icons" className="w-15 h-15" />
                             </div>
                             <div className="flex flex-col justify-center">
@@ -55,9 +55,7 @@ export default function Sessions() {
             </div>
             <div className="grid grid-cols-3">
                 <AppointmentCard />
-                <AppointmentCard />
-                <AppointmentCard />
-                <AppointmentCard />
+                
             </div>
 
             <div className="flex items-center gap-2 w-full ">

@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import ProfileImaage from '@/assets/Consultant/BecomeConsultant/image1.png';
 
 const ConsultantForm2 = () => {
-    const [profileImage, setProfileImage] = useState(null);
+    const [profileImage, setProfileImage] = useState<string | null>(null);
     const navigate = useNavigate();
 
-    const handleImageChange = (e) => {
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = (event) => setProfileImage(event.target.result);
+            reader.onload = (event) => setProfileImage(event.target?.result as string);
             reader.readAsDataURL(file);
         }
     };

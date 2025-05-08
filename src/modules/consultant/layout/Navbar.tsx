@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AimshalaLogo from '@/assets/AimshalaLogo.png';
 import Output from '@/assets/Output.png';
 import Aim from '@/assets/aim_logo.svg';
-import { Search, Bell, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { SignInButton, UserButton, SignedIn, SignedOut } from '@clerk/clerk-react';
 
 export default function Navbar() {

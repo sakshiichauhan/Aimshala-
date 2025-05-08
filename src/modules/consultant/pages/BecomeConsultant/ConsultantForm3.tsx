@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const ConsultantForm3 = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
   const handleSubmit = (e:any) => {
     e.preventDefault();

@@ -122,8 +122,6 @@ export default function ConsultDesk() {
                         </div>
                     </div>
                 </div>
-
-
             </div>
             {/* Community and Networking */}
             <div className="border border-[#E8E9E9] rounded-[16px] p-4 bg-white">
@@ -131,6 +129,9 @@ export default function ConsultDesk() {
                     <h2 className="text-[24px] whitespace-nowrap">Community and  <span className="font-semibold">Networking</span></h2>
                     <Separator className="bg-[#FFCB07] flex-1" />
                     <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">View All</h2>
+                </div>
+                <div className="border border-[#E8E9E9] rounded-[16px] p-4 mt-5">
+                    <h2>Community Section</h2>
                 </div>
             </div>
         </div>
@@ -140,7 +141,7 @@ export default function ConsultDesk() {
             <div className="flex flex-col gap-6">
                 {/* Profile card */}
                 <div className="flex border border-[#E8E9E9] bg-white rounded-xl p-3 gap-5">
-                    <div className="flex items-center">
+                    <div className="flex items-center ml-3">
                         <img src={profile} alt="profile" className="w-[102px] h-[102px] rounded-full ring-6 ring-[#0FBBC3]" />
                     </div>
                     <div className="flex flex-col justify-center ">
@@ -195,7 +196,7 @@ function OpportunityCard() {
             <div className="mx-[8px] py-4">
                 <div className="flex justify-between  mt-2 ">
                     <div className="border border-[##E7E6F080] rounded-[4px] text-[12px] px-[8px] py-[2px] inline-flex justify-center items-center">Languages</div>
-                    <div className="flex border border-[#E7E6F080] rounded-[4px] px-[8px] py-[2px]">
+                    <div className="flex border border-[#E7E6F080] rounded-[4px] px-[8px] py-[2px] gap-2">
                         <StarIcon className="text-amber-300 w-[16px] text-[16px]" />
                         <span>5.0</span>
                     </div>

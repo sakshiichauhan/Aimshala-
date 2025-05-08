@@ -105,7 +105,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                                 </div>
                             ))}
                         </div>
-                        <div className="flex justify-center mt-2">Time Left</div>
+                        <div className="flex justify-center mt-2 text-[12px]">Time Left</div>
                     </div>
                 )}
             </div>

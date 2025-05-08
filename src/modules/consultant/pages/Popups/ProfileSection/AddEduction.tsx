@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Calendar from '@/assets/Consultant/Calendar.png';
 import { X } from "lucide-react";
 import DiscardChanges from "./Discard";
@@ -7,8 +7,20 @@ interface AddEducationProps {
   onClose: () => void;
 }
 
+interface FormState {
+  [key: string]: string;
+  school: string;
+  degree: string;
+  fieldOfStudy: string;
+  startDate: string;
+  endDate: string;
+  grade: string;
+  activities: string;
+  description: string;
+}
+
 const AddEducation = ({ onClose }: AddEducationProps) => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     school: "",
     degree: "",
     fieldOfStudy: "",
@@ -21,7 +33,7 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
 
   const [showDiscardPopup, setShowDiscardPopup] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -88,7 +100,7 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
                 <img
                   src={Calendar}
                   alt="Calendar"
-                  onClick={() => document.getElementById(name)?.showPicker?.()}
+                  onClick={() => (document.getElementById(name) as HTMLInputElement)?.showPicker?.()}
                   className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
                 />
               </div>
