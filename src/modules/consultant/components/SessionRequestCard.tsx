@@ -5,7 +5,7 @@ import profile from "@/assets/Profile-1.png"
 
 export default function SessionRequestCard() {
     return (
-        <div className="border rounded-xl p-4 mt-2 shadow-md w-[500px] bg-white relative">
+        <div className="border rounded-xl p-4 mt-2 w-[474px] bg-white relative">
             <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-2 text-sm text-gray-700">
                     <span className="inline-flex items-center gap-1">

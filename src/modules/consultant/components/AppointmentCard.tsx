@@ -1,8 +1,8 @@
 import { Calendar } from "lucide-react";
 import { Clock, Video } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import profile from "@/assets/Profile-1.png"
 import { Button } from "@/components/ui/button";
+import profilePicture from "@/assets/Profile-1.png"
 
 const AppointmentCardData = [
     {
@@ -13,7 +13,7 @@ const AppointmentCardData = [
         price: "₹100",
         mentor: {
             name: "John Doe",
-            profilePic: "/images/profile-1.png",
+            profilePic: profilePicture,
             description: "Electronics communication engineering"
         },
         consulting: "Goal Setting",
@@ -28,7 +28,7 @@ const AppointmentCardData = [
         price: "₹150",
         mentor: {
             name: "Jane Smith",
-            profilePic: "/images/profile-2.png",
+            profilePic: profilePicture,
             description: "Software Engineering | Google"
         },
         consulting: "Resume Review",
@@ -37,13 +37,13 @@ const AppointmentCardData = [
     },
     {
         id: "g7h8i9",
-        type: "Mock Interview",
+        type: "Interview",
         participantType: "Individual Student",
         duration: "60 Mins",
         price: "₹250",
         mentor: {
             name: "Ravi Kumar",
-            profilePic: "/images/profile-3.png",
+            profilePic: profilePicture,
             description: "Data Scientist | Microsoft"
         },
         consulting: "DSA Interview Prep",
@@ -58,10 +58,10 @@ const AppointmentCardData = [
         price: "₹120",
         mentor: {
             name: "Neha Sharma",
-            profilePic: "/images/profile-4.png",
+            profilePic: profilePicture,
             description: "Product Manager | Amazon"
         },
-        consulting: "Career Switch to Product",
+        consulting: "Career Switch",
         date: "Sep 23, 2024",
         time: "6:00 PM"
     },
@@ -73,7 +73,7 @@ const AppointmentCardData = [
         price: "₹80",
         mentor: {
             name: "Arjun Mehta",
-            profilePic: "/images/profile-5.png",
+            profilePic: profilePicture,
             description: "UI/UX Designer | Adobe"
         },
         consulting: "Design Portfolio Review",
@@ -87,13 +87,13 @@ export default function AppointmentCard() {
     return (
         <>
             {AppointmentCardData.map((items) => (
-                <div key={items.id} className="border rounded-xl p-4 mt-2 shadow-md w-[500px] bg-white relative">
+                <div key={items.id} className="border border-[#E7E6F0] rounded-[8px] p-4 mt-2 w-[474px] bg-white relative">
                     <div className="flex flex-col gap-3">
                         <div className="flex items-center gap-2 text-sm text-gray-700">
                             <span className="inline-flex items-center gap-1">
                                 <Video size={16} /> <span className="text-[14px]">{items.type}</span>
                             </span>
-                            <Separator orientation="vertical" />
+                            <Separator orientation="vertical"  />
                             <span className="text-[14px]">
                                 <span className="font-semibold">{items.participantType.split(' ')[0]}</span> {items.participantType.split(' ').slice(1).join(' ')}
                             </span>
