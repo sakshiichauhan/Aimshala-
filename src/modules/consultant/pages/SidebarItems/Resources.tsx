@@ -1,9 +1,4 @@
 import { useState } from "react";
-import {
-    BriefcaseIcon,
-    ChartBarIcon,
-    AcademicCapIcon,
-} from "@heroicons/react/outline";
 import CareerCluster from "@/assets/Resources/CareerIcon.svg"
 import TrendingCareer from "@/assets/Resources/Trending.svg";
 import FuturePredection from "@/assets/Resources/Future.svg";
@@ -61,7 +56,6 @@ import CareerLibrary from '@/modules/consultant/pages/SidebarItems/Resource/Care
 import Exams from '@/modules/consultant/pages/SidebarItems/Resource/Exams';
 import Scholarship from '@/modules/consultant/pages/SidebarItems/Resource/Scholarship';
 import Colleges from '@/modules/consultant/pages/SidebarItems/Resource/Colleges';
-import { Heart } from "lucide-react";
 import { LikeButton } from "../../components/LikeButton";
 import { Separator } from "@/components/ui/separator";
 

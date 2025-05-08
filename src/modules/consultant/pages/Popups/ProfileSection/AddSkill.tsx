@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { X } from "lucide-react";
 
 interface AddSkillProps {
   onClose: () => void;
 }
 
+interface FormState {
+  skill: string;
+  selectedOptions: string[];
+  followSkill: boolean;
+}
+
 const AddSkill = ({ onClose }: AddSkillProps) => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     skill: "",
     selectedOptions: [],
     followSkill: false,

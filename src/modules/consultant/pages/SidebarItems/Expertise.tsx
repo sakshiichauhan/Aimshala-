@@ -1,4 +1,4 @@
-import { Clock4, EllipsisVertical, FileText, Pencil, Plus, Video, X } from "lucide-react";
+import { Clock4, Pencil, Video} from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import ActiveTag from "../../components/ActiveTag";
 import DeactiveTag from "../../components/DeactivateTag";

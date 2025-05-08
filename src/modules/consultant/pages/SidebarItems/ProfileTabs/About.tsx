@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Eduction from "@/assets/Icons/ConsultantProfile/img1.png";
 import Honors from "@/assets/Icons/ConsultantProfile/img2.png";
 import Awards from "@/assets/Icons/ConsultantProfile/img3.png";

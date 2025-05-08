@@ -42,9 +42,8 @@ export default function Profile() {
   const profileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    const currentTab = tabs.find((tab) =>
-      location.pathname.endsWith(tab.path.split("/").pop() || "")
-    );
+    const currentPath = location.pathname.split('/').pop() || "about";
+    const currentTab = tabs.find(tab => tab.path.endsWith(currentPath));
     setActiveTab(currentTab?.id || "about");
   }, [location.pathname]);
 
@@ -220,7 +219,7 @@ export default function Profile() {
               key={tab.id}
               to={tab.path}
               className={`cursor-pointer bg-white hover:text-[#93268F] font-semibold ${
-                location.pathname === tab.path ? "text-[#93268F]" : ""
+                activeTab === tab.id ? "text-[#93268F]" : ""
               }`}
             >
               {tab.label}
@@ -230,6 +229,7 @@ export default function Profile() {
       </div>
 
       <Routes>
+        <Route index element={<About />} />
         <Route path="/about" element={<About />} />
         <Route path="/specialties" element={<Specialties />} />
         <Route path="/resources" element={<ProfileResource />} />

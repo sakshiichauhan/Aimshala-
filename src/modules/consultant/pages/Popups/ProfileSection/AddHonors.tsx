@@ -91,7 +91,7 @@ const AddHonors = ({ onClose }: AddHonorsProps) => {
             <img
               src={CalendarIcon}
               alt="Calendar"
-              onClick={() => document.getElementById('issueDate')?.showPicker?.()}
+              onClick={() => (document.getElementById('issueDate') as HTMLInputElement)?.showPicker?.()}
               className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
             />
           </div>

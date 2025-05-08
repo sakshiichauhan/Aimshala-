@@ -6,8 +6,17 @@ interface AddLicenseProps {
   onClose: () => void;
 }
 
+interface LicenseForm {
+  name: string;
+  issuingOrganisation: string;
+  issueDate: string;
+  expirationDate: string;
+  credentialID: string;
+  credentialURL: string;
+}
+
 const AddLicense = ({ onClose }: AddLicenseProps) => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<LicenseForm>({
     name: "",
     issuingOrganisation: "",
     issueDate: "",
@@ -76,14 +85,14 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
                     type="date"
                     name={name}
                     id={name}
-                    value={form[name]}
+                    value={form[name as keyof LicenseForm]}
                     onChange={handleChange}
                     className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md text-[#898989] text-[16px] focus:outline-none [&::-webkit-calendar-picker-indicator]:hidden"
                   />
                   <img
                     src={CalendarIcon}
                     alt="Calendar"
-                    onClick={() => document.getElementById(name)?.showPicker?.()}
+                    onClick={() => (document.getElementById(name) as HTMLInputElement)?.showPicker()}
                     className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
                   />
                 </div>

@@ -15,8 +15,8 @@ const AddProject = ({ onClose }: AddProjectProps) => {
     associatedWith: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type, checked } = e.target as HTMLInputElement;
     setForm({ ...form, [name]: type === "checkbox" ? checked : value });
   };
 
@@ -110,14 +110,19 @@ const AddProject = ({ onClose }: AddProjectProps) => {
                     <input
                       type="date"
                       name={name}
-                      value={form[name]}
+                      value={form[name as 'startDate' | 'endDate']}
                       onChange={handleChange}
-                      className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
+                      className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] appearance-none"
                     />
                     <img
                       src={CalendarIcon}
                       alt="Calendar"
-                      onClick={() => document.getElementById(name)?.showPicker?.()}
+                      onClick={() => {
+                        const input = document.getElementById(name);
+                        if (input && 'showPicker' in input) {
+                          (input as HTMLInputElement).showPicker();
+                        }
+                      }}
                       className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
                     />
                   </div>

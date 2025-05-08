@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import  { useState } from "react";
 
 const AddMedia = () => {
   const [form, setForm] = useState({
@@ -7,7 +6,7 @@ const AddMedia = () => {
     description: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
