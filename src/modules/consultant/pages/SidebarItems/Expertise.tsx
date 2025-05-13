@@ -21,7 +21,7 @@ export default function Expertise() {
 
     return (
         <section className="flex flex-col border rounded-2xl font-poppins p-8 mt-20 bg-white">
-            <div className="space-y-8">
+            <div className="space-y-5">
                 <div className="flex justify-between items-center">
                     <div className="flex rounded-full bg-white p-1 text-[#898989]">
                         <button

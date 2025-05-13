@@ -24,7 +24,7 @@ export default function ConsultDesk() {
                 <div className="border border-[#E8E9E9] rounded-2xl p-4 bg-white">
                     <div className="flex items-center gap-2 w-full ">
                         <h2 className="text-[28px] whitespace-nowrap">Upcoming Sessions</h2>
-                        <Separator className="bg-[#FFCB07] flex-1" />
+                        <Separator className="bg-[#FFCB07] flex-1 h-[2px]" />
                         <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">View All</h2>
                     </div>
                     <div className=" flex gap-2 mt-4">
