@@ -69,11 +69,11 @@ function Separator({
       decorative={decorative}
       orientation={orientation}
       className={cn(
-        "bg-border shrink-0",
-        // horizontal → full width, 1px tall
-        "data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=horizontal]:border-dotted",
-        // vertical → full height, 1px wide
-        "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        "shrink-0",
+        // horizontal → dotted line (top border)
+        "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:border-t data-[orientation=horizontal]:border-dotted data-[orientation=horizontal]:border-border",
+        // vertical → solid line (left border)
+        "data-[orientation=vertical]:h-full data-[orientation=vertical]:border-l data-[orientation=vertical]:border-solid data-[orientation=vertical]:border-border",
         className
       )}
       {...props}
