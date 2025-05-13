@@ -161,7 +161,7 @@ export default function Profile() {
             </svg>
             <span className="text-[14px] text-[#93268F]">Verified</span>
           </div>
-          <Pencil className="text-[#93268F] cursor-pointer" />
+          <Pencil className="text-[#93268F]/10 cursor-pointer" />
         </div>
 
         {/* Short Headline */}

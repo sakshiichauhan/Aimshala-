@@ -42,7 +42,7 @@ export default function Expertise() {
                     <div className="flex justify-between items-center">
                         <div>
                             <h1 className="text-[32px] font-semibold">Career Consultation</h1>
-                            <h3 className="text-[16px] text-[#747677]">Assist with Career Choices</h3>
+                            <h3 className="text-[16px] font-normal text-[#828282]">Assist with Career Choices</h3>
                         </div>
                         <div className="flex items-center gap-3">
                             <button>
@@ -56,35 +56,41 @@ export default function Expertise() {
                 </div>
 
                 {/* Academic consultant section */}
-                <div className="border border-gray-200 rounded-[12px]">
-                    <div className="flex justify-between items-center px-4 py-1.5">
-                        <div className="flex items-center gap-2">
-                            <h1 className="text-[32px] font-semibold">Academic Consultant</h1>
-                            <ActiveTag />
-                            <DeactiveTag />
-                        </div>
-                        <button>
-                            <img src={Add} alt="add icon" />
-                        </button>
-                    </div>
-                    <div className="p-4 space-y-2">
-                        <p className="text-[#747677]">Help with Educational Planning</p>
+       <div className="border border-gray-200 rounded-[12px]"> 
+    <div className="flex justify-between items-center px-4 py-1.5">
+        <div className="flex items-center gap-2">
+            <h1 className="text-[32px] font-semibold">Academic Consultant</h1>
+            <ActiveTag />
+            <DeactiveTag />
+        </div>
+        <button>
+            <img src={Add} alt="add icon" />
+        </button>
+    </div>
 
-                        <div className="border rounded-lg p-2">
-                            <div className="">
-                                <h2 className="text-[20px]">LOrem ipsum</h2>
-                                <p className="text-[#747677] text-[16px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute </p>
-                            </div>
+    {/* Moved paragraph up here */}
+    <div className="px-4">
+        <p className="text-[#747677]">Help with Educational Planning</p>
+    </div>
+
+    <div className="p-4 py-3 space-y-2">
+        <div className="border rounded-lg p-2">
+            <div>
+                <h2 className="text-[20px] font-medium">LOrem ipsum</h2>
+                <p className="text-[#747677] font-normal text-[16px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+                </p>
+            </div>
 
                             <div className="mt-2">
-                                <h2 className="text-[20px]">Area of Expertise</h2>
-                                <p className="text-[#747677] text-[16px]">Stream Selection  |  Career Path Guidance  |  College Selection  |  Exam Preparation  |  Study Skills  |  Interview Prep  |  Study Abroad  |  Peer & Parental Pressure
+                                <h2 className="text-[16px] font-medium">Area of Expertise</h2>
+                                <p className="text-[#626262] text-[16px]">Stream Selection  |  Career Path Guidance  |  College Selection  |  Exam Preparation  |  Study Skills  |  Interview Prep  |  Study Abroad  |  Peer & Parental Pressure
                                     Work-Life Balance  |  Confidence Building  |  Resume Help</p>
                             </div>
 
                             <div className="mt-2">
-                                <h2 className="text-[20px]">Target Group</h2>
-                                <p className="text-[#747677] text-[16px]">Class 5th-8th  |  Class 9th-10th  |  Class 11th-12th  |  College & Graduates  |  Postgraduates  |  Entrepreneurs  |  Career Changers  |  Peer & Parental Pressure</p>
+                                <h2 className="text-[16px] font-medium">Target Group</h2>
+                                <p className="text-[#626262] font-normaltext-[16px]">Class 5th-8th  |  Class 9th-10th  |  Class 11th-12th  |  College & Graduates  |  Postgraduates  |  Entrepreneurs  |  Career Changers  |  Peer & Parental Pressure</p>
                             </div>
                         </div>
 
@@ -95,17 +101,17 @@ export default function Expertise() {
                             <div className="flex items-center gap-5">
                                 <div className="flex items-center gap-2">
                                     <Video />
-                                    <span>1:1 Call</span>
+                                    <span className="text-[20px] font-normal text-[#4D4D4D]">1:1 Call</span>
                                 </div>
                                 <Separator orientation="vertical" />
                                 <div className="flex items-center gap-2">
                                     <Clock4 />
-                                    <span>30 mins</span>
+                                    <span className="text-[20px] font-normal text-[#4D4D4D]">30 mins</span>
                                     <Separator orientation="vertical" />
                                 </div>
                                 <div className="text-[#626262]">
-                                    <span className="font-medium text-">Price: <span className=""> ₹999</span></span>
-                                    <span className="font-normal text-[] line-through"> ₹999</span>
+                                    <span className="font-semibold text-[20px] text-[#626262]">Price: <span className=" font-normal"> ₹999</span></span>
+                                    <span className=" font-normal text-[20px] line-through"> ₹999</span>
                                 </div>
                             </div>
                         </div>
@@ -117,17 +123,17 @@ export default function Expertise() {
                             <div className="flex items-center gap-5">
                                 <div className="flex items-center gap-2">
                                     <img src={Location} alt="" className="inline-flex justify-center items-center" />
-                                    <span>In-Person</span>
+                                    <span className="text-[20px] font-normal text-[#4D4D4D]">In-Person</span>
                                 </div>
                                 <Separator orientation="vertical" />
                                 <div className="flex items-center gap-2">
                                     <Clock4 />
-                                    <span>1:1 Call</span>
+                                    <span className="text-[20px] font-normal text-[#4D4D4D]">1:1 Call</span>
                                 </div>
                                 <Separator orientation="vertical" />
                                 <div className="text-[#626262]">
-                                    <span className="font-medium text-">Price: <span className=""> ₹999</span></span>
-                                    <span className="font-normal text-[] line-through"> ₹999</span>
+                                    <span className="font-semibold text-[20px]">Price: <span className="font-normal"> ₹999</span></span>
+                                    <span className="font-normal text-[20px] line-through"> ₹999</span>
                                 </div>
                             </div>
                         </div>
