@@ -64,7 +64,7 @@ export const EventCard: React.FC<EventCardProps> = ({
             {/* Middle content */}
             <div className="flex-1 flex flex-col justify-between">
                 <div>
-                    <span className="inline-block border border-[#E7E6F080] rounded px-2 py-1 text-[12px]">
+                    <span className="inline-block border border-[#E7E6F080] rounded px-2 py-1 text-[12px] text-[#626262] font-normal">
                         {category}
                     </span>
                     <span className="text-[#93268F] font-medium text-[12px] ml-2">
@@ -95,17 +95,17 @@ export const EventCard: React.FC<EventCardProps> = ({
                     </button>
                 ) : (
                     <div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-1">
                             {[hrs, mins, secs].map((unit, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex flex-col items-center bg-[#F4F4F4] text-[#626262] rounded-[4px] px-1 py-1"
+                                    className="flex flex-col items-center bg-[#F4F4F4] text-[#626262] rounded-[4px] px-1 py-1 font-medium"
                                 >
                                     <span className="text-lg font-medium">{unit}</span>
                                 </div>
                             ))}
                         </div>
-                        <div className="flex justify-center mt-2 text-[12px]">Time Left</div>
+                        <div className="flex justify-center mt-2 text-[12px] text-[#626262] font-medium">Time Left</div>
                     </div>
                 )}
             </div>

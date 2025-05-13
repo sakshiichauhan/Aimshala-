@@ -101,16 +101,16 @@ export default function AppointmentCard() {
                             <span className="inline-flex items-center gap-1">
                                 <Clock size={16} /> <span className="text-[14px]">{items.duration}</span>
                             </span>
-                            <Separator orientation="vertical" />
+                            <Separator orientation="vertical"/>
                             <span className="font-semibold text-[14px]">
-                                Price: {items.price}
+                                Price: <span className="font-normal text-[#4D4D4D]">{items.price}</span>
                             </span>
                         </div>
 
                         <div className="flex gap-3 items-center">
                             <img src={items.mentor.profilePic} alt="profile" className="w-12 h-12 rounded-full object-cover" />
                             <div>
-                                <h2 className="text-lg font-bold">{items.mentor.name}</h2>
+                                <h2 className="text-lg font-semibold">{items.mentor.name}</h2>
                                 <p className="text-sm text-gray-500 text-[12px]">{items.mentor.description}</p>
                             </div>
                         </div>
@@ -118,19 +118,19 @@ export default function AppointmentCard() {
                         <div className="w-[300px] h-[2px]  bg-gradient-to-r from-transparent to-[#93268F]/40"></div>
 
                         <div className="text-sm">
-                            <span className="bg-gray-100 py-1 px-2 rounded-md text-[#626262]">
+                            <span className="border border-[#E7E6F080] py-1 px-2 rounded-md text-[#626262] bg-white">
                                 <span className="font-semibold">Career Consulting:</span> {items.consulting}
                             </span>
                         </div>
 
                         <div className="flex items-center gap-2 text-sm text-[#626262]">
                             <Calendar size={16} />
-                            <span>
-                                On <span className="font-semibold">{items.date}</span> at <span className="font-semibold">{items.time}</span>
+                            <span className="text-[#626262]">
+                                On <span className="font-semibold">{items.date}</span> at <span className="font-normal">{items.time}</span>
                             </span>
                         </div>
 
-                        <div className="self-end absolute top-30">
+                        <div className="self-end absolute top-32">
                             <Button className="bg-[#93268F] hover:bg-[#93268F] text-white w-[121px] h-[48px] rounded-[6px] text-[16px]">Join Now</Button>
                         </div>
                     </div>

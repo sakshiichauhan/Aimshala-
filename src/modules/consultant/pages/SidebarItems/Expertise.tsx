@@ -235,6 +235,64 @@ export default function Expertise() {
                             </div>
                         </div>
                     </div>
+
+                    <div className="border-t p-4 flex items-center gap-5">
+                        <div className="bg-[#D8D8D833] rounded-lg p-2">
+                            <img src={Docs} alt="docs" className="w-15" />
+                        </div>
+                        <div className="flex-1">
+                            <div className="mb-2">
+                                <div className="flex justify-between items-center">
+                                    <div className="flex w-full gap-2 items-center">
+                                        <h1 className="text-[20px]">Title: 10th Class Math Exam Syllabus</h1>
+                                        <ActiveTag />
+                                    </div>
+                                    <div className="flex items-center justify-center gap-3 mt-2">
+                                        <button>
+                                            <img src={Edit} alt="edit" />
+                                        </button>
+                                        <button>
+                                            <img src={Delete} alt="delete" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                            </div>
+                            <div className="flex gap-4 text-[16px]">
+                                <span className="font-semibold">Price: <span className="font-normal text-[#747677]">$99</span></span>
+                                <span className="line-through text-[#747677]"> $ 150</span>
+                            </div>
+                        </div>
+                    </div>
+                    {/* res3 */}
+                    <div className="border-t p-4 flex items-center gap-5">
+                        <div className="bg-[#D8D8D833] rounded-lg p-2">
+                            <img src={Docs} alt="docs" className="w-15" />
+                        </div>
+                        <div className="flex-1">
+                            <div className="mb-2">
+                                <div className="flex justify-between items-center">
+                                    <div className="flex w-full gap-2 items-center">
+                                        <h1 className="text-[20px]">Title: 10th Class Math Exam Syllabus</h1>
+                                        <ActiveTag />
+                                    </div>
+                                    <div className="flex items-center justify-center gap-3 mt-2">
+                                        <button>
+                                            <img src={Edit} alt="edit" />
+                                        </button>
+                                        <button>
+                                            <img src={Delete} alt="delete" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                            </div>
+                            <div className="flex gap-4 text-[16px]">
+                                <span className="font-semibold">Price: <span className="font-normal text-[#747677]">$99</span></span>
+                                <span className="line-through text-[#747677]"> $ 150</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
