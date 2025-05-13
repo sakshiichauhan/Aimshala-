@@ -1,7 +1,12 @@
-export default function ReferEarn() {
-    return (
-        <section>
-            <div className="flex justify-center items-center mt-20">Refer and earn</div>
-        </section>
-    )
+export default function ReferEarn() {  
+        return <section>
+        <div className="flex flex-col border rounded-[16px] font-poppins p-8 mt-20 bg-white h-screen">
+            <div className="flex-1 flex items-center justify-center">
+                <div className="text-center">
+                    <h2 className="text-4xl font-semibold text-gray-800 mb-4">Refer and Earn</h2>
+                    <p className="text-gray-600">This section is not available for preview.</p>
+                </div>
+            </div>
+        </div>
+    </section>  
 }
