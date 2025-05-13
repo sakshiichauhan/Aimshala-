@@ -1,4 +1,6 @@
 import { ResourceCard } from "@/modules/consultant/components/ResourceCard";
+import { useState } from 'react';
+
 const cardData = [
     {
         title: "Winner's PPT - Flipkart - 2023",
@@ -39,12 +41,28 @@ const cardData = [
 ];
 
 export default function MyResources() {
+    const [activeTab, setActiveTab] = useState<'active' | 'deactivated'>('active');
+
     return (
         <section >
             <div className="py-4">
-                <div className="">
-                    <span className="border-2 p-2 rounded-l-xl">Active</span>
-                    <span className="border-2 p-2 rounded-r-xl">Deactivated</span>
+                <div className="flex">
+                    <button 
+                        className={`border-2 p-2 rounded-l-[12px] border-r-0 hover:bg-[#faf4f9] transition-colors ${
+                            activeTab === 'active' ? 'bg-[#faf4f9]' : ''
+                        }`}
+                        onClick={() => setActiveTab('active')}
+                    >
+                        Active
+                    </button>
+                    <button 
+                        className={`border-2 p-2 rounded-r-[12px] border-l-0 hover:bg-[#faf4f9] transition-colors ${
+                            activeTab === 'deactivated' ? 'bg-[#faf4f9]' : ''
+                        }`}
+                        onClick={() => setActiveTab('deactivated')}
+                    >
+                        Deactivated
+                    </button>
                 </div>
             </div>
             <div className="flex justify-center items-center flex-col gap-2 rounded-2xl m-2 ">
