@@ -130,10 +130,23 @@ export default function ConsultDesk() {
                     <Separator className="bg-[#FFCB07] flex-1" />
                     <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">View All</h2>
                 </div>
-                <div className="border border-[#E8E9E9] rounded-[16px] p-4 mt-5">
-                    <h2>Community Section</h2>
-                    <h2>Coming soon ...</h2>
-                    <h2>Feature is not implemented</h2>
+                <div className="border border-[#E8E9E9] rounded-[16px] p-6 mt-5 bg-gradient-to-br from-[#F9F9F9] to-[#FFFFFF]">
+                    <div className="flex flex-col items-center justify-center py-8">
+                        <div className="w-20 h-20 bg-[#F3E8F3] rounded-full flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#93268F]" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-14h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <h2 className="text-[24px] font-semibold text-[#2D2D2D] mb-2">Community Section</h2>
+                        <p className="text-[#787878] text-center max-w-[300px]">
+                            We're working on something exciting! Stay tuned for our new community features.
+                        </p>
+                        <div className="mt-4 flex items-center space-x-2 text-[#787878]">
+                            <span className="animate-pulse">•</span>
+                            <span className="text-purple">Coming Soon</span>
+                            <span className="animate-pulse">•</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,7 +157,20 @@ export default function ConsultDesk() {
                 {/* Profile card */}    
                 <div className="flex border border-[#E8E9E9] bg-white rounded-xl p-3 gap-5">
                     <div className="flex items-center ml-3">
-                        <img src={profile} alt="profile" className="w-[102px] h-[102px] rounded-full ring-6 ring-[#0FBBC3]" />
+                        <div className="relative">
+                            <img src={profile} alt="profile" className="w-[102px] h-[102px] rounded-full" />
+                            <div 
+                                className="absolute inset-0 rounded-full"
+                                style={{
+                                    background: `conic-gradient(
+                                        #0FBBC3 ${90 * 3.6}deg, 
+                                        #d0f2f3 0deg 360deg
+                                    )`,
+                                    mask: 'radial-gradient(transparent 45px, black 46px)',
+                                    WebkitMask: 'radial-gradient(transparent 45px, black 46px)'
+                                }}
+                            />
+                        </div>
                     </div>
                     <div className="flex flex-col justify-center ">
                         <div className="flex flex-col">
@@ -152,7 +178,7 @@ export default function ConsultDesk() {
                             <h3 className="text-[#787878] text-[20px]">Counselor</h3>
                         </div>
                         <div>
-                            <h2 className="text-[#0FBBC3] text-[16px]">75% Profile Complete</h2>
+                            <h2 className="text-[#0FBBC3] text-[16px]"><span>90%</span> Profile Complete</h2>
                             <h3 className="text-[#93268F] text-[16px]">View Profile</h3>
                         </div>
                     </div>

@@ -137,13 +137,12 @@ export default function Payments() {
                 </Card>
 
                 {/* Right side: Payment Details & Guidelines */}
-                <div className="w-full md:w-1/3 space-y-4 mt-6 md:mt-0">
-                    {/* Payment Details */}
+                <div className="w-full md:w-1/3 space-y-2">
                     <Card>
                         <CardHeader>
                             <CardTitle className="text-[20px]">Payment Details</CardTitle>
                         </CardHeader>
-                        <CardContent className="m-2">
+                        <CardContent className="">
                             <dl className="space-y-1">
                                 <div>
                                     <dt className="text-xs text-gray-500">Account holder's name</dt>
@@ -172,17 +171,16 @@ export default function Payments() {
 
                     {/* Guidelines */}
                     <Card>
-                        <div className="text-[20px] text-[600] ml-5">Guidelines</div>
-                        <Separator orientation="horizontal" />
-                        <CardContent>
-                            <ol className="list-decimal list-inside space-y-2  text-gray-600">
+                        <CardHeader className="text-[20px] font-semibold ">Guidelines</CardHeader>
+                        <CardContent className="">
+                            <ol className="list-decimal list-inside space-y-1 text-gray-600">
                                 <li>You can add your account details here.</li>
                                 <li>
                                     Please note that the payments won't be processed if this section
                                     is not completed.
                                 </li>
                             </ol>
-                            <Button variant="link" className="mt-2 px-0 text-[#94278F]">
+                            <Button variant="link" className=" px-0 text-[#94278F]">
                                 View More
                             </Button>
                         </CardContent>
