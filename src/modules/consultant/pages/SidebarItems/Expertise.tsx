@@ -17,14 +17,31 @@ import { Separator } from "@/components/ui/separator";
 export default function Expertise() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState<'Consulting' | 'Mentorship'>('Consulting');
 
     return (
         <section className="flex flex-col border rounded-2xl font-poppins p-8 mt-20 bg-white">
             <div className="space-y-8">
                 <div className="flex justify-between items-center">
                     <div className="flex rounded-full bg-white p-1 text-[#898989]">
-                        <h1 className="px-4 py-1 text-sm border border-[#898989] rounded-l-3xl text-[16px]">Consulting</h1>
-                        <h1 className="px-4 py-1 text-sm border rounded-r-3xl border-[#898989] text-[16px]">Mentorship</h1>
+                        <button
+                            className={`px-4 py-1 text-sm border border-[#dadada] rounded-l-[8px] text-[16px] transition-colors
+                                ${activeTab === 'Consulting' ?
+                                    'bg-[#93268f] text-white hover:bg-[#93268f]' :
+                                    'hover:text-[#93268f] hover:bg-[#faf4f9]'}`}
+                            onClick={() => setActiveTab('Consulting')}
+                        >
+                            Consulting
+                        </button>
+                        <button
+                            className={`px-4 py-1 text-sm border rounded-r-[8px] border-[#dadada] text-[16px] transition-colors
+                                ${activeTab === 'Mentorship' ?
+                                    'bg-[#93268f] text-white hover:bg-[#93268f]' :
+                                    'hover:text-[#93268f] hover:bg-[#faf4f9]'}`}
+                            onClick={() => setActiveTab('Mentorship')}
+                        >
+                            Mentorship
+                        </button>
                     </div>
                     <button className="bg-[var(--color-purple)] text-white rounded-[6px] px-6 py-2.5 text-[16px] ">
                         Add Expertise
@@ -33,7 +50,7 @@ export default function Expertise() {
 
                 {/* Main title */}
                 <div className="flex justify-center items-center">
-                    <h1 className="text-[28px] min-w-[330px]">Manage Your Expertise</h1>
+                    <h1 className="text-[28px] font-normal min-w-[330px]">Manage Your Expertise</h1>
                     <span className="flex-1 h-[2px] bg-[#FFCB07]"></span>
                 </div>
 
@@ -54,33 +71,32 @@ export default function Expertise() {
                         </div>
                     </div>
                 </div>
+                {/* International studies */}
+                <div className="border border-gray-200 rounded-[12px]">
+                    <div className="flex justify-between items-center px-4 py-1.5">
+                        <div className="flex items-center gap-2">
+                            <h1 className="text-[32px] font-semibold">International studies</h1>
+                            <ActiveTag />
+                            <DeactiveTag />
+                        </div>
+                        <button>
+                            <img src={Add} alt="add icon" />
+                        </button>
+                    </div>
 
-                {/* Academic consultant section */}
-       <div className="border border-gray-200 rounded-[12px]"> 
-    <div className="flex justify-between items-center px-4 py-1.5">
-        <div className="flex items-center gap-2">
-            <h1 className="text-[32px] font-semibold">Academic Consultant</h1>
-            <ActiveTag />
-            <DeactiveTag />
-        </div>
-        <button>
-            <img src={Add} alt="add icon" />
-        </button>
-    </div>
+                    {/* Moved paragraph up here */}
+                    <div className="px-4">
+                        <p className="text-[#747677]">Help with Educational Planning</p>
+                    </div>
 
-    {/* Moved paragraph up here */}
-    <div className="px-4">
-        <p className="text-[#747677]">Help with Educational Planning</p>
-    </div>
-
-    <div className="p-4 py-3 space-y-2">
-        <div className="border rounded-lg p-2">
-            <div>
-                <h2 className="text-[20px] font-medium">LOrem ipsum</h2>
-                <p className="text-[#747677] font-normal text-[16px]">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-                </p>
-            </div>
+                    <div className="p-4 py-3 space-y-2">
+                        <div className="border rounded-lg p-2">
+                            <div>
+                                <h2 className="text-[20px] font-medium">LOrem ipsum</h2>
+                                <p className="text-[#747677] font-normal text-[16px]">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+                                </p>
+                            </div>
 
                             <div className="mt-2">
                                 <h2 className="text-[16px] font-medium">Area of Expertise</h2>
@@ -101,17 +117,17 @@ export default function Expertise() {
                             <div className="flex items-center gap-5">
                                 <div className="flex items-center gap-2">
                                     <Video />
-                                    <span className="text-[20px] font-normal text-[#4D4D4D]">1:1 Call</span>
+                                    <span className="text-[16px] font-normal text-[#4D4D4D]">1:1 Call</span>
                                 </div>
                                 <Separator orientation="vertical" />
                                 <div className="flex items-center gap-2">
                                     <Clock4 />
-                                    <span className="text-[20px] font-normal text-[#4D4D4D]">30 mins</span>
+                                    <span className="text-[16px] font-normal text-[#4D4D4D]">30 mins</span>
                                     <Separator orientation="vertical" />
                                 </div>
                                 <div className="text-[#626262]">
-                                    <span className="font-semibold text-[20px] text-[#626262]">Price: <span className=" font-normal"> ₹999</span></span>
-                                    <span className=" font-normal text-[20px] line-through"> ₹999</span>
+                                    <span className="font-semibold text-[16px] text-[#626262]">Price: <span className=" font-normal"> ₹999</span></span>
+                                    <span className=" font-normal text-[16px] line-through"> ₹999</span>
                                 </div>
                             </div>
                         </div>
@@ -123,17 +139,103 @@ export default function Expertise() {
                             <div className="flex items-center gap-5">
                                 <div className="flex items-center gap-2">
                                     <img src={Location} alt="" className="inline-flex justify-center items-center" />
-                                    <span className="text-[20px] font-normal text-[#4D4D4D]">In-Person</span>
+                                    <span className="text-[16px] font-normal text-[#4D4D4D]">In-Person</span>
                                 </div>
                                 <Separator orientation="vertical" />
                                 <div className="flex items-center gap-2">
                                     <Clock4 />
-                                    <span className="text-[20px] font-normal text-[#4D4D4D]">1:1 Call</span>
+                                    <span className="text-[16px] font-normal text-[#4D4D4D]">1:1 Call</span>
                                 </div>
                                 <Separator orientation="vertical" />
                                 <div className="text-[#626262]">
-                                    <span className="font-semibold text-[20px]">Price: <span className="font-normal"> ₹999</span></span>
-                                    <span className="font-normal text-[20px] line-through"> ₹999</span>
+                                    <span className="font-semibold text-[16px]">Price: <span className="font-normal"> ₹999</span></span>
+                                    <span className="font-normal text-[16px] line-through"> ₹999</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {/* Academic consultant section */}
+                <div className="border border-gray-200 rounded-[12px]">
+                    <div className="flex justify-between items-center px-4 py-1.5">
+                        <div className="flex items-center gap-2">
+                            <h1 className="text-[32px] font-semibold">Academic Consultant</h1>
+                            <ActiveTag />
+                            <DeactiveTag />
+                        </div>
+                        <button>
+                            <img src={Add} alt="add icon" />
+                        </button>
+                    </div>
+
+                    {/* Moved paragraph up here */}
+                    <div className="px-4">
+                        <p className="text-[#747677]">Help with Educational Planning</p>
+                    </div>
+
+                    <div className="p-4 py-3 space-y-2">
+                        <div className="border rounded-lg p-2">
+                            <div>
+                                <h2 className="text-[20px] font-medium">LOrem ipsum</h2>
+                                <p className="text-[#747677] font-normal text-[16px]">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+                                </p>
+                            </div>
+
+                            <div className="mt-2">
+                                <h2 className="text-[16px] font-medium">Area of Expertise</h2>
+                                <p className="text-[#626262] text-[16px]">Stream Selection  |  Career Path Guidance  |  College Selection  |  Exam Preparation  |  Study Skills  |  Interview Prep  |  Study Abroad  |  Peer & Parental Pressure
+                                    Work-Life Balance  |  Confidence Building  |  Resume Help</p>
+                            </div>
+
+                            <div className="mt-2">
+                                <h2 className="text-[16px] font-medium">Target Group</h2>
+                                <p className="text-[#626262] font-normaltext-[16px]">Class 5th-8th  |  Class 9th-10th  |  Class 11th-12th  |  College & Graduates  |  Postgraduates  |  Entrepreneurs  |  Career Changers  |  Peer & Parental Pressure</p>
+                            </div>
+                        </div>
+
+                        <div className="border rounded-lg p-2 flex items-center gap-5">
+                            <div className="inline-flex items-center gap-2">
+                                <Switch />
+                            </div>
+                            <div className="flex items-center gap-5">
+                                <div className="flex items-center gap-2">
+                                    <Video />
+                                    <span className="text-[16px] font-normal text-[#4D4D4D]">1:1 Call</span>
+                                </div>
+                                <Separator orientation="vertical" />
+                                <div className="flex items-center gap-2">
+                                    <Clock4 />
+                                    <span className="text-[16px] font-normal text-[#4D4D4D]">30 mins</span>
+                                    <Separator orientation="vertical" />
+                                </div>
+                                <div className="text-[#626262]">
+                                    <span className="font-semibold text-[16px] text-[#626262]">Price: <span className=" font-normal"> ₹999</span></span>
+                                    <span className=" font-normal text-[16px] line-through"> ₹999</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="border rounded-lg p-2 flex items-center gap-5">
+                            <div>
+                                <Switch />
+                            </div>
+                            <div className="flex items-center gap-5">
+                                <div className="flex items-center gap-2">
+                                    <img src={Location} alt="" className="inline-flex justify-center items-center" />
+                                    <span className="text-[16px] font-normal text-[#4D4D4D]">In-Person</span>
+                                </div>
+                                <Separator orientation="vertical" />
+                                <div className="flex items-center gap-2">
+                                    <Clock4 />
+                                    <span className="text-[16px] font-normal text-[#4D4D4D]">1:1 Call</span>
+                                </div>
+                                <Separator orientation="vertical" />
+                                <div className="text-[#626262]">
+                                    <span className="font-semibold text-[16px]">Price: <span className="font-normal"> ₹999</span></span>
+                                    <span className="font-normal text-[16px] line-through"> ₹999</span>
                                 </div>
                             </div>
                         </div>
@@ -181,16 +283,23 @@ export default function Expertise() {
                             </div>
                         </div>
                     </div>
-                    <div className="border-t p-4 flex items-center gap-5">
-                        <div className="bg-[#D8D8D833] rounded-lg p-6">
-                            <img src={CloudChatIcon} alt="messages" className="w-10" />
+                    <div className="border-t p-4 flex items-center gap-2">
+                        <div className="flex  flex-col gap-2">
+                            <div className="flex items-center justify-center bg-[#D8D8D833] rounded-[8px] py-1.5">
+                                <Switch />
+                            </div>
+                            <div className="bg-[#D8D8D833] rounded-[8px] p-2.5">
+                                <div>
+                                    <img src={CloudChatIcon} alt="messages" className="w-10" />
+                                </div>
+                            </div>
                         </div>
                         <div>
-                            <div>
+                            <div className="flex flex-col justify-center gap-4">
                                 <h1 className="text-[20px]"> Ask Query</h1>
                                 <h2 className="text-[16px] text-[#747677]">Some Query</h2>
                             </div>
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-5">
                                 <span className="text-[16px] font-semibold">Query Response Time : <span className="font-normal">48 hours</span></span>
                                 <Separator orientation="vertical" className="h-4" />
                                 <span className="text-[16px] font-semibold">Follow Up : <span className="font-normal">None</span></span>
@@ -214,14 +323,19 @@ export default function Expertise() {
                         </button>
                     </div>
                     <div className="border-t p-4 flex items-center gap-5">
-                        <div className="bg-[#D8D8D833] rounded-lg p-2">
-                            <img src={Docs} alt="docs" className="w-15" />
+                        <div className="flex flex-col gap-1.5">
+                            <div className="flex items-center justify-center bg-[#D8D8D833] rounded-[8px] py-1.5">
+                                <Switch />
+                            </div>
+                            <div className="bg-[#D8D8D833] rounded-lg p-2">
+                                <img src={Docs} alt="docs" className="w-15" />
+                            </div>
                         </div>
                         <div className="flex-1">
                             <div className="mb-2">
                                 <div className="flex justify-between items-center">
                                     <div className="flex w-full gap-2 items-center">
-                                        <h1 className="text-[20px]">Title: 10th Class Math Exam Syllabus</h1>
+                                        <h1 className="text-[20px] font-medium">Title: 10th Class Math Exam Syllabus</h1>
                                         <ActiveTag />
                                     </div>
                                     <div className="flex items-center justify-center gap-3 mt-2">
@@ -233,24 +347,31 @@ export default function Expertise() {
                                         </button>
                                     </div>
                                 </div>
-                                <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                                <div className="mt-4">
+                                    <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                                </div>
                             </div>
                             <div className="flex gap-4 text-[16px]">
-                                <span className="font-semibold">Price: <span className="font-normal text-[#747677]">$99</span></span>
+                                <span className="font-semibold text-[#747677]">Price: <span className="font-normal text-[#747677]">$99</span></span>
                                 <span className="line-through text-[#747677]"> $ 150</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="border-t p-4 flex items-center gap-5">
-                        <div className="bg-[#D8D8D833] rounded-lg p-2">
-                            <img src={Docs} alt="docs" className="w-15" />
+                        <div className="flex flex-col gap-1.5">
+                            <div className="flex items-center justify-center bg-[#D8D8D833] rounded-[8px] py-1.5">
+                                <Switch />
+                            </div>
+                            <div className="bg-[#D8D8D833] rounded-lg p-2">
+                                <img src={Docs} alt="docs" className="w-15" />
+                            </div>
                         </div>
                         <div className="flex-1">
                             <div className="mb-2">
                                 <div className="flex justify-between items-center">
                                     <div className="flex w-full gap-2 items-center">
-                                        <h1 className="text-[20px]">Title: 10th Class Math Exam Syllabus</h1>
+                                        <h1 className="text-[20px]  font-medium">Title: 10th Class Math Exam Syllabus</h1>
                                         <ActiveTag />
                                     </div>
                                     <div className="flex items-center justify-center gap-3 mt-2">
@@ -262,24 +383,31 @@ export default function Expertise() {
                                         </button>
                                     </div>
                                 </div>
-                                <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                                <div className="mt-4">
+                                    <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                                </div>
                             </div>
                             <div className="flex gap-4 text-[16px]">
-                                <span className="font-semibold">Price: <span className="font-normal text-[#747677]">$99</span></span>
+                                <span className="font-semibold text-[#626262]">Price: <span className="font-normal text-[#747677]">$99</span></span>
                                 <span className="line-through text-[#747677]"> $ 150</span>
                             </div>
                         </div>
                     </div>
                     {/* res3 */}
                     <div className="border-t p-4 flex items-center gap-5">
-                        <div className="bg-[#D8D8D833] rounded-lg p-2">
-                            <img src={Docs} alt="docs" className="w-15" />
+                        <div className="flex flex-col gap-1.5">
+                            <div className="flex items-center justify-center bg-[#D8D8D833] rounded-[8px] py-1.5">
+                                <Switch />
+                            </div>
+                            <div className="bg-[#D8D8D833] rounded-lg p-2">
+                                <img src={Docs} alt="docs" className="w-15" />
+                            </div>
                         </div>
                         <div className="flex-1">
                             <div className="mb-2">
                                 <div className="flex justify-between items-center">
                                     <div className="flex w-full gap-2 items-center">
-                                        <h1 className="text-[20px]">Title: 10th Class Math Exam Syllabus</h1>
+                                        <h1 className="text-[20px]  font-medium">Title: 10th Class Math Exam Syllabus</h1>
                                         <ActiveTag />
                                     </div>
                                     <div className="flex items-center justify-center gap-3 mt-2">
@@ -291,10 +419,12 @@ export default function Expertise() {
                                         </button>
                                     </div>
                                 </div>
-                                <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                                <div className="mt-4">
+                                    <h2 className="text-[16px] text-[#747677]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </h2>
+                                </div>
                             </div>
                             <div className="flex gap-4 text-[16px]">
-                                <span className="font-semibold">Price: <span className="font-normal text-[#747677]">$99</span></span>
+                                <span className="font-semibold text-[#626262] ">Price: <span className="font-normal text-[#747677]">$99</span></span>
                                 <span className="line-through text-[#747677]"> $ 150</span>
                             </div>
                         </div>

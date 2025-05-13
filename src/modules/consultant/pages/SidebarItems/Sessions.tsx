@@ -23,13 +23,13 @@ function AllSessions() {
         <>
             <div className="flex items-center gap-2 w-full ">
                 <h2 className="text-[24px] whitespace-nowrap">Upcoming Sessions</h2>
-                <Separator className="bg-[#FFCB07] flex-1" />
+                <Separator className="bg-[#FFCB07] flex-1 h-[2px]" />
                 <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">See all</h2>
             </div>
             <div>
                 <div className="flex gap-2">
-                    <Button variant="outline">1:1 Call</Button>
-                    <Button variant="outline">1:1 Call</Button>
+                    <Button variant="outline"  className="font-medium text-[#000000]">1:1 Call</Button>
+                    <Button variant="outline" className="font-medium text-[#000000]">1:1 Call</Button>
                 </div>
             </div>
             <div className="grid grid-cols-3">
@@ -38,7 +38,7 @@ function AllSessions() {
 
             <div className="flex items-center gap-2 w-full ">
                 <h2 className="text-[24px] whitespace-nowrap"> Pool Request</h2>
-                <Separator className="bg-[#FFCB07] flex-1" />
+                <Separator className="bg-[#FFCB07] w-2 flex-1 h-[2px]" />
                 <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">See all</h2>
             </div>
             <div className="flex gap-2">
@@ -55,7 +55,7 @@ function AllSessions() {
             </div>
             <div className="flex items-center gap-2 w-full ">
                 <h2 className="text-[24px] whitespace-nowrap">Requested for You</h2>
-                <Separator className="bg-[#FFCB07] flex-1" />
+                <Separator className="bg-[#FFCB07] flex-1 h-[2px]" />
                 <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">See all</h2>
             </div>
             <div>
@@ -81,7 +81,7 @@ function PoolSessions() {
         <>
             <div className="flex items-center gap-2 w-full ">
                 <h2 className="text-[24px] whitespace-nowrap"> Pool Request</h2>
-                <Separator className="bg-[#FFCB07] flex-1" />
+                <Separator className="bg-[#FFCB07] w-2 flex-1 h-[2px]" />
                 <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">See all</h2>
             </div>
             <div className="flex gap-2">
@@ -105,7 +105,7 @@ function RequestedSessions() {
         <>
             <div className="flex items-center gap-2 w-full ">
                 <h2 className="text-[24px] whitespace-nowrap">Requested for You</h2>
-                <Separator className="bg-[#FFCB07] flex-1" />
+                <Separator className="bg-[#FFCB07] flex-1 h-[2px]" />
                 <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">See all</h2>
             </div>
             <div>
@@ -131,7 +131,7 @@ function ScheduledSessions() {
         <>
             <div className="flex items-center gap-2 w-full ">
                 <h2 className="text-[24px] whitespace-nowrap">Upcoming Sessions</h2>
-                <Separator className="bg-[#FFCB07] flex-1" />
+                <Separator className="bg-[#FFCB07] flex-1 h-[2px]" />
                 <h2 className="text-[20px] whitespace-nowrap text-[#93268F]">See all</h2>
             </div>
             <div>
@@ -176,10 +176,10 @@ export default function Sessions() {
                                     <img src={s.icon} alt="icons" className="w-15 h-15" />
                                 </div>
                                 <div className="flex flex-col justify-center">
-                                    <div className="text-2xl font-medium">
+                                    <div className="text-2xl font-semibold text-[#26282c]">
                                         {s.value}
                                     </div>
-                                    <div className="text-sm text-gray-500 mb-1">
+                                    <div className="text-[16px] text-[#626262] font-medium mb-1">
                                         {s.description}
                                     </div>
                                 </div>
