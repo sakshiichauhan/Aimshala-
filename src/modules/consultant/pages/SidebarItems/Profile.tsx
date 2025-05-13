@@ -9,10 +9,12 @@ import Specialties from "./ProfileTabs/Specialities";
 import CareerFeed from "./ProfileTabs/CareerFeed";
 import Review from "./ProfileTabs/Review";
 import ProfileResource from "./ProfileTabs/ProfileResource";
-import suitecase from "@/assets/Icons/ConsultantProfile/suitcase.png"
-import Bag from "@/assets/Icons/ConsultantProfile/bag.png"
-import at from "@/assets/Icons/ConsultantProfile/mynaui_at.png"
+import suitecase from "@/assets/Icons/ConsultantProfile/suitcase.png";
+import Bag from "@/assets/Icons/ConsultantProfile/bag.png";
+import at from "@/assets/Icons/ConsultantProfile/mynaui_at.png";
 import { Separator } from "@/components/ui/separator";
+import pencil from "@/assets/Pencil.png";
+import tick from "@/assets/Tick.png";
 export default function Profile() {
   const tabs = [
     { label: "About", id: "about", path: "/consultant/profile/about" },
@@ -43,8 +45,8 @@ export default function Profile() {
   const profileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    const currentPath = location.pathname.split('/').pop() || "about";
-    const currentTab = tabs.find(tab => tab.path.endsWith(currentPath));
+    const currentPath = location.pathname.split("/").pop() || "about";
+    const currentTab = tabs.find((tab) => tab.path.endsWith(currentPath));
     setActiveTab(currentTab?.id || "about");
   }, [location.pathname]);
 
@@ -147,21 +149,16 @@ export default function Profile() {
           </div>
 
           <div className="inline-flex items-center gap-2 p-1.5 border border-dashed rounded-full bg-[#93268F1A] border-[#93268F]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="w-5 h-5 text-[#93268F]"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-              />
-            </svg>
+         
+              <img src={tick} alt="Verified" className="w-[14px] h-[17px]" />
+            
             <span className="text-[14px] text-[#93268F]">Verified</span>
           </div>
-          <Pencil className="text-[#93268F]/10 cursor-pointer" />
+          <img
+            src={pencil}
+            alt="Edit"
+            className="w-[31.43px] h-[31.43px cursor-pointer"
+          />
         </div>
 
         {/* Short Headline */}
@@ -170,28 +167,29 @@ export default function Profile() {
           BM '24 | Accenture, Wipro (PPI)
         </p>
         {/* Experience Info */}
-        <div className="m-5 ml-5 flex items-center flex-wrap gap-4 text-[#4D4D4D] text-[16px]">
-          <span className="flex items-center gap-1">
-            <img src={suitecase} alt="experience icon" className="h-5 w-5" />
-            1 year of Experience
+        <div className="m-5  flex items-center flex-wrap gap-4 text-[#4D4D4D] text-[16px]">
+          <span className=" flex items-center gap-1"> 
+            <img src={suitecase} alt="experience icon" className="h-5 w-5" />1
+            year of Experience
           </span>
-          <Separator orientation="vertical"/>
+          <Separator orientation="vertical" />
           <span className="flex items-center gap-1">
             <img src={at} alt="experience icon" className="h-5 w-5" />
             johndoe123
           </span>
-          <Separator orientation="vertical"/>
+          <Separator orientation="vertical" />
           <span className="flex items-center gap-1">
             <img src={Bag} alt="experience icon" className="h-5 w-5" />
             Business And Management
           </span>
         </div>
 
-
         {/* Location */}
         <div className=" ml-5 inline-flex items-center gap-2 text-[#787878] text-[18px]">
           <span>Ambala, Haryana, India</span>
-          <button className="text-[#93268F] font-medium text-[18px]">Contact Info</button>
+          <button className="text-[#93268F] font-medium text-[18px]">
+            Contact Info
+          </button>
         </div>
 
         {/* Skills */}
@@ -221,8 +219,9 @@ export default function Profile() {
             <Link
               key={tab.id}
               to={tab.path}
-              className={`cursor-pointer bg-white hover:text-[#93268F] font-semibold ${activeTab === tab.id ? "text-[#93268F] bg-[#93268F]" : ""
-                }`}
+              className={`cursor-pointer bg-white hover:text-[#93268F] font-semibold ${
+                activeTab === tab.id ? "text-[#93268F] bg-[#93268F]" : ""
+              }`}
             >
               {tab.label}
             </Link>
