@@ -341,11 +341,10 @@ export default function Resources() {
               setActivePrimaryTab(tab.item);
               setActiveSecondaryTab("Career Cluster");
             }}
-            className={`px-8 h-full flex items-center text-xl transition-colors duration-200 rounded-[inherit] ${
-              activePrimaryTab === tab.item
+            className={`px-8 h-full flex items-center text-xl transition-colors duration-200 rounded-[inherit] ${activePrimaryTab === tab.item
                 ? "text-[#94278F] font-medium bg-[#93268F0F]"
                 : "text-gray-500 hover:text-gray-700"
-            }`}
+              }`}
           >
             {tab.item}
           </button>
@@ -354,7 +353,7 @@ export default function Resources() {
 
       {/* Section Title */}
       <div className="flex items-center mb-6">
-        <h3 className="text-2xl font-semibold text-gray-800">
+        <h3 className="text-[24px] font-normal text-gray-800">
           {activePrimaryTab}
         </h3>
         <div className="flex-grow ml-4 h-0.5 bg-yellow-400" />
@@ -368,40 +367,36 @@ export default function Resources() {
               <button
                 key={index}
                 onClick={() => setActiveSecondaryTab(tab.item)}
-                className={`flex-1 flex items-center justify-center space-x-2 text-[20px] transition-colors duration-200 ${
-                  activeSecondaryTab === tab.item
+                className={`flex-1 flex items-center justify-center space-x-2 text-[20px] transition-colors duration-200 ${activeSecondaryTab === tab.item
                     ? "bg-[#94278F] text-white"
                     : "text-[#94278F] hover:bg-[#94278F] hover:text-white"
-                }`}
+                  }`}
               >
                 {tab.item === "Career Cluster" && (
                   <img
                     src={CareerCluster}
-                    className={`${
-                      activeSecondaryTab === tab.item
+                    className={`${activeSecondaryTab === tab.item
                         ? "filter brightness-0 invert"
                         : ""
-                    }`}
+                      }`}
                   />
                 )}
                 {tab.item === "Trending Careers" && (
                   <img
                     src={TrendingCareer}
-                    className={`${
-                      activeSecondaryTab === tab.item
+                    className={`${activeSecondaryTab === tab.item
                         ? "filter brightness-0 invert"
                         : ""
-                    }`}
+                      }`}
                   />
                 )}
                 {tab.item === "Future Career Prediction" && (
                   <img
                     src={FuturePredection}
-                    className={`${
-                      activeSecondaryTab === tab.item
+                    className={`${activeSecondaryTab === tab.item
                         ? "filter brightness-0 invert"
                         : ""
-                    }`}
+                      }`}
                   />
                 )}
                 <span>{tab.item}</span>
@@ -419,8 +414,8 @@ export default function Resources() {
               {sectors.map((sector, i) => (
                 <section key={i} className="mb-8">
                   <div className="flex items-center mb-4">
-                    <h2 className="text-2xl text-gray-800 whitespace-nowrap">
-                      <span className="font-semibold">
+                    <h2 className="text-[16px] text-gray-800 whitespace-nowrap">
+                      <span className="font-semibold text-[20px]">
                         {sector.title.split("(")[0].trim()}
                       </span>
                       {sector.title.includes("(") && (
@@ -460,8 +455,8 @@ export default function Resources() {
             <div className="p-6 text-center text-gray-600">
               <section className="p-5 font-poppins">
                 <div className="flex items-center mb-10">
-                  <h3 className="text-2xl font-semibold text-gray-800">
-                    Primary Sector (Extraction and Agriculture)
+                  <h3 className="text-[20px] font-semibold text-gray-800">
+                    Primary Sector <span className="font-normal text-[16px]">(Extraction and Agriculture)</span>
                   </h3>
                   <div className="flex-grow ml-4 h-0.5 bg-yellow-400" />
                 </div>
@@ -471,11 +466,10 @@ export default function Resources() {
                     <div
                       key={index}
                       className={`relative overflow-hidden rounded-md border border-[#FFFFFF] group
-                                                ${
-                                                  index === 0
-                                                    ? 'after:content-[""] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-[3px] after:bg-[#A855FF]'
-                                                    : ""
-                                                }`}
+                        ${index === 0
+                          ? 'after:content-[""] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-[3px] after:bg-[#A855FF]'
+                          : ""
+                        }`}
                     >
                       <img
                         src={career.image}
@@ -510,8 +504,8 @@ export default function Resources() {
             <div className="p-6 text-center text-gray-600">
               <section className="p-5 font-poppins">
                 <div className="flex items-center mb-10">
-                  <h3 className="text-2xl font-semibold text-gray-800">
-                    Primary Sector (Extraction and Agriculture)
+                  <h3 className="text-[20px] font-semibold text-gray-800">
+                    Primary Sector <span className="font-medium text-[16px]">(Extraction and Agriculture)</span>
                   </h3>
                   <div className="flex-grow ml-4 h-0.5 bg-yellow-400" />
                 </div>
@@ -521,11 +515,10 @@ export default function Resources() {
                     <div
                       key={index}
                       className={`relative overflow-hidden rounded-md border border-[#FFFFFF] group
-                                                ${
-                                                  index === 0
-                                                    ? 'after:content-[""] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-[3px] after:bg-[#A855FF]'
-                                                    : ""
-                                                }`}
+                                                ${index === 0
+                          ? 'after:content-[""] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-[3px] after:bg-[#A855FF]'
+                          : ""
+                        }`}
                     >
                       <img
                         src={career.image}
