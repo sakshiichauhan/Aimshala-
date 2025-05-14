@@ -5,10 +5,10 @@ import { useState } from "react"
 export function Doubts({ onClose }: { onClose: () => void }) {
     const [expertiseTitle, setExpertiseTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [queryResponseTime, setQueryResponseTime] = useState("48 hours");
-    const [followUp, setFollowUp] = useState("allow");
-    const [followUpPeriod, setFollowUpPeriod] = useState("48 Hours");
-    const [followUpsAllowed, setFollowUpsAllowed] = useState("2 times");
+    const [queryResponseTime, setQueryResponseTime] = useState("");
+    const [followUp, setFollowUp] = useState("");
+    const [followUpPeriod, setFollowUpPeriod] = useState("");
+    const [followUpsAllowed, setFollowUpsAllowed] = useState("");
     const [price, setPrice] = useState("");
     const [discountedPrice, setDiscountedPrice] = useState("");
     return (
@@ -101,7 +101,7 @@ export function Doubts({ onClose }: { onClose: () => void }) {
                         </div>
                     </div>
 
-                    {/* Follow Up Period */}
+                    
                     <div>
                         <h2 className="text-[16px] font-semibold mb-2">Follow up Period</h2>
                         <div className="flex gap-2 flex-wrap">

@@ -341,7 +341,7 @@ export default function Resources() {
               setActivePrimaryTab(tab.item);
               setActiveSecondaryTab("Career Cluster");
             }}
-            className={`px-8 h-full flex items-center text-xl transition-colors duration-200 rounded-[inherit] ${activePrimaryTab === tab.item
+            className={`px-8 h-full flex items-center text-xl transition-colors duration-200  ${activePrimaryTab === tab.item
                 ? "text-[#94278F] font-medium bg-[#93268F0F]"
                 : "text-gray-500 hover:text-gray-700"
               }`}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import CalendarIcon from "@/assets/Consultant/Calendar.png";
+import Calendar from "@/assets/Consultant/Calendar.png";
 import { ChevronDown, X } from "lucide-react";
+import DiscardChanges from "./Discard";
 
-// 1. Define a form state interface *with* an index signature so we can
-//    safely do form[name] in TS.
+
 interface FormState {
   organisation: string;
   role: string;
@@ -29,7 +29,7 @@ const AddVolunteer: React.FC<AddVolunteerProps> = ({ onClose }) => {
     endDate: "",
     description: "",
   });
-
+ const [showDiscardPopup, setShowDiscardPopup] = useState(false);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -41,12 +41,10 @@ const AddVolunteer: React.FC<AddVolunteerProps> = ({ onClose }) => {
       [name]: isCheckbox ? target.checked : value,
     }));
   };
-
-  const openDatePicker = (field: "startDate" | "endDate") => {
-    // 3. Assert the element is an HTMLInputElement so TS knows about .showPicker()
-    const input = document.getElementById(field) as HTMLInputElement | null;
-    input?.showPicker?.();
+const handleClose = () => {
+    setShowDiscardPopup(true);
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen font-poppins">
@@ -57,7 +55,7 @@ const AddVolunteer: React.FC<AddVolunteerProps> = ({ onClose }) => {
             Add Volunteer Experience
           </h1>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="p-2 hover:bg-gray-100 rounded-full"
             aria-label="Close"
           >
@@ -109,33 +107,36 @@ const AddVolunteer: React.FC<AddVolunteerProps> = ({ onClose }) => {
 
           {/* Start and End Date */}
           <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
-            {(
-              [
-                { label: "Start date", name: "startDate" },
-                { label: "End date (or expected)", name: "endDate" },
-              ] as const
-            ).map(({ label, name }) => (
+            {[
+              { label: "Start date", name: "startDate" },
+              { label: "End date (or expected)", name: "endDate" },
+            ].map(({ label, name }) => (
               <div key={name} className="relative w-full max-w-[260px]">
                 <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
                   {label}
                 </label>
                 <input
-                  id={name}
                   type="date"
                   name={name}
-                  value={form[name] as string}
+                  id={name}
+                  value={form[name]}
                   onChange={handleChange}
-                  className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px]"
+                  className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
                 />
                 <img
-                  src={CalendarIcon}
+                  src={Calendar}
                   alt="Calendar"
-                  onClick={() => openDatePicker(name)}
+                  onClick={() =>
+                    (
+                      document.getElementById(name) as HTMLInputElement
+                    )?.showPicker?.()
+                  }
                   className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
                 />
               </div>
             ))}
           </div>
+
 
           {/* Description */}
           <div className="relative w-full max-w-[530px] mx-auto">
@@ -176,6 +177,14 @@ const AddVolunteer: React.FC<AddVolunteerProps> = ({ onClose }) => {
             Save
           </button>
         </div>
+        {showDiscardPopup && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <DiscardChanges
+              onCancel={() => setShowDiscardPopup(false)}
+              onDiscard={onClose}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

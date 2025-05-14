@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CalendarIcon from "@/assets/Consultant/Calendar.png";
 import { ChevronDown, X } from "lucide-react";
+import DiscardChanges from "./Discard";
 
 interface AddLicenseProps {
   onClose: () => void;
@@ -24,10 +25,13 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
     credentialID: "",
     credentialURL: "",
   });
-
+const [showDiscardPopup, setShowDiscardPopup] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+  };
+const handleClose = () => {
+    setShowDiscardPopup(true);
   };
 
   return (
@@ -38,7 +42,7 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
         <div className="bg-[#F5F5F5] rounded-t-lg flex items-center min-h-[60px] px-6 justify-between">
           <h1 className="text-2xl font-semibold text-[#000000]">Add License or Certification</h1>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="p-2 hover:bg-gray-100 rounded-full"
           >
             <X className="w-6 h-6" />
@@ -156,6 +160,14 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
             Save
           </button>
         </div>
+         {showDiscardPopup && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <DiscardChanges
+              onCancel={() => setShowDiscardPopup(false)}
+              onDiscard={onClose}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

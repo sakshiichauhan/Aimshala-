@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import { Facebook, Linkedin, Pencil, Forward, Camera } from "lucide-react";
+import { Facebook, Linkedin, Forward, Camera } from "lucide-react";
+import Contactform1 from "../Popups/ProfileSection/Contactform";
+import EditProfile from "../Popups/ProfileSection/EditProfile";
 
 import profileFallback from "@/assets/Profile-1.png";
 import coverFallback from "@/assets/cover.png";
@@ -36,6 +38,8 @@ export default function Profile() {
     { label: "Review", id: "reviews", path: "/consultant/profile/reviews" },
   ];
 
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [coverSrc, setCoverSrc] = useState<string>(coverFallback);
   const [profileSrc, setProfileSrc] = useState<string>(profileFallback);
   const location = useLocation();
@@ -149,15 +153,14 @@ export default function Profile() {
           </div>
 
           <div className="inline-flex items-center gap-2 p-1.5 border border-dashed rounded-full bg-[#93268F1A] border-[#93268F]">
-         
-              <img src={tick} alt="Verified" className="w-[14px] h-[17px]" />
-            
+            <img src={tick} alt="Verified" className="w-[14px] h-[17px]" />
             <span className="text-[14px] text-[#93268F]">Verified</span>
           </div>
           <img
             src={pencil}
             alt="Edit"
-            className="w-[31.43px] h-[31.43px cursor-pointer"
+            className="w-[31.43px] h-[31.43px] cursor-pointer"
+            onClick={() => setIsEditProfileOpen(true)}
           />
         </div>
 
@@ -168,7 +171,7 @@ export default function Profile() {
         </p>
         {/* Experience Info */}
         <div className="m-5  flex items-center flex-wrap gap-4 text-[#4D4D4D] text-[16px]">
-          <span className=" flex items-center gap-1"> 
+          <span className=" flex items-center gap-1">
             <img src={suitecase} alt="experience icon" className="h-5 w-5" />1
             year of Experience
           </span>
@@ -187,7 +190,10 @@ export default function Profile() {
         {/* Location */}
         <div className=" ml-5 inline-flex items-center gap-2 text-[#787878] text-[18px]">
           <span>Ambala, Haryana, India</span>
-          <button className="text-[#93268F] font-medium text-[18px]">
+          <button
+            className="text-[#93268F] font-medium text-[18px]"
+            onClick={() => setIsContactFormOpen(true)}
+          >
             Contact Info
           </button>
         </div>
@@ -228,6 +234,23 @@ export default function Profile() {
           ))}
         </nav>
       </div>
+
+      {/* Add Popup Modals */}
+      {isContactFormOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto ">
+         
+            <Contactform1 onClose={() => setIsContactFormOpen(false)} />
+         
+        </div>
+      )}
+
+      {isEditProfileOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="w-full max-w-[790px] bg-white rounded-lg shadow-lg relative max-h-[100vh]">
+            <EditProfile onClose={() => setIsEditProfileOpen(false)} />
+          </div>
+        </div>
+      )}
 
       <Routes>
         <Route index element={<About />} />

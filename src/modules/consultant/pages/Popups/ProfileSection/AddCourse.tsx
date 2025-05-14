@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, X } from "lucide-react";
-
+import DiscardChanges from "./Discard";
 interface AddCourseProps {
   onClose: () => void;
 }
@@ -11,10 +11,13 @@ const AddCourse = ({ onClose }: AddCourseProps) => {
     courseNumber: "",
     associatedWith: "",
   });
-
+ const [showDiscardPopup, setShowDiscardPopup] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+  };
+const handleClose = () => {
+    setShowDiscardPopup(true);
   };
 
   return (
@@ -24,7 +27,7 @@ const AddCourse = ({ onClose }: AddCourseProps) => {
         {/* Header with X button */}
         <div className="bg-[#F5F5F5] rounded-t-lg flex items-center justify-between min-h-[60px] px-6">
           <h1 className="text-2xl font-semibold text-[#1C1C1C]">Add Course</h1>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
+          <button onClick={handleClose} className="p-2 hover:bg-gray-100 rounded-full">
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -79,6 +82,14 @@ const AddCourse = ({ onClose }: AddCourseProps) => {
             Save
           </button>
         </div>
+        {showDiscardPopup && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <DiscardChanges
+              onCancel={() => setShowDiscardPopup(false)}
+              onDiscard={onClose}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
