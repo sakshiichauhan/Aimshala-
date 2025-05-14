@@ -108,8 +108,8 @@ const handleClose = () => {
           {/* Start and End Date */}
           <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
             {[
-              { label: "Start date", name: "startDate" },
-              { label: "End date (or expected)", name: "endDate" },
+              { label: "Start date", name: "startDate" as const },
+              { label: "End date (or expected)", name: "endDate" as const },
             ].map(({ label, name }) => (
               <div key={name} className="relative w-full max-w-[260px]">
                 <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">

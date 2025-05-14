@@ -18,9 +18,6 @@ interface FormState {
   description: string;
   profileHeadline: string;
   currentlyWorking: boolean;
-
-  // Allow dynamic `[name]` indexing
-  [key: string]: string | boolean;
 }
 
 const AddExperience: React.FC<AddExperienceProps> = ({ onClose }) => {
@@ -36,13 +33,12 @@ const AddExperience: React.FC<AddExperienceProps> = ({ onClose }) => {
     profileHeadline: "",
     currentlyWorking: false,
   });
- const [showDiscardPopup, setShowDiscardPopup] = useState(false);
+  const [showDiscardPopup, setShowDiscardPopup] = useState(false);
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    // Narrow to HTMLInputElement to safely read `.checked`
     const target = e.target as HTMLInputElement;
     const { name, value, type, checked } = target;
     setForm((prev) => ({
@@ -50,7 +46,7 @@ const AddExperience: React.FC<AddExperienceProps> = ({ onClose }) => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
- const handleClose = () => {
+  const handleClose = () => {
     setShowDiscardPopup(true);
   };
   return (
@@ -176,11 +172,11 @@ const AddExperience: React.FC<AddExperienceProps> = ({ onClose }) => {
           </div>
 
           {/* Start and End Date */}
-        
- <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
+
+          <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
             {[
-              { label: "Start date", name: "startDate" },
-              { label: "End date (or expected)", name: "endDate" },
+              { label: "Start date", name: "startDate" as const },
+              { label: "End date (or expected)", name: "endDate" as const },
             ].map(({ label, name }) => (
               <div key={name} className="relative w-full max-w-[260px]">
                 <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">

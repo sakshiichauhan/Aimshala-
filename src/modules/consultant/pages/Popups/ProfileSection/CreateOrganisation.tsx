@@ -5,8 +5,16 @@ interface CreateOrganisationProps {
   onClose: () => void;
 }
 
+interface FormState {
+  organisationName: string;
+  organisationType: string;
+  location: string;
+  aboutOrganisation: string;
+  logo: File | null;
+}
+
 const CreateOrganisation = ({ onClose }: CreateOrganisationProps) => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     organisationName: "",
     organisationType: "",
     location: "",
@@ -14,8 +22,12 @@ const CreateOrganisation = ({ onClose }: CreateOrganisationProps) => {
     logo: null,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, files } = e.target as HTMLInputElement;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value, files } = target;
+
     if (name === "logo") {
       setForm({ ...form, logo: files?.[0] || null });
     } else {

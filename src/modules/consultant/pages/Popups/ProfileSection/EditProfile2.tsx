@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Trash2, X } from "lucide-react";
 import ProfileImage from "@/assets/Consultant/Profile/01.png"; // replace with actual path
@@ -7,14 +8,16 @@ interface EditProfile2Props {
 }
 
 const EditProfile2 = ({ onClose }: EditProfile2Props) => {
-  const [profileImage, setProfileImage] = useState(ProfileImage);
+  const [profileImage, setProfileImage] = useState<string | null>(ProfileImage);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setProfileImage(event.target?.result as string);
+        if (event.target?.result) {
+          setProfileImage(event.target.result as string);
+        }
       };
       reader.readAsDataURL(file);
     }
@@ -66,6 +69,7 @@ const EditProfile2 = ({ onClose }: EditProfile2Props) => {
               id="upload-image"
               className="hidden"
               onChange={handleImageChange}
+              accept="image/*"
             />
 
             <button
@@ -77,7 +81,6 @@ const EditProfile2 = ({ onClose }: EditProfile2Props) => {
             </button>
           </div>
         </div>
-
         {/* Form Fields */}
         <div className="mt-6 space-y-4">
           <input
