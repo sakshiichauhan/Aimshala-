@@ -8,6 +8,21 @@
   --font-poppins: "poppins", sans-serif;
 }
 
+/* Custom Slider */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #000000c5; 
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background-color: #94278ef3; 
+}
+
 .filter-purple {
   filter: invert(18%) sepia(89%) saturate(3841%) hue-rotate(285deg) brightness(80%) contrast(90%);
 }

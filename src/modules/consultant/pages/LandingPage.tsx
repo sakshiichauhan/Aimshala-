@@ -101,8 +101,8 @@ export default function Landing() {
             </div>
 
             <div className="relative">
-                <Plus size={35} className="absolute top-25 -left-250 text-[#A855F7]" />
-                <Circle size={50} className="absolute top-70 right-250 text-[#D1B5FD]" />
+                <Plus size={35} className="absolute top-25 -left-220 text-[#A855F7]" />
+                <Circle size={50} className="absolute top-70 right-220 text-[#D1B5FD]" />
             </div>
 
         </section>
