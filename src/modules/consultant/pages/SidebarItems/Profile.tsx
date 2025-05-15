@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import { Facebook, Linkedin, Forward, Camera } from "lucide-react";
+import { Facebook, Linkedin, Forward } from "lucide-react";
+import { IoCamera } from "react-icons/io5";
 import Contactform1 from "../Popups/ProfileSection/Contactform";
 import EditProfile from "../Popups/ProfileSection/EditProfile";
 
@@ -84,7 +85,7 @@ export default function Profile() {
             className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
             title="Change cover"
           >
-            <Camera className="w-5 h-5" />
+            <IoCamera />
           </button>
           <input
             ref={coverInputRef}
