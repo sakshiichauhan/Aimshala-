@@ -55,7 +55,7 @@ const MediaCard = ({
             />
           </div>
 
-         
+
         </div>
 
         {/* Footer Buttons */}
@@ -89,3 +89,4 @@ const MediaCard = ({
 };
 
 export default MediaCard;
+ 
