@@ -8,6 +8,11 @@ import OppCardImg from "@/assets/opportunity.png"
 import { StarIcon } from "@heroicons/react/solid";
 import { EventCard } from "../../components/EventCard";
 
+import web1 from "@/assets/Consultant/web-1.png"
+import web2 from "@/assets/Consultant/web-2.png"
+import web3 from "@/assets/Consultant/web-3.png"
+import web4 from "@/assets/Consultant/web-4.jpg"
+
 
 export default function ConsultDesk() {
     return <section className="mt-20 font-poppins flex gap-6 ">
@@ -88,7 +93,7 @@ export default function ConsultDesk() {
                     <div className="mt-4">
                         <div className="grid grid-cols-2 gap-2">
                             <EventCard
-                                imageSrc="src/assets/Consultant/web-1.png"
+                                imageSrc={web1}
                                 category="Language"
                                 author="John Doe"
                                 title="Career Navigation Tips"
@@ -97,7 +102,7 @@ export default function ConsultDesk() {
                                 onJoinClick={() => alert("Joining now…")}
                             />
                             <EventCard
-                                imageSrc="src/assets/Consultant/web-2.png"
+                                imageSrc={web2}
                                 category="Academics"
                                 author="John Doe"
                                 title="Coding Workshop"
@@ -105,14 +110,14 @@ export default function ConsultDesk() {
                                 mode="countdown"
                             />
                             <EventCard
-                                imageSrc="src/assets/Consultant/web-3.png"
+                                imageSrc={web3}
                                 category="Management"
                                 author="John Doe"
                                 title="Leadership Workshop"
                                 startDate={new Date("2024-09-20T17:00:00")}
                                 mode="countdown"
                             /> <EventCard
-                                imageSrc="src/assets/Consultant/web-4.jpg"
+                                imageSrc={web4}
                                 category="Technology"
                                 author="John Doe"
                                 title="Coding Workshop"
