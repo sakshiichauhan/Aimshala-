@@ -85,7 +85,7 @@ export default function Profile() {
             className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
             title="Change cover"
           >
-            <IoCamera />
+            <IoCamera className="w-5 h-5" />
           </button>
           <input
             ref={coverInputRef}
@@ -109,7 +109,7 @@ export default function Profile() {
               className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
               title="Change profile"
             >
-              <Camera className="w-4 h-4" />
+              <IoCamera className="w-5 h-5" />
             </button>
             <input
               ref={profileInputRef}
