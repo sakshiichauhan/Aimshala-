@@ -18,6 +18,7 @@ import Img11 from "@/assets/Consultant/Profile/11.png";
 import Img12 from "@/assets/Consultant/Profile/12.png";
 import Img13 from "@/assets/Consultant/Profile/13.png";
 import Img14 from "@/assets/Consultant/Profile/14.png";
+import CheckLayout from './Check';
 
 const imageList = [
   Img1, Img2, Img3, Img4, Img5, Img6, Img7,
@@ -43,6 +44,8 @@ const EditProfile = ({ onClose }: EditProfileProps) => {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [showMediaOptions, setShowMediaOptions] = useState(false);
   const mediaOptionsRef = useRef<HTMLDivElement>(null);
+  const [mediaForm, setMediaForm] = useState({ mediaLink: '' });
+  const [showCheckPopup, setShowCheckPopup] = useState<boolean>(false);
 
   const toggleMediaOptions = () => setShowMediaOptions(prev => !prev);
 
@@ -59,7 +62,6 @@ const EditProfile = ({ onClose }: EditProfileProps) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showMediaOptions]);
-  const [mediaForm, setMediaForm] = useState({ mediaLink: '' });
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -93,12 +95,14 @@ const EditProfile = ({ onClose }: EditProfileProps) => {
   const handleSave = () => {
     const data = { fullName, username, dob, gender, headline, bio, profileImage, videoFile };
     console.log("Profile saved with data:", data);
+    setShowCheckPopup(true); // Show the Check popup after saving
   };
+
   // Add this function to handle input change
-const handleMediaInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const { name, value } = e.target;
-  setMediaForm(prev => ({ ...prev, [name]: value }));
-};
+  const handleMediaInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setMediaForm(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleClose = () => {
     setShowDiscardPopup(true);
@@ -178,7 +182,7 @@ const handleMediaInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             {showMediaOptions && (
               <div ref={mediaOptionsRef} className="mt-2 w-[212px] border border-gray-200 rounded-md bg-white shadow-sm text-[15px] font-normal text-black z-10">
                 <ul className="divide-y divide-gray-200">
-                  <li 
+                  <li
                     className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
                     onClick={() => {
                       setShowMediaCard(true);
@@ -189,10 +193,10 @@ const handleMediaInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     <span>Add a link</span>
                   </li>
                   <li className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer "
-                   onClick={() => {
-                        document.getElementById("video-upload")?.click();
-                        setShowMediaOptions(false);
-                      }}>
+                    onClick={() => {
+                      document.getElementById("video-upload")?.click();
+                      setShowMediaOptions(false);
+                    }}>
                     <ImageIcon className="w-5 h-5 text-gray-600" />
                     <span>Upload a photo</span>
                   </li>
@@ -216,23 +220,31 @@ const handleMediaInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         )}
 
         {showMediaCard && (
-  <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
-    <MediaCard
-      onClose={() => setShowMediaCard(false)}
-      onSave={() => {
-        console.log('Media saved:', mediaForm);
-        setShowMediaCard(false);
-      }}
-      onDelete={() => {
-        console.log('Media card deleted');
-        setMediaForm({ mediaLink: '' }); // optional reset
-        setShowMediaCard(false);
-      }}
-      form={mediaForm}
-      handleChange={handleMediaInputChange}
-    />
-  </div>
-)}
+          <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <MediaCard
+              onClose={() => setShowMediaCard(false)}
+              onSave={() => {
+                console.log('Media saved:', mediaForm);
+                setShowMediaCard(false);
+              }}
+              onDelete={() => {
+                console.log('Media card deleted');
+                setMediaForm({ mediaLink: '' });
+                setShowMediaCard(false);
+              }}
+              form={mediaForm}
+              handleChange={handleMediaInputChange}
+            />
+          </div>
+        )}
+
+        {showCheckPopup && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <div onClick={(e) => e.stopPropagation()}>
+              <CheckLayout onDiscard={onClose} />
+            </div>
+          </div>
+        )}
 
       </div>
     </div>
