@@ -1,5 +1,7 @@
 import { useState, ChangeEvent, useRef, useEffect } from "react";
-import { Trash2, X, ChevronDown, Paperclip, ImageIcon } from "lucide-react";
+import { Trash2, X,ChevronDown } from "lucide-react";
+import { AiOutlineLink } from "react-icons/ai";
+import { CiImageOn } from "react-icons/ci";
 import ProfileImage from "@/assets/Consultant/Profile/01.png";
 import Calendar from "@/assets/Consultant/Calendar.png";
 import DiscardChanges from "./Discard";
@@ -180,7 +182,7 @@ const EditProfile = ({ onClose }: EditProfileProps) => {
             <p className="text-[16px] text-[#6D7175] font-normal mb-2">Upload a Short Intro Video (3–5 minutes)</p>
             <button type="button" onClick={toggleMediaOptions} className="w-[115px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-[16px] font-normal flex items-center justify-center cursor-pointer">+ Add Media</button>
             {showMediaOptions && (
-              <div ref={mediaOptionsRef} className="mt-2 w-[212px] border border-gray-200 rounded-md bg-white shadow-sm text-[15px] font-normal text-black z-10">
+              <div ref={mediaOptionsRef} className="mt-2 w-[212px] h-[102px] border border-gray-200 rounded-md bg-white shadow-sm text-[15px] font-normal text-black z-10">
                 <ul className="divide-y divide-gray-200">
                   <li
                     className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
@@ -189,7 +191,7 @@ const EditProfile = ({ onClose }: EditProfileProps) => {
                       setShowMediaOptions(false);
                     }}
                   >
-                    <Paperclip className="w-5 h-5 text-gray-600" />
+                    <AiOutlineLink className="w-[27px] h-[27px] text-[#1E232C] " />
                     <span>Add a link</span>
                   </li>
                   <li className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer "
@@ -197,7 +199,7 @@ const EditProfile = ({ onClose }: EditProfileProps) => {
                       document.getElementById("video-upload")?.click();
                       setShowMediaOptions(false);
                     }}>
-                    <ImageIcon className="w-5 h-5 text-gray-600" />
+                    <CiImageOn className="w-[27px] h-[27px] text-[#1E232C]" />
                     <span>Upload a photo</span>
                   </li>
                 </ul>
