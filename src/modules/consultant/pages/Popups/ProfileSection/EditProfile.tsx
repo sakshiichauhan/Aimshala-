@@ -101,10 +101,13 @@ const EditProfile = ({ onClose }: EditProfileProps) => {
   };
 
   // Add this function to handle input change
-  const handleMediaInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setMediaForm(prev => ({ ...prev, [name]: value }));
-  };
+
+const handleMediaInputChange = (
+  e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+) => {
+  const { name, value } = e.target;
+  setMediaForm(prev => ({ ...prev, [name]: value }));
+};
 
   const handleClose = () => {
     setShowDiscardPopup(true);

@@ -18,7 +18,7 @@ interface MediaCardProps {
 }
 
 const MediaCard = ({
-  onDelete,
+  
   onSave,
   onClose,
   form,
