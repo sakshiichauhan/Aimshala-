@@ -153,7 +153,7 @@ export default function Profile() {
             <span>4.5</span>
           </div>
 
-          <div className="inline-flex items-center gap-2 p-1.5 border border-dashed rounded-full bg-[#93268F1A] border-[#93268F]">
+          <div className="inline-flex items-center w-[96px] h-[30px] gap-2 p-1.5 border border-dashed rounded-full bg-[#93268F1A] border-[#93268F]">
             <img src={tick} alt="Verified" className="w-[14px] h-[17px]" />
             <span className="text-[14px] text-[#93268F]">Verified</span>
           </div>

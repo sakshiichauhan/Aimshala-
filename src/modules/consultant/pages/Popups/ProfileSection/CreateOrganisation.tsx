@@ -36,23 +36,28 @@ const CreateOrganisation = ({ onClose }: CreateOrganisationProps) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#FFF5FF] to-[#F0F8F8] font-poppins p-4">
+    <div className="flex items-center justify-center min-h-screen  font-poppins ">
       <div className="w-[791px] bg-white rounded-lg shadow-md overflow-hidden">
-        
         {/* Header */}
-        <div className="bg-[#F5F5F5] rounded-t-lg flex items-center justify-between min-h-[60px] px-6">
-          <h1 className="text-2xl font-semibold text-[#1C1C1C]">Create Organisation</h1>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
+        <div className="bg-[#F5F5F5] rounded-t-lg flex items-center  min-h-[60px] px-6 justify-between">
+          <h1 className="text-2xl font-semibold text-[#000000]">
+            Create Organisation
+          </h1>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-gray-100 rounded-full"
+          >
             <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Form */}
         <div className="px-8 py-8 space-y-5">
-
           {/* Organisation Name */}
           <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Organisation Name</label>
+            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+              Organisation Name
+            </label>
             <input
               type="text"
               name="organisationName"
@@ -65,7 +70,9 @@ const CreateOrganisation = ({ onClose }: CreateOrganisationProps) => {
 
           {/* Organisation Type */}
           <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Organisation Type</label>
+            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+              Organisation Type
+            </label>
             <input
               type="text"
               name="organisationType"
@@ -79,7 +86,9 @@ const CreateOrganisation = ({ onClose }: CreateOrganisationProps) => {
 
           {/* Location */}
           <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Location</label>
+            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+              Location
+            </label>
             <input
               type="text"
               name="location"
@@ -92,13 +101,19 @@ const CreateOrganisation = ({ onClose }: CreateOrganisationProps) => {
 
           {/* Logo Upload */}
           <div className="w-full max-w-[530px] mx-auto">
-            <label className="text-sm text-black mb-1 block">Organisation Logo</label>
+            <label className="text-sm text-black mb-1 block">
+              Organisation Logo
+            </label>
             <div className="relative flex flex-col items-center justify-center w-full h-[150px] border-2 border-dashed border-[#DCDCDC] rounded-md cursor-pointer">
               <UploadCloud className="text-[#898989]" size={30} />
-              <p className="text-[#898989] mt-2 font-medium text-[15px]">Upload logo</p>
+              <p className="text-[#898989] mt-2 font-medium text-[15px]">
+                Upload logo
+              </p>
               <p className="text-[#6b7280] text-sm">
                 Drag and drop logo here or{" "}
-                <span className="text-[#94278F] underline cursor-pointer">Browse file</span>
+                <span className="text-[#94278F] underline cursor-pointer">
+                  Browse file
+                </span>
               </p>
               <input
                 type="file"
@@ -112,7 +127,9 @@ const CreateOrganisation = ({ onClose }: CreateOrganisationProps) => {
 
           {/* About Organisation */}
           <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">About Organisation</label>
+            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+              About Organisation
+            </label>
             <textarea
               name="aboutOrganisation"
               value={form.aboutOrganisation}

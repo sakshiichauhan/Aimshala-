@@ -1,47 +1,118 @@
-import  { useState } from "react";
-import CalendarIcon from '@/assets/Consultant/Calendar.png';
-import { ChevronDown,X } from "lucide-react";
+import { useState, useRef } from "react";
+import Calendar from "@/assets/Consultant/Calendar.png";
+import { ChevronDown, X } from "lucide-react";
 import DiscardChanges from "./Discard";
-interface AddProjectProps { 
+import { AiOutlineLink } from "react-icons/ai";
+import { CiImageOn } from "react-icons/ci";
+import MediaCard from "./MediaCard";
+
+interface AddProjectProps {
   onClose: () => void;
 }
 
+interface FormState {
+  projectName: string;
+  description: string;
+  currentlyWorking: boolean;
+  startDate: string;
+  endDate: string;
+  associatedWith: string;
+  skills: string[];
+}
+
 const AddProject = ({ onClose }: AddProjectProps) => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     projectName: "",
     description: "",
     currentlyWorking: false,
     startDate: "",
     endDate: "",
     associatedWith: "",
+    skills: [],
   });
   const [showDiscardPopup, setShowDiscardPopup] = useState(false);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [showSkillInput, setShowSkillInput] = useState(false);
+  const [skillInput, setSkillInput] = useState("");
+  const [showMediaCard, setShowMediaCard] = useState<boolean>(false);
+  const [showMediaOptions, setShowMediaOptions] = useState(false);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const mediaOptionsRef = useRef<HTMLDivElement>(null);
+  const [mediaForm, setMediaForm] = useState({ mediaLink: "" });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
     setForm({ ...form, [name]: type === "checkbox" ? checked : value });
   };
- const handleClose = () => {
+
+  const handleClose = () => {
     setShowDiscardPopup(true);
+  };
+
+  const handleSkillToggle = () => {
+    const trimmed = skillInput.trim();
+    if (!trimmed) return;
+
+    const exists = form.skills.includes(trimmed);
+    let updatedSkills;
+
+    if (exists) {
+      updatedSkills = form.skills.filter((skill) => skill !== trimmed);
+    } else if (form.skills.length < 5) {
+      updatedSkills = [...form.skills, trimmed];
+    } else {
+      return;
+    }
+
+    setForm({ ...form, skills: updatedSkills });
+    setSkillInput("");
+  };
+
+  const handleRemoveSkill = (skillToRemove: string) => {
+    setForm({
+      ...form,
+      skills: form.skills.filter((skill) => skill !== skillToRemove),
+    });
+  };
+
+  const toggleMediaOptions = () => setShowMediaOptions((prev) => !prev);
+
+  const handleMediaInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setMediaForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) setVideoFile(file);
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen font-poppins ">
       <div className="w-[791px] bg-white rounded-lg shadow-md overflow-hidden">
-
         {/* Header */}
-        <div className="bg-[#F5F5F5] rounded-t-lg flex items-center justify-between min-h-[60px] px-6">
+        <div className="bg-[#F5F5F5] rounded-t-lg flex items-center justify-between h-[60px] px-6">
           <h1 className="text-2xl font-semibold text-[#000000]">Add Project</h1>
-          <button onClick={handleClose} className="p-2 hover:bg-gray-100 rounded-full">
+          <button
+            onClick={handleClose}
+            className="p-2 hover:bg-gray-100 rounded-full"
+            aria-label="Close"
+
+          >
             <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Form */}
         <div className="px-8 py-8 space-y-5">
-
           {/* Project Name */}
           <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Project Name</label>
+            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+              Project Name
+            </label>
             <input
               type="text"
               name="projectName"
@@ -54,7 +125,9 @@ const AddProject = ({ onClose }: AddProjectProps) => {
 
           {/* Description */}
           <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Description</label>
+            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+              Description
+            </label>
             <textarea
               name="description"
               value={form.description}
@@ -63,35 +136,127 @@ const AddProject = ({ onClose }: AddProjectProps) => {
               maxLength={150}
               className="w-full h-[100px] px-4 py-5 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] resize-none placeholder-[#898989]"
             />
-            <div className="absolute bottom-2 right-4 text-xs text-[#898989]">{form.description.length}/150</div>
+            <div className="absolute bottom-2 right-4 text-xs text-[#898989]">
+              {form.description.length}/150
+            </div>
           </div>
 
           {/* Skills Section */}
           <div className="w-full max-w-[530px] mx-auto">
             <h2 className="text-lg font-semibold text-black mb-2">Skills</h2>
             <p className="text-base text-[#6b7175] mb-4">
-              We recommend adding your top 5 used in this project. They'll also appear in your Skills section.
+              We recommend adding your top 5 used in this project. They'll also
+              appear in your Skills section.
             </p>
-            <button className="w-[97px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-base font-medium hover:bg-[#e9c6e7] transition">
+
+            {showSkillInput && (
+              <div className="flex items-center gap-2 mb-4">
+                <input
+                  type="text"
+                  value={skillInput}
+                  onChange={(e) => setSkillInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleSkillToggle();
+                    }
+                  }}
+                  placeholder="Type a skill and press Enter"
+                  className="flex-1 h-[40px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] placeholder-[#898989]"
+                />
+              </div>
+            )}
+
+            <button
+              onClick={() => setShowSkillInput(!showSkillInput)}
+              className="w-[97px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-base font-medium hover:bg-[#e9c6e7] transition"
+            >
               + Add Skill
             </button>
+
+            <div className="flex flex-col gap-2 mt-4">
+              {form.skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between h-[40px] px-2 bg-[#ECECEC] border border-[#DCDCDC] rounded-md text-[#3C3C3C] text-[15px]"
+                >
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleRemoveSkill(skill)}
+                      className="text-[#5B5E61] hover:text-[#000000] text-[18px]"
+                    >
+                      ×
+                    </button>
+                    <span>{skill}</span>
+                  </div>
+                  <div className="text-[#6B6B6B] cursor-move text-lg">≡</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Media Section */}
-          <div className="w-full max-w-[530px] mx-auto">
+          <div className="w-full max-w-[530px] mx-auto mt-6">
             <h2 className="text-lg font-semibold text-black mb-2">Media</h2>
             <p className="text-base text-[#6b7175] mb-4">
               Add Documents, photos, sites, videos, and presentations.{" "}
-              <span className="text-[#94278F] underline cursor-pointer">Learn more about media file types supported</span>
+              <span className="text-[#94278F] underline cursor-pointer">
+                Learn more about media file types supported
+              </span>
             </p>
-            <button className="w-[114px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-base font-medium hover:bg-[#e9c6e7] transition">
+            <button
+              type="button"
+              onClick={toggleMediaOptions}
+              className="w-[115px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-[16px] font-normal flex items-center justify-center cursor-pointer"
+            >
               + Add Media
             </button>
+            {showMediaOptions && (
+              <div
+                ref={mediaOptionsRef}
+                className="mt-2 w-[212px] h-[102px] border border-gray-200 rounded-md bg-white shadow-sm text-[15px] font-normal text-black z-10"
+              >
+                <ul className="divide-y divide-gray-200">
+                  <li
+                    className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setShowMediaCard(true);
+                      setShowMediaOptions(false);
+                    }}
+                  >
+                    <AiOutlineLink className="w-[27px] h-[27px] text-[#1E232C]" />
+                    <span>Add a link</span>
+                  </li>
+                  <li
+                    className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      document.getElementById("video-upload")?.click();
+                      setShowMediaOptions(false);
+                    }}
+                  >
+                    <CiImageOn className="w-[27px] h-[27px] text-[#1E232C]" />
+                    <span>Upload a photo</span>
+                  </li>
+                </ul>
+              </div>
+            )}
+            <input
+              type="file"
+              accept="video/*"
+              id="video-upload"
+              className="hidden"
+              onChange={handleVideoUpload}
+            />
+            {videoFile && (
+              <p className="text-xs text-gray-500 mt-1">{videoFile.name}</p>
+            )}
           </div>
 
           {/* Additional Details */}
           <div className="w-full max-w-[530px] mx-auto">
-            <h2 className="text-lg font-semibold text-black mb-2 mt-2">Additional Details</h2>
+            <h2 className="text-lg font-semibold text-black mb-2 mt-2">
+              Additional Details
+            </h2>
 
             {/* Currently Working */}
             <label className="inline-flex items-center space-x-2 mb-4">
@@ -102,41 +267,73 @@ const AddProject = ({ onClose }: AddProjectProps) => {
                 onChange={handleChange}
                 className="w-5 h-5 text-[#94278F] bg-white border border-[#DCDCDC] rounded focus:outline-none"
               />
-              <span className="text-[#94278F] text-[15px] font-medium">I am currently working in this project</span>
+              <span className="text-[#868686] text-[15px] font-medium">
+                I am currently working in this project
+              </span>
             </label>
 
             {/* Start and End Date */}
-            <div className="flex justify-between gap-4">
-              {[{ label: "Start date", name: "startDate" }, { label: "End date (or expected)", name: "endDate" }].map(
-                ({ label, name }) => (
-                  <div key={name} className="relative w-full max-w-[260px]">
-                    <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">{label}</label>
-                    <input
-                      type="date"
-                      name={name}
-                      value={form[name as 'startDate' | 'endDate']}
-                      onChange={handleChange}
-                      className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] appearance-none"
-                    />
-                    <img
-                      src={CalendarIcon}
-                      alt="Calendar"
-                      onClick={() => {
-                        const input = document.getElementById(name);
-                        if (input && 'showPicker' in input) {
-                          (input as HTMLInputElement).showPicker();
-                        }
-                      }}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-                    />
-                  </div>
-                )
+            <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
+              <div
+                className={`relative ${
+                  form.currentlyWorking ? "w-full" : "w-full max-w-[260px]"
+                }`}
+              >
+                <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+                  Start date
+                </label>
+                <input
+                  type="date"
+                  name="startDate"
+                  id="startDate"
+                  value={form.startDate}
+                  onChange={handleChange}
+                  className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
+                />
+                <img
+                  src={Calendar}
+                  alt="Calendar"
+                  onClick={() =>
+                    (
+                      document.getElementById("startDate") as HTMLInputElement
+                    )?.showPicker?.()
+                  }
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
+                />
+              </div>
+
+              {!form.currentlyWorking && (
+                <div className="relative w-full max-w-[260px]">
+                  <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+                    End date (or expected)
+                  </label>
+                  <input
+                    type="date"
+                    name="endDate"
+                    id="endDate"
+                    value={form.endDate}
+                    onChange={handleChange}
+                    className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
+                  />
+                  <img
+                    src={Calendar}
+                    alt="Calendar"
+                    onClick={() =>
+                      (
+                        document.getElementById("endDate") as HTMLInputElement
+                      )?.showPicker?.()
+                    }
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
+                  />
+                </div>
               )}
             </div>
 
             {/* Associated With */}
             <div className="relative w-full max-w-[530px] mt-6">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Associated with</label>
+              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+                Associated with
+              </label>
               <input
                 type="text"
                 name="associatedWith"
@@ -145,7 +342,10 @@ const AddProject = ({ onClose }: AddProjectProps) => {
                 placeholder="Please Select"
                 className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[16px] text-[#898989] focus:outline-none"
               />
-              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#898989]" size={20} />
+              <ChevronDown
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#898989]"
+                size={20}
+              />
             </div>
           </div>
         </div>
@@ -156,11 +356,29 @@ const AddProject = ({ onClose }: AddProjectProps) => {
             Save
           </button>
         </div>
-         {showDiscardPopup && (
+        {showDiscardPopup && (
           <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
             <DiscardChanges
               onCancel={() => setShowDiscardPopup(false)}
               onDiscard={onClose}
+            />
+          </div>
+        )}
+        {showMediaCard && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <MediaCard
+              onClose={() => setShowMediaCard(false)}
+              onSave={() => {
+                console.log("Media saved:", mediaForm);
+                setShowMediaCard(false);
+              }}
+              onDelete={() => {
+                console.log("Media card deleted");
+                setMediaForm({ mediaLink: "" });
+                setShowMediaCard(false);
+              }}
+              form={mediaForm}
+              handleChange={handleMediaInputChange}
             />
           </div>
         )}
