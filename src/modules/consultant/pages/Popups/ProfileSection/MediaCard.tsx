@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import DiscardChanges from "./Discard";
 import { useState } from "react";
 
+
 interface MediaCardProps {
   onDelete: () => void;
   onSave: () => void;

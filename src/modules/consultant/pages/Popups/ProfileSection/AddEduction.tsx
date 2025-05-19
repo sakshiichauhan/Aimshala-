@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, ChangeEvent, useRef, useEffect } from "react";
 import Calendar from "@/assets/Consultant/Calendar.png";
 import { X } from "lucide-react";
 import DiscardChanges from "./Discard";
+import { AiOutlineLink } from "react-icons/ai";
+import { CiImageOn } from "react-icons/ci";
+import MediaCard from "./MediaCard";
 
 interface AddEducationProps {
   onClose: () => void;
@@ -35,11 +38,39 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
   const [showDiscardPopup, setShowDiscardPopup] = useState(false);
   const [showSkillInput, setShowSkillInput] = useState(false);
   const [skillInput, setSkillInput] = useState("");
+  const [showMediaCard, setShowMediaCard] = useState<boolean>(false);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [showMediaOptions, setShowMediaOptions] = useState(false);
+  const mediaOptionsRef = useRef<HTMLDivElement>(null);
+  const [mediaForm, setMediaForm] = useState({ mediaLink: '' });
+
+  const toggleMediaOptions = () => setShowMediaOptions(prev => !prev);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mediaOptionsRef.current && !mediaOptionsRef.current.contains(event.target as Node)) {
+        setShowMediaOptions(false);
+      }
+    };
+    if (showMediaOptions) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMediaOptions]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleMediaInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setMediaForm(prev => ({ ...prev, [name]: value }));
   };
 
   const handleToggleSkill = () => {
@@ -59,6 +90,11 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
 
     setForm({ ...form, skills: updatedSkills });
     setSkillInput("");
+  };
+
+  const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) setVideoFile(file);
   };
 
   const handleRemoveSkill = (skillToRemove: string) => {
@@ -185,26 +221,24 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
             >
               + Add Skill
             </button>
-<div className="flex flex-col gap-2 mt-4">
-  {form.skills.map((skill, index) => (
-    <div
-      key={index}
-      className="flex items-center justify-between h-[40px] px-2 bg-[#ECECEC] border border-[#DCDCDC] rounded-md text-[#3C3C3C] text-[15px]"
-    >
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => handleRemoveSkill(skill)}
-          className="  text-[#5B5E61] hover:text-[#000000] text-[18px]"
-        >
-          ×
-        </button>
-        <span>{skill}</span>
-      </div>
-      <div className="text-[#6B6B6B] cursor-move text-lg">≡</div>
-    </div>
- 
 
-          
+            <div className="flex flex-col gap-2 mt-4">
+              {form.skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between h-[40px] px-2 bg-[#ECECEC] border border-[#DCDCDC] rounded-md text-[#3C3C3C] text-[15px]"
+                >
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleRemoveSkill(skill)}
+                      className="text-[#5B5E61] hover:text-[#000000] text-[18px]"
+                    >
+                      ×
+                    </button>
+                    <span>{skill}</span>
+                  </div>
+                  <div className="text-[#6B6B6B] cursor-move text-lg">≡</div>
+                </div>
               ))}
             </div>
           </div>
@@ -218,9 +252,52 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
                 Learn more about media file types supported
               </span>
             </p>
-            <button className="w-[114px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-base font-medium hover:bg-[#e9c6e7] transition">
+            <button
+              type="button"
+              onClick={toggleMediaOptions}
+              className="w-[115px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-[16px] font-normal flex items-center justify-center cursor-pointer"
+            >
               + Add Media
             </button>
+            {showMediaOptions && (
+              <div
+                ref={mediaOptionsRef}
+                className="mt-2 w-[212px] h-[102px] border border-gray-200 rounded-md bg-white shadow-sm text-[15px] font-normal text-black z-10"
+              >
+                <ul className="divide-y divide-gray-200">
+                  <li
+                    className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setShowMediaCard(true);
+                      setShowMediaOptions(false);
+                    }}
+                  >
+                    <AiOutlineLink className="w-[27px] h-[27px] text-[#1E232C]" />
+                    <span>Add a link</span>
+                  </li>
+                  <li
+                    className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      document.getElementById("video-upload")?.click();
+                      setShowMediaOptions(false);
+                    }}
+                  >
+                    <CiImageOn className="w-[27px] h-[27px] text-[#1E232C]" />
+                    <span>Upload a photo</span>
+                  </li>
+                </ul>
+              </div>
+            )}
+            <input
+              type="file"
+              accept="video/*"
+              id="video-upload"
+              className="hidden"
+              onChange={handleVideoUpload}
+            />
+            {videoFile && (
+              <p className="text-xs text-gray-500 mt-1">{videoFile.name}</p>
+            )}
           </div>
         </div>
 
@@ -240,6 +317,26 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
             <DiscardChanges
               onCancel={() => setShowDiscardPopup(false)}
               onDiscard={onClose}
+            />
+          </div>
+        )}
+
+        {/* Media Card */}
+        {showMediaCard && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <MediaCard
+              onClose={() => setShowMediaCard(false)}
+              onSave={() => {
+                console.log('Media saved:', mediaForm);
+                setShowMediaCard(false);
+              }}
+              onDelete={() => {
+                console.log('Media card deleted');
+                setMediaForm({ mediaLink: '' });
+                setShowMediaCard(false);
+              }}
+              form={mediaForm}
+              handleChange={handleMediaInputChange}
             />
           </div>
         )}
