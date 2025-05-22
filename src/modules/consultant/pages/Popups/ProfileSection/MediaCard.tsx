@@ -74,7 +74,7 @@ const MediaCard = ({
           </button>
         </div>
 
-        {/* Discard Confirmation */}
+       
         {showDiscardPopup && (
           <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
             <DiscardChanges
