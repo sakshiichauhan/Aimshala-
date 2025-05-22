@@ -1,16 +1,16 @@
 import { useState, ChangeEvent, useRef, useEffect } from "react";
-import Calendar from "@/assets/Consultant/Calendar.png";
 import { X } from "lucide-react";
 import DiscardChanges from "./Discard";
 import { AiOutlineLink } from "react-icons/ai";
 import { CiImageOn } from "react-icons/ci";
 import MediaCard from "./MediaCard";
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface AddEducationProps {
   onClose: () => void;
 }
 
-interface FormState {
+export interface FormState {
   school: string;
   degree: string;
   fieldOfStudy: string;
@@ -60,11 +60,6 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
     };
   }, [showMediaOptions]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
   const handleMediaInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -82,7 +77,7 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
 
     if (exists) {
       updatedSkills = form.skills.filter((skill) => skill !== trimmed);
-    } else if (form.skills.length < 5) {
+    } else if (form.skills.length < 10) {
       updatedSkills = [...form.skills, trimmed];
     } else {
       return;
@@ -104,65 +99,6 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
     });
   };
 
-  const renderInput = (
-    label: string,
-    name: keyof FormState,
-    placeholder: string = "",
-    type: string = "text",
-    isDate: boolean = false,
-    isTextarea: boolean = false,
-    maxLength?: number
-  ) => (
-    <div className="relative w-full max-w-[530px] mx-auto mb-5">
-      <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-[#000000]">
-        {label}
-      </label>
-
-      {isTextarea ? (
-        <>
-          <textarea
-            name={name}
-            value={form[name] as string}
-            onChange={handleChange}
-            placeholder={placeholder}
-            maxLength={maxLength}
-            className="w-full h-[100px] px-4 py-5 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] resize-none placeholder-[#898989]"
-          />
-          {maxLength && (
-            <div className="absolute bottom-2 right-4 text-xs text-[#898989]">
-              {(form[name] as string).length}/{maxLength}
-            </div>
-          )}
-        </>
-      ) : (
-        <input
-          type={type}
-          name={name}
-          id={name}
-          value={form[name] as string}
-          onChange={handleChange}
-          placeholder={placeholder}
-          className={`w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] placeholder-[#898989] ${
-            isDate
-              ? "[&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-0 [&::-webkit-calendar-picker-indicator]:z-[-10]"
-              : ""
-          }`}
-        />
-      )}
-
-      {isDate && !isTextarea && (
-        <img
-          src={Calendar}
-          alt="Calendar"
-          onClick={() =>
-            (document.getElementById(name) as HTMLInputElement)?.showPicker?.()
-          }
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-        />
-      )}
-    </div>
-  );
-
   return (
     <>
       <div className="w-[791px] bg-white rounded-lg shadow-md overflow-hidden relative">
@@ -179,16 +115,67 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
 
         {/* Form Body */}
         <div className="px-8 py-8">
-          {renderInput("School", "school", "Ex: Boston University")}
-          {renderInput("Degree", "degree", "Ex: Bachelor's")}
-          {renderInput("Field of study", "fieldOfStudy", "Ex: Business")}
+          <RenderInput 
+            label="School" 
+            name="school" 
+            placeholder="Ex: Boston University" 
+            value={form.school} 
+            onChange={(e) => setForm({...form, school: e.target.value})}
+          />
+          <RenderInput 
+            label="Degree" 
+            name="degree" 
+            placeholder="Ex: Bachelor's" 
+            value={form.degree} 
+            onChange={(e) => setForm({...form, degree: e.target.value})}
+          />
+          <RenderInput 
+            label="Field of study" 
+            name="fieldOfStudy" 
+            placeholder="Ex: Business" 
+            value={form.fieldOfStudy} 
+            onChange={(e) => setForm({...form, fieldOfStudy: e.target.value})}
+          />
           <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
-            {renderInput("Start date", "startDate", "", "date", true)}
-            {renderInput("End date (or expected)", "endDate", "", "date", true)}
+            <RenderInput 
+              label="Start date" 
+              name="startDate" 
+              type="date" 
+              value={form.startDate} 
+              onChange={(e) => setForm({...form, startDate: e.target.value})}
+            />
+            <RenderInput 
+              label="End date (or expected)" 
+              name="endDate" 
+              type="date" 
+              value={form.endDate} 
+              onChange={(e) => setForm({...form, endDate: e.target.value})}
+            />
           </div>
-          {renderInput("Grade", "grade", "Enter Grade")}
-          {renderInput("Activities and societies", "activities", "Enter Activities")}
-          {renderInput("Description", "description", "Enter Description", "text", false, true, 150)}
+          <RenderInput 
+            label="Grade" 
+            name="grade" 
+            placeholder="Enter Grade" 
+            value={form.grade} 
+            onChange={(e) => setForm({...form, grade: e.target.value})}
+          />
+          <RenderInput 
+            label="Activities and societies" 
+            name="activities" 
+            placeholder="Enter Activities" 
+            value={form.activities} 
+            onChange={(e) => setForm({...form, activities: e.target.value})}
+          />
+          <RenderInput 
+            label="Description" 
+            name="description" 
+            placeholder="Enter Description" 
+            type="text" 
+            isTextarea 
+            maxLength={150}
+            value={form.description} 
+            onChange={(e) => setForm({...form, description: e.target.value})}
+          />
 
           {/* Skills Section */}
           <div className="w-full max-w-[530px] mx-auto mt-6">

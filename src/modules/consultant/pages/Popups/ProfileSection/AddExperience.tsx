@@ -6,6 +6,7 @@ import CreateOrganisation from "./CreateOrganisation";
 import { AiOutlineLink } from "react-icons/ai";
 import { CiImageOn } from "react-icons/ci";
 import MediaCard from "./MediaCard";
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface AddExperienceProps {
   onClose: () => void;

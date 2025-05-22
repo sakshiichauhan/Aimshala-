@@ -20,15 +20,15 @@ const AddSkill = ({ onClose }: AddSkillProps) => {
 
   const suggestedSkills = ["Social Media", "Business", "Advertisement", "Marketing", "Sales"];
   const experienceOptions = [
-     "Senior UI/UX Designer at Alpheric" ,
-     "Senior UI/UX designer at RewardLion" ,
-     "User Experience Designer at Kadritech" ,
+    "Senior UI/UX Designer at Alpheric",
+    "Senior UI/UX designer at RewardLion",
+    "User Experience Designer at Kadritech",
   ];
   const educationOptions = ["Tilak Raj Chadha Institute of Management & Technology"];
   const licensesOptions = ["UI/UX design"];
   const projectsOptions = ["Beauty Club Platform / UI/UX Design of Mobile & Website"];
   const coursesOptions = ["UI/UX design"];
-  const honorsOptions = ["UI/UX design award", "Follow this skill to keep up with relevant content." ];
+  const honorsOptions = ["UI/UX design award", "Follow this skill to keep up with relevant content."];
 
   const handleCheckboxChange = (label: string) => {
     if (form.selectedOptions.includes(label)) {
@@ -47,7 +47,7 @@ const AddSkill = ({ onClose }: AddSkillProps) => {
   return (
     <div className="flex items-center justify-center font-poppins">
       <div className="w-[791px] rounded-lg shadow-md overflow-hidden bg-white">
-        
+
         {/* Header */}
         <div className="bg-[#F5F5F5] rounded-t-lg flex items-center justify-between h-[60px] px-6">
           <h1 className="text-2xl font-semibold text-[#1C1C1C]">Add Skill</h1>
@@ -57,39 +57,39 @@ const AddSkill = ({ onClose }: AddSkillProps) => {
         </div>
 
         {/* Form Body */}
-      <div className="px-8 py-8 space-y-3">
-  {/* Skill Input */}
-  <div className="flex justify-center">
-    <div className="relative w-full max-w-[522px]">
-      <label className="absolute -top-2 left-3 bg-white px-1 text-sm text-black">Skill</label>
-      <input
-        type="text"
-        value={form.skill}
-        onChange={(e) => setForm({ ...form, skill: e.target.value })}
-        placeholder="Ex: Retail Sales Manager"
-        className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[16px] text-[#898989] focus:outline-none"
-      />
-    </div>
-  </div>
+        <div className="px-8 py-8 space-y-3">
+          {/* Skill Input */}
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-[522px]">
+              <label className="absolute -top-2 left-3 bg-white px-1 text-sm text-black">Skill</label>
+              <input
+                type="text"
+                value={form.skill}
+                onChange={(e) => setForm({ ...form, skill: e.target.value })}
+                placeholder="Ex: Retail Sales Manager"
+                className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[16px] text-[#898989] focus:outline-none"
+              />
+            </div>
+          </div>
 
-  {/* Suggested Skills */}
-  <div className="flex justify-center">
-  <div className="w-full max-w-[522px] border border-[#DCDCDC] rounded-lg px-5 py-4 space-y-2">
-    <h2 className="text-sm font-medium text-[#1D1D1F]">
-      Suggested based on your profile
-    </h2>
-    <div className="flex flex-wrap gap-x-2 gap-y-2">
-      { suggestedSkills.map((item, index) => (
-        <span
-          key={index}
-          className="bg-[#F4F4F4] text-[#747677] text-[16px] px-4 py-1.5 rounded-full cursor-pointer"
-        >
-          {item}
-        </span>
-      ))}
-    </div>
-  </div>
-</div>
+          {/* Suggested Skills */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-[522px] border border-[#DCDCDC] rounded-lg px-5 py-4 space-y-2">
+              <h2 className="text-sm font-medium text-[#1D1D1F]">
+                Suggested based on your profile
+              </h2>
+              <div className="flex flex-wrap gap-x-2 gap-y-2">
+                {suggestedSkills.map((item, index) => (
+                  <span
+                    key={index}
+                    className="bg-[#F4F4F4] text-[#747677] text-[16px] px-4 py-1.5 rounded-full cursor-pointer"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
 
 
 
@@ -131,7 +131,7 @@ const AddSkill = ({ onClose }: AddSkillProps) => {
               ))}
 
               {/* Follow Skill */}
-              
+
 
             </div>
           </div>
