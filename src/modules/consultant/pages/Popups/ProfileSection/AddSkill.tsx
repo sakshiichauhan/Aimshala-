@@ -1,5 +1,6 @@
-import { useState } from "react";
+import  { useState } from "react";
 import { X } from "lucide-react";
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface AddSkillProps {
   onClose: () => void;
@@ -60,14 +61,13 @@ const AddSkill = ({ onClose }: AddSkillProps) => {
         <div className="px-8 py-8 space-y-3">
           {/* Skill Input */}
           <div className="flex justify-center">
-            <div className="relative w-full max-w-[522px]">
-              <label className="absolute -top-2 left-3 bg-white px-1 text-sm text-black">Skill</label>
-              <input
-                type="text"
+            <div className="w-full max-w-[522px]">
+              <RenderInput
+                label="Skill"
+                name="skill"
                 value={form.skill}
                 onChange={(e) => setForm({ ...form, skill: e.target.value })}
                 placeholder="Ex: Retail Sales Manager"
-                className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[16px] text-[#898989] focus:outline-none"
               />
             </div>
           </div>

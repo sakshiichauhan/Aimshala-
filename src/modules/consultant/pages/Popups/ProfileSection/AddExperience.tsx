@@ -1,12 +1,12 @@
 import React, { useState, useRef, ChangeEvent } from "react";
-import Calendar from "@/assets/Consultant/Calendar.png";
-import { ChevronDown, X } from "lucide-react";
+import { X, ChevronDown } from "lucide-react";
+import RenderInput from "../../../components/RenderInput";
+import CustomCheckbox from "../../../components/CustomCheckbox";
 import DiscardChanges from "./Discard";
 import CreateOrganisation from "./CreateOrganisation";
+import MediaCard from "./MediaCard";
 import { AiOutlineLink } from "react-icons/ai";
 import { CiImageOn } from "react-icons/ci";
-import MediaCard from "./MediaCard";
-import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface AddExperienceProps {
   onClose: () => void;
@@ -197,20 +197,13 @@ const AddExperience: React.FC<AddExperienceProps> = ({ onClose }) => {
             <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#898989]" />
           </div>
 
-          {/* Currently Working */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="inline-flex items-center space-x-2">
-              <input
-                type="checkbox"
-                name="currentlyWorking"
-                checked={form.currentlyWorking}
-                onChange={handleChange}
-                className="w-5 h-5 text-[#94278F] bg-white border border-[#DCDCDC] rounded focus:outline-none"
-              />
-              <span className="text-[#898989] text-[15px] font-medium">
-                I am currently working in this role
-              </span>
-            </label>
+          {/* Currently Working */}          <div className="relative w-full max-w-[530px] mx-auto">
+            <CustomCheckbox
+              label="I am currently working in this role"
+              name="currentlyWorking"
+              checked={form.currentlyWorking}
+              onChange={handleChange}
+            />
           </div>
 
           {/* Start and End Date */}

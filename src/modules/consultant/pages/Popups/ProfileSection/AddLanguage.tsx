@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { ChevronDown, X } from "lucide-react";
+import { X } from "lucide-react";
 import DiscardChanges from "./Discard";
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface AddLanguageProps {
   onClose: () => void;
@@ -11,12 +12,13 @@ const AddLanguage = ({ onClose }: AddLanguageProps) => {
     language: "",
     proficiency: "",
   });
-   const [showDiscardPopup, setShowDiscardPopup] = useState(false);
+  const [showDiscardPopup, setShowDiscardPopup] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
+
   const handleClose = () => {
     setShowDiscardPopup(true);
   };
@@ -35,33 +37,21 @@ const AddLanguage = ({ onClose }: AddLanguageProps) => {
 
         {/* Form */}
         <div className="px-8 py-8 space-y-5">
+          <RenderInput
+            label="Language"
+            name="language"
+            value={form.language}
+            onChange={handleChange}
+            placeholder="Ex: English"
+          />
 
-          {/* Language */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Language</label>
-            <input
-              type="text"
-              name="language"
-              value={form.language}
-              onChange={handleChange}
-              placeholder="Ex: English"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[18px] text-[#898989] focus:outline-none"
-            />
-          </div>
-
-          {/* Proficiency */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Proficiency</label>
-            <input
-              type="text"
-              name="proficiency"
-              value={form.proficiency}
-              onChange={handleChange}
-              placeholder="Please Select"
-              className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md text-[18px] text-[#898989] focus:outline-none"
-            />
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#898989]" />
-          </div>
+          <RenderInput
+            label="Proficiency"
+            name="proficiency"
+            value={form.proficiency}
+            onChange={handleChange}
+            placeholder="Please Select"
+          />
         </div>
 
         {/* Save Button */}

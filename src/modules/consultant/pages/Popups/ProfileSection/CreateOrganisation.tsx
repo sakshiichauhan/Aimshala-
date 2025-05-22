@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ChevronDown, UploadCloud, X } from "lucide-react";
+import { X } from "lucide-react";
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface CreateOrganisationProps {
   onClose: () => void;
@@ -53,91 +54,63 @@ const CreateOrganisation = ({ onClose }: CreateOrganisationProps) => {
 
         {/* Form */}
         <div className="px-8 py-8 space-y-5">
-          {/* Organisation Name */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Organisation Name
-            </label>
-            <input
-              type="text"
-              name="organisationName"
-              value={form.organisationName}
-              onChange={handleChange}
-              placeholder="Ex: Microsoft"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[18px] text-[#898989] focus:outline-none"
-            />
-          </div>
+          <RenderInput
+            label="Organisation Name"
+            name="organisationName"
+            value={form.organisationName}
+            onChange={handleChange}
+            placeholder="Ex: Microsoft"
+          />
 
-          {/* Organisation Type */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Organisation Type
-            </label>
-            <input
-              type="text"
-              name="organisationType"
-              value={form.organisationType}
-              onChange={handleChange}
-              placeholder="Please Select"
-              className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md text-[#898989] text-[18px] focus:outline-none"
-            />
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#898989]" />
-          </div>
+          <RenderInput
+            label="Organisation Type"
+            name="organisationType"
+            value={form.organisationType}
+            onChange={handleChange}
+            placeholder="Please Select"
+          />
 
-          {/* Location */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Location
-            </label>
-            <input
-              type="text"
-              name="location"
-              value={form.location}
-              onChange={handleChange}
-              placeholder="Ex: London, United Kingdom"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[18px] text-[#898989] focus:outline-none"
-            />
-          </div>
+          <RenderInput
+            label="Location"
+            name="location"
+            value={form.location}
+            onChange={handleChange}
+            placeholder="Ex: London, United Kingdom"
+          />
 
-          {/* Logo Upload */}
           <div className="w-full max-w-[530px] mx-auto">
-            <label className="text-sm text-black mb-1 block">
-              Organisation Logo
-            </label>
-            <div className="relative flex flex-col items-center justify-center w-full h-[150px] border-2 border-dashed border-[#DCDCDC] rounded-md cursor-pointer">
-              <UploadCloud className="text-[#898989]" size={30} />
-              <p className="text-[#898989] mt-2 font-medium text-[15px]">
-                Upload logo
-              </p>
-              <p className="text-[#6b7280] text-sm">
-                Drag and drop logo here or{" "}
-                <span className="text-[#94278F] underline cursor-pointer">
-                  Browse file
+            <h2 className="text-base font-semibold text-[#1C1C1C] mb-2">
+              Upload Logo
+            </h2>
+            <input
+              type="file"
+              accept="image/*"
+              name="logo"
+              onChange={handleChange}
+              className="hidden"
+              id="logo-upload"
+            />
+            <label
+              htmlFor="logo-upload"
+              className="block w-full h-[100px] border-2 border-dashed border-[#DCDCDC] rounded-md cursor-pointer hover:border-[#94278F] transition-colors duration-200"
+            >
+              <div className="flex flex-col items-center justify-center h-full text-[#898989]">
+                <span>Click to upload or drag and drop</span>
+                <span className="text-sm">
+                  SVG, PNG, JPG (max. 400x400px)
                 </span>
-              </p>
-              <input
-                type="file"
-                name="logo"
-                accept="image/*"
-                onChange={handleChange}
-                className="absolute opacity-0 w-full h-full cursor-pointer"
-              />
-            </div>
+              </div>
+            </label>
           </div>
 
-          {/* About Organisation */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              About Organisation
-            </label>
-            <textarea
-              name="aboutOrganisation"
-              value={form.aboutOrganisation}
-              onChange={handleChange}
-              placeholder="Enter Description"
-              className="w-full h-[100px] px-4 py-5 border border-[#DCDCDC] rounded-md text-[18px] text-[#898989] focus:outline-none resize-none"
-            />
-          </div>
+          <RenderInput
+            label="About Organisation"
+            name="aboutOrganisation"
+            value={form.aboutOrganisation}
+            onChange={handleChange}
+            placeholder="Enter Description"
+            isTextarea={true}
+          />
         </div>
 
         {/* Save Button */}

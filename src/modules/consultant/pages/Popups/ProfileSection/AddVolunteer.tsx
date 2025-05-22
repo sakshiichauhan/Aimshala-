@@ -1,11 +1,11 @@
 import React, { useState,useRef,ChangeEvent} from "react";
-import Calendar from "@/assets/Consultant/Calendar.png";
+
 import { ChevronDown, X } from "lucide-react";
 import DiscardChanges from "./Discard";
 import { AiOutlineLink } from "react-icons/ai";
 import { CiImageOn } from "react-icons/ci";
 import MediaCard from "./MediaCard";
-
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface FormState {
   organisation: string;
@@ -85,29 +85,39 @@ const handleClose = () => {
 
         {/* Form */}
         <div className="px-8 py-8 space-y-5">
-          {/* Organisation, Role, Cause */}
-          {[
-            { label: "Organisation", name: "organisation", placeholder: "Ex: Red Cross" },
-            { label: "Role", name: "role", placeholder: "Ex: Fundraising Volunteer" },
-            { label: "Cause", name: "cause", placeholder: "Ex: Environment, Education" },
-          ].map(({ label, name, placeholder }) => (
-            <div key={name} className="relative w-full max-w-[521.81px] mx-auto">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                {label}
-              </label>
-              <input
-                type="text"
-                name={name}
-                value={form[name] as string}
-                onChange={handleChange}
-                placeholder={placeholder}
-                className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] placeholder-[#898989]"
-              />
-              {name === "cause" && (
-                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#898989]" />
-              )}
-            </div>
-          ))}
+          {/* Organisation */}
+          <RenderInput
+            label="Organisation"
+            name="organisation"
+            value={form.organisation}
+            onChange={handleChange}
+            placeholder="Ex: Red Cross"
+          />
+
+          {/* Role */}
+          <RenderInput
+            label="Role"
+            name="role"
+            value={form.role}
+            onChange={handleChange}
+            placeholder="Ex: Fundraising Volunteer"
+          />
+
+          {/* Cause */}
+          <div className="relative w-full max-w-[521.81px] mx-auto">
+            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
+              Cause
+            </label>
+            <input
+              type="text"
+              name="cause"
+              value={form.cause}
+              onChange={handleChange}
+              placeholder="Ex: Environment, Education"
+              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] placeholder-[#898989]"
+            />
+            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#898989]" />
+          </div>
 
           {/* Currently Working */}
           <div className="w-full max-w-[530px] mx-auto">
@@ -115,7 +125,7 @@ const handleClose = () => {
               <input
                 type="checkbox"
                 name="currentlyWorking"
-                checked={form.currentlyWorking as boolean}
+                checked={form.currentlyWorking}
                 onChange={handleChange}
                 className="w-5 h-5 text-[#94278F] bg-white border border-[#DCDCDC] rounded focus:outline-none"
               />
@@ -126,75 +136,37 @@ const handleClose = () => {
           </div>
 
           {/* Start and End Date */}
-                    <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
-            <div
-              className={`relative ${
-                form.currentlyWorking ? "w-full" : "w-full max-w-[260px]"
-              }`}
-            >
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                Start date
-              </label>
-              <input
-                type="date"
-                name="startDate"
-                id="startDate"
-                value={form.startDate}
-                onChange={handleChange}
-                className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
-              />
-              <img
-                src={Calendar}
-                alt="Calendar"
-                onClick={() =>
-                  (document.getElementById("startDate") as HTMLInputElement)?.showPicker?.()
-                }
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-              />
-            </div>
-
+          <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
+            <RenderInput
+              label="Start date"
+              name="startDate"
+              type="date"
+              isDate={true}
+              value={form.startDate}
+              onChange={handleChange}
+            />
             {!form.currentlyWorking && (
-              <div className="relative w-full max-w-[260px]">
-                <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                  End date (or expected)
-                </label>
-                <input
-                  type="date"
-                  name="endDate"
-                  id="endDate"
-                  value={form.endDate}
-                  onChange={handleChange}
-                  className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
-                />
-                <img
-                  src={Calendar}
-                  alt="Calendar"
-                  onClick={() =>
-                    (document.getElementById("endDate") as HTMLInputElement)?.showPicker?.()
-                  }
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-                />
-              </div>
+              <RenderInput
+                label="End date"
+                name="endDate"
+                type="date"
+                isDate={true}
+                value={form.endDate}
+                onChange={handleChange}
+              />
             )}
           </div>
 
           {/* Description */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Description
-            </label>
-            <textarea
-              name="description"
-              value={form.description as string}
-              onChange={handleChange}
-              placeholder="Enter Description"
-              maxLength={150}
-              className="w-full h-[100px] px-4 py-5 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] resize-none placeholder-[#898989]"
-            />
-            <div className="absolute bottom-2 right-4 text-xs text-[#898989]">
-              {(form.description as string).length}/150
-            </div>
-          </div>
+          <RenderInput
+            label="Description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            placeholder="Enter Description"
+            isTextarea={true}
+            maxLength={150}
+          />
 
           {/* Media */}
           <div className="w-full max-w-[530px] mx-auto">

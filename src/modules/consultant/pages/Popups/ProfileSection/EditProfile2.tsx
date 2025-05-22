@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { Trash2, X } from "lucide-react";
 import ProfileImage from "@/assets/Consultant/Profile/01.png"; // replace with actual path
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface EditProfile2Props {
   onClose: () => void;
@@ -9,6 +9,11 @@ interface EditProfile2Props {
 
 const EditProfile2 = ({ onClose }: EditProfile2Props) => {
   const [profileImage, setProfileImage] = useState<string | null>(ProfileImage);
+  const [fullName, setFullName] = useState("John Doe");
+  const [username, setUsername] = useState("johndoe123");
+  const [dob, setDob] = useState("1997-08-24");
+  const [gender, setGender] = useState("");
+  const [bio, setBio] = useState("");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -83,40 +88,52 @@ const EditProfile2 = ({ onClose }: EditProfile2Props) => {
         </div>
         {/* Form Fields */}
         <div className="mt-6 space-y-4">
-          <input
-            type="text"
+          <RenderInput
+            label="Full Name"
+            name="fullName"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             placeholder="Full Name"
-            defaultValue="John Doe"
-            className="w-full p-3 border border-[#DCDCDC] rounded-md text-sm"
           />
-          <input
-            type="text"
+
+          <RenderInput
+            label="Username"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
-            defaultValue="johndoe123"
-            className="w-full p-3 border border-[#DCDCDC] rounded-md text-sm"
           />
-          <input
-            type="text"
+
+          <RenderInput
+            label="Date of Birth"
+            name="dob"
+            value={dob}
+            onChange={(e) => setDob(e.target.value)}
             placeholder="Date of Birth"
-            defaultValue="24 - 08 - 1997"
-            className="w-full p-3 border border-[#DCDCDC] rounded-md text-sm"
-            readOnly
+            type="date"
+            isDate={true}
           />
-          <select className="w-full p-3 border border-[#DCDCDC] rounded-md text-sm text-[#898989]">
-            <option>Select</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
+
+          <select 
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            className="w-full p-3 border border-[#DCDCDC] rounded-md text-sm text-[#898989]"
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
           </select>
-          <textarea
+
+          <RenderInput
+            label="Personal Statement"
+            name="bio"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
             placeholder="Write Personal Statement:"
+            isTextarea={true}
             maxLength={250}
-            className="w-full p-3 border border-[#DCDCDC] rounded-md text-sm h-[100px] resize-none"
           />
-          <div className="flex justify-between text-xs text-[#898989]">
-            <span></span>
-            <span>0/250</span>
-          </div>
         </div>
 
         {/* Save Button */}

@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, useRef, useEffect } from "react";
 import { X } from "lucide-react";
+
 import DiscardChanges from "./Discard";
 import { AiOutlineLink } from "react-icons/ai";
 import { CiImageOn } from "react-icons/ci";
@@ -136,18 +137,19 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
             value={form.fieldOfStudy} 
             onChange={(e) => setForm({...form, fieldOfStudy: e.target.value})}
           />
-          <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
-            <RenderInput 
+          <div className="flex justify-between gap-4 max-w-[530px] mx-auto">            <RenderInput 
               label="Start date" 
               name="startDate" 
-              type="date" 
+              type="date"
+              isDate={true}
               value={form.startDate} 
               onChange={(e) => setForm({...form, startDate: e.target.value})}
             />
             <RenderInput 
               label="End date (or expected)" 
               name="endDate" 
-              type="date" 
+              type="date"
+              isDate={true}
               value={form.endDate} 
               onChange={(e) => setForm({...form, endDate: e.target.value})}
             />

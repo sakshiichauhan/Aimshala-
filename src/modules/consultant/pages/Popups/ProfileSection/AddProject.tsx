@@ -1,10 +1,11 @@
 import { useState, useRef } from "react";
-import Calendar from "@/assets/Consultant/Calendar.png";
+
 import { ChevronDown, X } from "lucide-react";
 import DiscardChanges from "./Discard";
 import { AiOutlineLink } from "react-icons/ai";
 import { CiImageOn } from "react-icons/ci";
 import MediaCard from "./MediaCard";
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface AddProjectProps {
   onClose: () => void;
@@ -100,7 +101,6 @@ const AddProject = ({ onClose }: AddProjectProps) => {
             onClick={handleClose}
             className="p-2 hover:bg-gray-100 rounded-full"
             aria-label="Close"
-
           >
             <X className="w-6 h-6" />
           </button>
@@ -109,37 +109,24 @@ const AddProject = ({ onClose }: AddProjectProps) => {
         {/* Form */}
         <div className="px-8 py-8 space-y-5">
           {/* Project Name */}
-          <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Project Name
-            </label>
-            <input
-              type="text"
-              name="projectName"
-              value={form.projectName}
-              onChange={handleChange}
-              placeholder="Ex: World History"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] placeholder-[#898989]"
-            />
-          </div>
+          <RenderInput
+            label="Project Name"
+            name="projectName"
+            value={form.projectName}
+            onChange={handleChange}
+            placeholder="Ex: World History"
+          />
 
           {/* Description */}
-          <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Description
-            </label>
-            <textarea
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-              placeholder="Enter Description"
-              maxLength={150}
-              className="w-full h-[100px] px-4 py-5 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] resize-none placeholder-[#898989]"
-            />
-            <div className="absolute bottom-2 right-4 text-xs text-[#898989]">
-              {form.description.length}/150
-            </div>
-          </div>
+          <RenderInput
+            label="Description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            placeholder="Enter Description"
+            isTextarea={true}
+            maxLength={150}
+          />
 
           {/* Skills Section */}
           <div className="w-full max-w-[530px] mx-auto">
@@ -258,7 +245,6 @@ const AddProject = ({ onClose }: AddProjectProps) => {
               Additional Details
             </h2>
 
-            {/* Currently Working */}
             <label className="inline-flex items-center space-x-2 mb-4">
               <input
                 type="checkbox"
@@ -267,72 +253,35 @@ const AddProject = ({ onClose }: AddProjectProps) => {
                 onChange={handleChange}
                 className="w-5 h-5 text-[#94278F] bg-white border border-[#DCDCDC] rounded focus:outline-none"
               />
-              <span className="text-[#868686] text-[15px] font-medium">
-                I am currently working in this project
+              <span className="text-[16px] text-[#898989]">
+                I am currently working on this project
               </span>
             </label>
 
-            {/* Start and End Date */}
             <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
-              <div
-                className={`relative ${
-                  form.currentlyWorking ? "w-full" : "w-full max-w-[260px]"
-                }`}
-              >
-                <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                  Start date
-                </label>
-                <input
-                  type="date"
-                  name="startDate"
-                  id="startDate"
-                  value={form.startDate}
-                  onChange={handleChange}
-                  className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
-                />
-                <img
-                  src={Calendar}
-                  alt="Calendar"
-                  onClick={() =>
-                    (
-                      document.getElementById("startDate") as HTMLInputElement
-                    )?.showPicker?.()
-                  }
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-                />
-              </div>
-
+              <RenderInput
+                label="Start Date"
+                name="startDate"
+                type="date"
+                isDate={true}
+                value={form.startDate}
+                onChange={handleChange}
+              />
               {!form.currentlyWorking && (
-                <div className="relative w-full max-w-[260px]">
-                  <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                    End date (or expected)
-                  </label>
-                  <input
-                    type="date"
-                    name="endDate"
-                    id="endDate"
-                    value={form.endDate}
-                    onChange={handleChange}
-                    className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
-                  />
-                  <img
-                    src={Calendar}
-                    alt="Calendar"
-                    onClick={() =>
-                      (
-                        document.getElementById("endDate") as HTMLInputElement
-                      )?.showPicker?.()
-                    }
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-                  />
-                </div>
+                <RenderInput
+                  label="End Date"
+                  name="endDate"
+                  type="date"
+                  isDate={true}
+                  value={form.endDate}
+                  onChange={handleChange}
+                />
               )}
             </div>
 
-            {/* Associated With */}
             <div className="relative w-full max-w-[530px] mt-6">
               <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                Associated with
+                Associated With
               </label>
               <input
                 type="text"

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, X } from 'lucide-react';
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface PaymentformProps {
   onClose: () => void;
@@ -16,7 +17,11 @@ const Paymentform = ({ onClose }: PaymentformProps) => {
     gstNo: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -34,42 +39,22 @@ const Paymentform = ({ onClose }: PaymentformProps) => {
 
         {/* Form */}
         <div className="px-6 py-8 space-y-6">
+          <RenderInput
+            label="Account Holder Name"
+            name="accountHolder"
+            value={form.accountHolder}
+            onChange={handleInputChange}
+            placeholder="Enter Account Holder Name"
+          />
 
-          {/* Account Holder Name */}
-          <div className="relative flex justify-center">
-            <div className="relative w-[521.81px]">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                Account Holder Name 
-              </label>
-              <input
-                type="text"
-                name="accountHolder"
-                value={form.accountHolder}
-                onChange={handleChange}
-                placeholder="Enter Account Holder Name"
-                className="w-full h-[68px] px-1 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px]"
-              />
-            </div>
-          </div>
+          <RenderInput
+            label="PAN Card No"
+            name="panCard"
+            value={form.panCard}
+            onChange={handleInputChange}
+            placeholder="Enter PAN Card No"
+          />
 
-          {/* PAN Card No */}
-          <div className="relative flex justify-center">
-            <div className="relative w-[521.81px]">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                PAN Card No 
-              </label>
-              <input
-                type="text"
-                name="panCard"
-                value={form.panCard}
-                onChange={handleChange}
-                placeholder="Enter PAN Card No"
-                className="w-full h-[68px] px-1 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px]"
-              />
-            </div>
-          </div>
-
-          {/* Account Type */}
           <div className="relative flex justify-center">
             <div className="relative w-[521.81px]">
               <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
@@ -78,84 +63,48 @@ const Paymentform = ({ onClose }: PaymentformProps) => {
               <select
                 name="accountType"
                 value={form.accountType}
-                onChange={handleChange}
+                onChange={handleSelectChange}
                 className="appearance-none w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px]"
               >
                 <option value="">Please Select</option>
-                <option value="Savings">Savings</option>
-                <option value="Current">Current</option>
+                <option value="savings">Savings</option>
+                <option value="current">Current</option>
               </select>
               <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#898989]" size={20} />
             </div>
           </div>
 
-          {/* Account Number */}
-          <div className="relative flex justify-center">
-            <div className="relative w-[521.81px]">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                Account Number 
-              </label>
-              <input
-                type="text"
-                name="accountNumber"
-                value={form.accountNumber}
-                onChange={handleChange}
-                placeholder="Enter Account Number"
-                className="w-full h-[68px] px-1 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px]"
-              />
-            </div>
-          </div>
+          <RenderInput
+            label="Account Number"
+            name="accountNumber"
+            value={form.accountNumber}
+            onChange={handleInputChange}
+            placeholder="Enter Account Number"
+          />
 
-          {/* Confirm Account Number */}
-          <div className="relative flex justify-center">
-            <div className="relative w-[521.81px]">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                Confirm Account Number 
-              </label>
-              <input
-                type="text"
-                name="confirmAccountNumber"
-                value={form.confirmAccountNumber}
-                onChange={handleChange}
-                placeholder="Confirm Account Number"
-                className="w-full h-[68px] px-1 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px]"
-              />
-            </div>
-          </div>
+          <RenderInput
+            label="Confirm Account Number"
+            name="confirmAccountNumber"
+            value={form.confirmAccountNumber}
+            onChange={handleInputChange}
+            placeholder="Confirm Account Number"
+          />
 
-          {/* IFSC Code */}
-          <div className="relative flex justify-center">
-            <div className="relative w-[521.81px]">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                IFSC Code 
-              </label>
-              <input
-                type="text"
-                name="ifscCode"
-                value={form.ifscCode}
-                onChange={handleChange}
-                placeholder="Enter IFSC Code"
-                className="w-full h-[68px] px-1 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px]"
-              />
-            </div>
-          </div>
+          <RenderInput
+            label="IFSC Code"
+            name="ifscCode"
+            value={form.ifscCode}
+            onChange={handleInputChange}
+            placeholder="Enter IFSC Code"
+          />
 
-          {/* GST No */}
-          <div className="relative flex justify-center">
-            <div className="relative w-[521.81px]">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                GST No.
-              </label>
-              <input
-                type="text"
-                name="gstNo"
-                value={form.gstNo}
-                onChange={handleChange}
-                placeholder="Enter GST No."
-                className="w-full h-[68px] px-1 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px]"
-              />
-            </div>
-          </div>
+          <RenderInput
+            label="GST No."
+            name="gstNo"
+            value={form.gstNo}
+            onChange={handleInputChange}
+            placeholder="Enter GST No."
+          />
         </div>
 
         {/* Footer */}
