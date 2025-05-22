@@ -1,4 +1,4 @@
-import React, { useState, useRef,ChangeEvent } from "react";
+import React, { useState, useRef, ChangeEvent } from "react";
 import Calendar from "@/assets/Consultant/Calendar.png";
 import { ChevronDown, X } from "lucide-react";
 import DiscardChanges from "./Discard";
@@ -44,12 +44,12 @@ const AddExperience: React.FC<AddExperienceProps> = ({ onClose }) => {
   const [showCreateOrganisation, setShowCreateOrganisation] = useState(false);
   const [showSkillInput, setShowSkillInput] = useState(false);
   const [skillInput, setSkillInput] = useState("");
-    const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
   const [showMediaCard, setShowMediaCard] = useState<boolean>(false);
   const [showMediaOptions, setShowMediaOptions] = useState(false);
   const mediaOptionsRef = useRef<HTMLDivElement>(null);
   const [mediaForm, setMediaForm] = useState({ mediaLink: '' });
-    const toggleMediaOptions = () => setShowMediaOptions(prev => !prev);
+  const toggleMediaOptions = () => setShowMediaOptions(prev => !prev);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -63,7 +63,7 @@ const AddExperience: React.FC<AddExperienceProps> = ({ onClose }) => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
- const handleMediaInputChange = (
+  const handleMediaInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
@@ -91,7 +91,7 @@ const AddExperience: React.FC<AddExperienceProps> = ({ onClose }) => {
     setForm({ ...form, skills: updatedSkills });
     setSkillInput("");
   };
-const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) setVideoFile(file);
   };
@@ -122,19 +122,13 @@ const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
         {/* Form */}
         <div className="px-8 py-8 space-y-5">
           {/* Title */}
-          <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Title
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={form.title as string}
-              onChange={handleChange}
-              placeholder="Ex: Retail Sales Manager"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] placeholder-[#898989]"
-            />
-          </div>
+          <RenderInput
+            label="Title"
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            placeholder="Ex: Retail Sales Manager"
+          />
 
           {/* Employment Type */}
           <div className="relative w-full max-w-[521.81px] mx-auto">
@@ -143,7 +137,7 @@ const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
             </label>
             <select
               name="employmentType"
-              value={form.employmentType as string}
+              value={form.employmentType}
               onChange={handleChange}
               className="w-full h-[68px] px-4 pr-10 appearance-none border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px]"
             >
@@ -158,19 +152,13 @@ const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
 
           {/* Company Name and Create One */}
           <div className="w-full max-w-[521.81px] mx-auto">
-            <div className="relative">
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                Company name
-              </label>
-              <input
-                type="text"
-                name="companyName"
-                value={form.companyName as string}
-                onChange={handleChange}
-                placeholder="Ex: Microsoft"
-                className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] placeholder-[#898989]"
-              />
-            </div>
+            <RenderInput
+              label="Company name"
+              name="companyName"
+              value={form.companyName}
+              onChange={handleChange}
+              placeholder="Ex: Microsoft"
+            />
             <div className="flex justify-end mt-1">
               <span
                 className="text-[#94278F] text-sm font-medium cursor-pointer"
@@ -182,19 +170,13 @@ const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
           </div>
 
           {/* Location */}
-          <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Location
-            </label>
-            <input
-              type="text"
-              name="location"
-              value={form.location as string}
-              onChange={handleChange}
-              placeholder="Ex: London, United Kingdom"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] placeholder-[#898989]"
-            />
-          </div>
+          <RenderInput
+            label="Location"
+            name="location"
+            value={form.location}
+            onChange={handleChange}
+            placeholder="Ex: London, United Kingdom"
+          />
 
           {/* Location Type */}
           <div className="relative w-full max-w-[521.81px] mx-auto">
@@ -203,7 +185,7 @@ const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
             </label>
             <select
               name="locationType"
-              value={form.locationType as string}
+              value={form.locationType}
               onChange={handleChange}
               className="w-full h-[68px] px-4 pr-10 appearance-none border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px]"
             >
@@ -221,7 +203,7 @@ const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
               <input
                 type="checkbox"
                 name="currentlyWorking"
-                checked={form.currentlyWorking as boolean}
+                checked={form.currentlyWorking}
                 onChange={handleChange}
                 className="w-5 h-5 text-[#94278F] bg-white border border-[#DCDCDC] rounded focus:outline-none"
               />
@@ -232,91 +214,46 @@ const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
           </div>
 
           {/* Start and End Date */}
-
           <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
-            <div
-              className={`relative ${
-                form.currentlyWorking ? "w-full" : "w-full max-w-[260px]"
-              }`}
-            >
-              <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                Start date
-              </label>
-              <input
-                type="date"
-                name="startDate"
-                id="startDate"
-                value={form.startDate}
-                onChange={handleChange}
-                className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
-              />
-              <img
-                src={Calendar}
-                alt="Calendar"
-                onClick={() =>
-                  (document.getElementById("startDate") as HTMLInputElement)?.showPicker?.()
-                }
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-              />
-            </div>
-
+            <RenderInput
+              label="Start date"
+              name="startDate"
+              type="date"
+              isDate={true}
+              value={form.startDate}
+              onChange={handleChange}
+            />
             {!form.currentlyWorking && (
-              <div className="relative w-full max-w-[260px]">
-                <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-                  End date (or expected)
-                </label>
-                <input
-                  type="date"
-                  name="endDate"
-                  id="endDate"
-                  value={form.endDate}
-                  onChange={handleChange}
-                  className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[16px] [&::-webkit-calendar-picker-indicator]:hidden"
-                />
-                <img
-                  src={Calendar}
-                  alt="Calendar"
-                  onClick={() =>
-                    (document.getElementById("endDate") as HTMLInputElement)?.showPicker?.()
-                  }
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-                />
-              </div>
+              <RenderInput
+                label="End date (or expected)"
+                name="endDate"
+                type="date"
+                isDate={true}
+                value={form.endDate}
+                onChange={handleChange}
+              />
             )}
           </div>
 
           {/* Description */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Description
-            </label>
-            <textarea
-              name="description"
-              value={form.description as string}
-              onChange={handleChange}
-              placeholder="Enter Description"
-              maxLength={150}
-              className="w-full h-[100px] px-4 py-5 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] resize-none placeholder-[#898989]"
-            />
-            <div className="absolute bottom-2 right-4 text-xs text-[#898989]">
-              {(form.description as string).length}/150
-            </div>
-          </div>
+          <RenderInput
+            label="Description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            placeholder="Enter Description"
+            isTextarea={true}
+            maxLength={150}
+          />
 
           {/* Profile Headline */}
-          <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
-              Profile headline
-            </label>
-            <input
-              type="text"
-              name="profileHeadline"
-              value={form.profileHeadline as string}
-              onChange={handleChange}
-              placeholder="Ex: Senior Manager at Microsoft"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md focus:outline-none text-[#898989] text-[18px] placeholder-[#898989]"
-            />
-          </div>
+          <RenderInput
+            label="Profile headline"
+            name="profileHeadline"
+            value={form.profileHeadline}
+            onChange={handleChange}
+            placeholder="Ex: Senior Manager at Microsoft"
+          />
 
           {/* Skills Section */}
           <div className="w-full max-w-[530px] mx-auto">
@@ -448,7 +385,7 @@ const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
             <CreateOrganisation onClose={() => setShowCreateOrganisation(false)} />
           </div>
         )}
-         {showMediaCard && (
+        {showMediaCard && (
           <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
             <MediaCard
               onClose={() => setShowMediaCard(false)}

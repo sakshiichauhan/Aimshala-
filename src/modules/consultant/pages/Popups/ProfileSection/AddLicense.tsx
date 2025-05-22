@@ -5,6 +5,7 @@ import DiscardChanges from "./Discard";
 import { AiOutlineLink } from "react-icons/ai";
 import { CiImageOn } from "react-icons/ci";
 import MediaCard from "./MediaCard";
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 interface AddLicenseProps {
   onClose: () => void;
@@ -107,17 +108,13 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
         <div className="px-8 py-8 space-y-5">
 
           {/* Name */}
-          <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Ex: Certified Network Security Associate"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[#898989] text-[18px] placeholder-[#898989] focus:outline-none"
-            />
-          </div>
+          <RenderInput
+            label="Name"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Ex: Certified Network Security Associate"
+          />
 
           {/* Issuing Organisation */}
           <div className="relative w-full max-w-[521.81px] mx-auto">
@@ -137,52 +134,36 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
           <div className="flex justify-between gap-4 w-full max-w-[530px] mx-auto">
             {[{ label: "Issue Date", name: "issueDate" }, { label: "Expiration Date", name: "expirationDate" }].map(
               ({ label, name }) => (
-                <div key={name} className="relative w-full max-w-[260px]">
-                  <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">{label}</label>
-                  <input
-                    type="date"
-                    name={name}
-                    id={name}
-                    value={form[name as keyof LicenseForm]}
-                    onChange={handleChange}
-                    className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md text-[#898989] text-[16px] focus:outline-none [&::-webkit-calendar-picker-indicator]:hidden"
-                  />
-                  <img
-                    src={CalendarIcon}
-                    alt="Calendar"
-                    onClick={() => (document.getElementById(name) as HTMLInputElement)?.showPicker()}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-                  />
-                </div>
+                <RenderInput
+                  key={name}
+                  label={label}
+                  name={name}
+                  type="date"
+                  isDate={true}
+                  value={form[name as keyof LicenseForm]}
+                  onChange={handleChange}
+                />
               )
             )}
           </div>
 
           {/* Credential ID */}
-          <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Credential ID</label>
-            <input
-              type="text"
-              name="credentialID"
-              value={form.credentialID}
-              onChange={handleChange}
-              placeholder="Enter Credential ID"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[#898989] text-[18px] placeholder-[#898989] focus:outline-none"
-            />
-          </div>
+          <RenderInput
+            label="Credential ID"
+            name="credentialID"
+            value={form.credentialID}
+            onChange={handleChange}
+            placeholder="Enter Credential ID"
+          />
 
           {/* Credential URL */}
-          <div className="relative w-full max-w-[521.81px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Credential URL</label>
-            <input
-              type="text"
-              name="credentialURL"
-              value={form.credentialURL}
-              onChange={handleChange}
-              placeholder="Enter Credential URL"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[#898989] text-[18px] placeholder-[#898989] focus:outline-none"
-            />
-          </div>
+          <RenderInput
+            label="Credential URL"
+            name="credentialURL"
+            value={form.credentialURL}
+            onChange={handleChange}
+            placeholder="Enter Credential URL"
+          />
 
           {/* Skills Section */}
           <div className="w-full max-w-[530px] mx-auto">

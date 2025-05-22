@@ -1,10 +1,11 @@
-import { useState,useRef,ChangeEvent } from "react";
+import { useState, useRef, ChangeEvent } from "react";
 import CalendarIcon from "@/assets/Consultant/Calendar.png";
 import { ChevronDown, X } from "lucide-react";
 import DiscardChanges from "./Discard";
 import { AiOutlineLink } from "react-icons/ai";
 import { CiImageOn } from "react-icons/ci";
 import MediaCard from "./MediaCard";
+import RenderInput from "@/modules/consultant/components/RenderInput";
 
 
 type AddHonorsProps = {
@@ -19,30 +20,30 @@ const AddHonors = ({ onClose }: AddHonorsProps) => {
     issueDate: "",
     description: "",
   });
- const [showDiscardPopup, setShowDiscardPopup] = useState(false);
-     const [videoFile, setVideoFile] = useState<File | null>(null);
-       const [showMediaCard, setShowMediaCard] = useState<boolean>(false);
-       const [showMediaOptions, setShowMediaOptions] = useState(false);
+  const [showDiscardPopup, setShowDiscardPopup] = useState(false);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [showMediaCard, setShowMediaCard] = useState<boolean>(false);
+  const [showMediaOptions, setShowMediaOptions] = useState(false);
 
-        const mediaOptionsRef = useRef<HTMLDivElement>(null);
-          const [mediaForm, setMediaForm] = useState({ mediaLink: '' });
-         const toggleMediaOptions = () => setShowMediaOptions(prev => !prev);
+  const mediaOptionsRef = useRef<HTMLDivElement>(null);
+  const [mediaForm, setMediaForm] = useState({ mediaLink: '' });
+  const toggleMediaOptions = () => setShowMediaOptions(prev => !prev);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
   const handleVideoUpload = (e: ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file) setVideoFile(file);
-    };
-     const handleMediaInputChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      ) => {
-        const { name, value } = e.target;
-        setMediaForm(prev => ({ ...prev, [name]: value }));
-      };
- const handleClose = () => {
+    const file = e.target.files?.[0];
+    if (file) setVideoFile(file);
+  };
+  const handleMediaInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setMediaForm(prev => ({ ...prev, [name]: value }));
+  };
+  const handleClose = () => {
     setShowDiscardPopup(true);
   };
 
@@ -64,17 +65,13 @@ const AddHonors = ({ onClose }: AddHonorsProps) => {
         {/* Form */}
         <div className="px-2 py-8 space-y-4">
           {/* Title */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Title</label>
-            <input
-              type="text"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-              placeholder="Ex: Retail Sales Manager"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[#898989] text-[18px] focus:outline-none"
-            />
-          </div>
+          <RenderInput
+            label="Title"
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            placeholder="Ex: Retail Sales Manager"
+          />
 
           {/* Associated With */}
           <div className="relative w-full max-w-[530px] mx-auto">
@@ -91,52 +88,34 @@ const AddHonors = ({ onClose }: AddHonorsProps) => {
           </div>
 
           {/* Issuer */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Issuer</label>
-            <input
-              type="text"
-              name="issuer"
-              value={form.issuer}
-              onChange={handleChange}
-              placeholder="Ex: Microsoft"
-              className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[#898989] text-[18px] focus:outline-none"
-            />
-          </div>
+          <RenderInput
+            label="Issuer"
+            name="issuer"
+            value={form.issuer}
+            onChange={handleChange}
+            placeholder="Ex: Microsoft"
+          />
 
           {/* Issue Date */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Issue date</label>
-            <input
-              type="date"
-              name="issueDate"
-              value={form.issueDate}
-              onChange={handleChange}
-              className="w-full h-[68px] px-4 pr-10 border border-[#DCDCDC] rounded-md text-[#898989] text-[16px] focus:outline-none [&::-webkit-calendar-picker-indicator]:hidden"
-              id="issueDate"
-            />
-            <img
-              src={CalendarIcon}
-              alt="Calendar"
-              onClick={() => (document.getElementById('issueDate') as HTMLInputElement)?.showPicker?.()}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer"
-            />
-          </div>
+          <RenderInput
+            label="Issue date"
+            name="issueDate"
+            type="date"
+            isDate={true}
+            value={form.issueDate}
+            onChange={handleChange}
+          />
 
           {/* Description */}
-          <div className="relative w-full max-w-[530px] mx-auto">
-            <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">Description</label>
-            <textarea
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-              placeholder="Enter Description"
-              maxLength={150}
-              className="w-full h-[100px] px-4 py-5 border border-[#DCDCDC] rounded-md text-[#898989] text-[18px] resize-none focus:outline-none"
-            />
-            <div className="absolute bottom-2 right-4 text-xs text-[#898989]">
-              {form.description.length}/150
-            </div>
-          </div>
+          <RenderInput
+            label="Description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            placeholder="Enter Description"
+            isTextarea={true}
+            maxLength={150}
+          />
 
           {/* Media */}
           <div className="w-full max-w-[530px] mx-auto mt-8">
@@ -147,55 +126,55 @@ const AddHonors = ({ onClose }: AddHonorsProps) => {
                 Learn more about media file types supported
               </span>
             </p>
-           <button
-                         type="button"
-                         onClick={toggleMediaOptions}
-                         className="w-[115px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-[16px] font-normal flex items-center justify-center cursor-pointer"
-                       >
-                         + Add Media
-                       </button>
-                       {showMediaOptions && (
-                         <div
-                           ref={mediaOptionsRef}
-                           className="mt-2 w-[212px] h-[102px] border border-gray-200 rounded-md bg-white shadow-sm text-[15px] font-normal text-black z-10"
-                         >
-                           <ul className="divide-y divide-gray-200">
-                             <li
-                               className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                               onClick={() => {
-                                 setShowMediaCard(true);
-                                 setShowMediaOptions(false);
-                               }}
-                             >
-                               <AiOutlineLink className="w-[27px] h-[27px] text-[#1E232C]" />
-                               <span>Add a link</span>
-                             </li>
-                             <li
-                               className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                               onClick={() => {
-                                 document.getElementById("video-upload")?.click();
-                                 setShowMediaOptions(false);
-                               }}
-                             >
-                               <CiImageOn className="w-[27px] h-[27px] text-[#1E232C]" />
-                               <span>Upload a photo</span>
-                             </li>
-                           </ul>
-                         </div>
-                       )}
-                       <input
-                         type="file"
-                         accept="video/*"
-                         id="video-upload"
-                         className="hidden"
-                         onChange={handleVideoUpload}
-                       />
-                       {videoFile && (
-                         <p className="text-xs text-gray-500 mt-1">{videoFile.name}</p>
-                       )}
-                     </div>
-                   </div>
-           
+            <button
+              type="button"
+              onClick={toggleMediaOptions}
+              className="w-[115px] h-[30px] bg-[#93268F]/10 text-[#93268F] rounded-full text-[16px] font-normal flex items-center justify-center cursor-pointer"
+            >
+              + Add Media
+            </button>
+            {showMediaOptions && (
+              <div
+                ref={mediaOptionsRef}
+                className="mt-2 w-[212px] h-[102px] border border-gray-200 rounded-md bg-white shadow-sm text-[15px] font-normal text-black z-10"
+              >
+                <ul className="divide-y divide-gray-200">
+                  <li
+                    className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setShowMediaCard(true);
+                      setShowMediaOptions(false);
+                    }}
+                  >
+                    <AiOutlineLink className="w-[27px] h-[27px] text-[#1E232C]" />
+                    <span>Add a link</span>
+                  </li>
+                  <li
+                    className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      document.getElementById("video-upload")?.click();
+                      setShowMediaOptions(false);
+                    }}
+                  >
+                    <CiImageOn className="w-[27px] h-[27px] text-[#1E232C]" />
+                    <span>Upload a photo</span>
+                  </li>
+                </ul>
+              </div>
+            )}
+            <input
+              type="file"
+              accept="video/*"
+              id="video-upload"
+              className="hidden"
+              onChange={handleVideoUpload}
+            />
+            {videoFile && (
+              <p className="text-xs text-gray-500 mt-1">{videoFile.name}</p>
+            )}
+          </div>
+        </div>
+
 
         {/* Save Button */}
         <div className="bg-[#F5F5F5] px-8 py-4 flex justify-end rounded-[12px]">

@@ -90,11 +90,7 @@ const AddSkill = ({ onClose }: AddSkillProps) => {
               </div>
             </div>
           </div>
-
-
-
-
-
+\
           {/* Context Section */}
           <div className="flex justify-center">
             <div className="w-full max-w-[530px] space-y-2">
@@ -131,8 +127,7 @@ const AddSkill = ({ onClose }: AddSkillProps) => {
               ))}
 
               {/* Follow Skill */}
-
-
+              
             </div>
           </div>
         </div>
