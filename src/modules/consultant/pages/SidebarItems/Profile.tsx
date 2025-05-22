@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import { Facebook, Linkedin, Forward, Camera } from "lucide-react";
+import { Facebook, Linkedin, Forward } from "lucide-react";
+import { IoCamera } from "react-icons/io5";
 import Contactform1 from "../Popups/ProfileSection/Contactform";
 import EditProfile from "../Popups/ProfileSection/EditProfile";
 
@@ -84,7 +85,7 @@ export default function Profile() {
             className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
             title="Change cover"
           >
-            <Camera className="w-5 h-5" />
+            <IoCamera className="w-5 h-5" />
           </button>
           <input
             ref={coverInputRef}
@@ -108,7 +109,7 @@ export default function Profile() {
               className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
               title="Change profile"
             >
-              <Camera className="w-4 h-4" />
+              <IoCamera className="w-5 h-5" />
             </button>
             <input
               ref={profileInputRef}
@@ -152,7 +153,7 @@ export default function Profile() {
             <span>4.5</span>
           </div>
 
-          <div className="inline-flex items-center gap-2 p-1.5 border border-dashed rounded-full bg-[#93268F1A] border-[#93268F]">
+          <div className="inline-flex items-center w-[96px] h-[30px] gap-2 p-1.5 border border-dashed rounded-full bg-[#93268F1A] border-[#93268F]">
             <img src={tick} alt="Verified" className="w-[14px] h-[17px]" />
             <span className="text-[14px] text-[#93268F]">Verified</span>
           </div>
@@ -238,7 +239,7 @@ export default function Profile() {
       {/* Add Popup Modals */}
       {isContactFormOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto ">
-         
+  
             <Contactform1 onClose={() => setIsContactFormOpen(false)} />
          
         </div>
