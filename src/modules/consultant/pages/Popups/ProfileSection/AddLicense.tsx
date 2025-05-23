@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import CalendarIcon from "@/assets/Consultant/Calendar.png";
 import { ChevronDown, X } from "lucide-react";
 import DiscardChanges from "./Discard";
 import { AiOutlineLink } from "react-icons/ai";
