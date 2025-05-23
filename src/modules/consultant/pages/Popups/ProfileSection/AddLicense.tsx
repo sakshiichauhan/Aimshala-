@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-
+import CalendarIcon from "@/assets/Consultant/Calendar.png";
 import { ChevronDown, X } from "lucide-react";
 import DiscardChanges from "./Discard";
 import { AiOutlineLink } from "react-icons/ai";
@@ -38,9 +38,11 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
   const [showMediaOptions, setShowMediaOptions] = useState(false);
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const mediaOptionsRef = useRef<HTMLDivElement>(null);
-  const [mediaForm, setMediaForm] = useState({ mediaLink: '' });  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [mediaForm, setMediaForm] = useState({ mediaLink: '' });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    setForm({ ...form, [name]: value });
   };
 
   const handleClose = () => {
@@ -129,21 +131,19 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
           </div>
 
           {/* Dates */}
-          <div className="flex justify-between gap-4 w-full max-w-[530px] mx-auto">            {[{ label: "Issue Date", name: "issueDate" }, { label: "Expiration Date", name: "expirationDate" }].map(
-              ({ label, name }) => {
-                const value = form[name as "issueDate" | "expirationDate"];
-                return (
-                  <RenderInput
-                    key={name}
-                    label={label}
-                    name={name}
-                    type="date"
-                    isDate={true}
-                    value={value}
-                    onChange={handleChange}
-                  />
-                );
-              }
+          <div className="flex justify-between gap-4 w-full max-w-[530px] mx-auto">
+            {[{ label: "Issue Date", name: "issueDate" }, { label: "Expiration Date", name: "expirationDate" }].map(
+              ({ label, name }) => (
+                <RenderInput
+                  key={name}
+                  label={label}
+                  name={name}
+                  type="date"
+                  isDate={true}
+                  value={form[name as keyof LicenseForm] as string}
+                  onChange={handleChange}
+                />
+              )
             )}
           </div>
 
