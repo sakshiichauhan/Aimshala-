@@ -1,55 +1,82 @@
 import Amy from "@/assets/Consultant/Profile/Amy.png";
 
 interface CheckLayoutProps {
- 
   onDiscard: () => void;
 }
 
-
-const CheckLayout = ({   onDiscard }: CheckLayoutProps) => {
+const CheckLayout = ({ onDiscard }: CheckLayoutProps) => {
   return (
-    <div className="flex items-center justify-center rounded-[20px] bg-white font-poppins">
-      <div className="bg-white w-[478px] h-[344px] rounded-[20px] shadow-md flex flex-col items-center p-10 relative">
+    <div className="flex items-center justify-center min-h-screen p-4">
+      <div className="bg-white w-[478px] h-[350px] rounded-[20px] shadow-lg flex flex-col items-center p-10 relative overflow-hidden">
 
-        {/* Profile Image with gradient glow and check */}
-        <div className="relative flex items-center justify-center mb-4">
+        {/* Profile Image Container with enhanced effects */}
+        <div className="relative flex items-center justify-center mb-6 w-full h-[140px] z-10">
+          {/* Purple shadow */}
+          <div
+            className="absolute w-[200px] h-[160px] rounded-full opacity-30"
+            style={{
+              background: 'radial-gradient(circle at 40% 50%, rgba(147, 38, 143, 0.8) 10%, transparent 50%)',
+              top: '-7%',
+              left: '40%',
+              transform: 'rotate(15deg)'
+            }}
+          />
+          
+          {/* Teal shadow */}
+          <div
+            className="absolute w-[250px] h-[130px] rounded-full opacity-30"
+            style={{
+              background: 'radial-gradient(circle at 40% 50%, rgba(15, 187, 195, 0.8) 10%, transparent 50%)',
+              bottom: '-9%',
+              right: '20%',
+              transform: 'rotate(15deg)'
+            }}
+          />
 
-          {/* Gradient glow background behind the profile image */}
-          <div className="absolute w-[160px] h-[160px] rounded-full bg-[radial-gradient(circle,_#0fbbc3_44%,_#93268f_44%,_transparent_80%)] blur-sm" />
-
-          {/* Profile image */}
-          <div className="w-[139px] h-[100px] rounded-full overflow-hidden z-10">
+          {/* Profile image placeholder */}
+          <div className="w-[130px] h-[130px] rounded-full overflow-hidden shadow-lg relative bg-white/42">
             <img
               src={Amy}
-              alt="Profile"
-              className="object-cover w-full h-full"
+              alt="amy"
+              className="w-full h-full object-cover"
             />
           </div>
 
           {/* Checkmark icon overlay */}
-          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 z-20">
-            <div className="w-[38px] h-[38px] bg-white rounded-full flex items-center justify-center shadow-md">
-              <div className="bg-green-500 w-[20px] h-[20px] rounded-full flex items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
-                  <path d="M20.285 6.708l-11.085 11.084-5.484-5.484 1.414-1.414 4.07 4.07 9.671-9.67z" />
-                </svg>
-              </div>
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+            <div className="bg-white w-[30px] h-[30px] rounded-full flex items-center justify-center shadow-3xl">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="green" strokeWidth="2">
+                <path d="M20.285 6.708l-11.085 11.084-5.484-5.484 1.414-1.414 4.07 4.07 9.671-9.67z" />
+              </svg>
             </div>
           </div>
         </div>
 
         {/* Success message */}
-        <h2 className="text-[20px] font-semibold text-[#000000] text-center mt-6">
-          Your profile info has been updated
+        <h2 className="text-[22px] font-semibold text-[#2D3748] text-center mb-8 px-4 leading-tight">
+          Your experience has been updated
         </h2>
 
         {/* Ok button */}
         <button
           onClick={onDiscard}
-          className="mt-8 w-[91px] h-[46px] bg-[#94278F] text-white text-[16px] font-medium rounded-full hover:bg-[#7a1d72] transition"
+          className="w-[91px] h-full bg-[#94278F] text-white text-[16px] font-medium rounded-[8px] hover:bg-[#7a1d72] transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
         >
           Ok
         </button>
+
+        {/* Additional subtle gradient overlay for depth */}
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            background: `
+              linear-gradient(135deg, 
+                rgba(15, 187, 195, 0.1) 0%, 
+                rgba(147, 38, 143, 0.1) 100%
+              )
+            `,
+          }}
+        />
       </div>
     </div>
   );
