@@ -10,6 +10,7 @@ interface RenderInputProps {
     maxLength?: number;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    className?: string;
 }
 
 export default function RenderInput({
@@ -21,10 +22,11 @@ export default function RenderInput({
     isTextarea = false,
     maxLength,
     value,
-    onChange
+    onChange,
+    className = ""
 }: RenderInputProps) {
     return (
-        <div className="relative w-full max-w-[530px] mx-auto mb-5">
+        <div className={`relative w-full max-w-[530px] mx-auto mb-5 ${className}`}>
             <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-[#000000]">
                 {label}
             </label>
