@@ -8,10 +8,7 @@ const CheckLayout = ({ onDiscard }: CheckLayoutProps) => {
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
       <div className="bg-white w-[478px] h-[350px] rounded-[20px] shadow-lg flex flex-col items-center p-10 relative overflow-hidden">
-
-        {/* Profile Image Container with enhanced effects */}
         <div className="relative flex items-center justify-center mb-6 w-full h-[140px] z-10">
-          {/* Purple shadow */}
           <div
             className="absolute w-[200px] h-[160px] rounded-full opacity-30"
             style={{
@@ -22,7 +19,6 @@ const CheckLayout = ({ onDiscard }: CheckLayoutProps) => {
             }}
           />
           
-          {/* Teal shadow */}
           <div
             className="absolute w-[250px] h-[130px] rounded-full opacity-30"
             style={{
@@ -33,7 +29,6 @@ const CheckLayout = ({ onDiscard }: CheckLayoutProps) => {
             }}
           />
 
-          {/* Profile image placeholder */}
           <div className="w-[130px] h-[130px] rounded-full overflow-hidden shadow-lg relative bg-white/42">
             <img
               src={Amy}
@@ -42,7 +37,6 @@ const CheckLayout = ({ onDiscard }: CheckLayoutProps) => {
             />
           </div>
 
-          {/* Checkmark icon overlay */}
           <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 z-20">
             <div className="bg-white w-[30px] h-[30px] rounded-full flex items-center justify-center shadow-3xl">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="green" strokeWidth="2">
@@ -52,12 +46,10 @@ const CheckLayout = ({ onDiscard }: CheckLayoutProps) => {
           </div>
         </div>
 
-        {/* Success message */}
         <h2 className="text-[22px] font-semibold text-[#2D3748] text-center mb-8 px-4 leading-tight">
-          Your experience has been updated
+            Your experience has been updated
         </h2>
 
-        {/* Ok button */}
         <button
           onClick={onDiscard}
           className="w-[91px] h-full bg-[#94278F] text-white text-[16px] font-medium rounded-[8px] hover:bg-[#7a1d72] transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"

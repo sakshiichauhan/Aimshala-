@@ -41,7 +41,7 @@ const AddProject = ({ onClose }: AddProjectProps) => {
   const [mediaForm, setMediaForm] = useState({ mediaLink: "" });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
     setForm({ ...form, [name]: type === "checkbox" ? checked : value });
@@ -283,16 +283,19 @@ const AddProject = ({ onClose }: AddProjectProps) => {
               <label className="absolute -top-2 left-2 bg-white px-1 text-sm text-black">
                 Associated With
               </label>
-              <input
-                type="text"
+              <select
                 name="associatedWith"
                 value={form.associatedWith}
                 onChange={handleChange}
-                placeholder="Please Select"
-                className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[16px] text-[#898989] focus:outline-none"
-              />
+                className="w-full h-[68px] px-4 border border-[#DCDCDC] rounded-md text-[16px] text-[#898989] focus:outline-none appearance-none"
+              >
+                <option value="">Please Select</option>
+                <option value="Company A">Company A</option>
+                <option value="Company B">Company B</option>
+                <option value="Company C">Company C</option>
+              </select>
               <ChevronDown
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#898989]"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#898989] pointer-events-none"
                 size={20}
               />
             </div>
