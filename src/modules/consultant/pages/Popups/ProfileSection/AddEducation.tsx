@@ -43,13 +43,16 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [showMediaOptions, setShowMediaOptions] = useState(false);
   const mediaOptionsRef = useRef<HTMLDivElement>(null);
-  const [mediaForm, setMediaForm] = useState({ mediaLink: '' });
+  const [mediaForm, setMediaForm] = useState({ mediaLink: "" });
 
-  const toggleMediaOptions = () => setShowMediaOptions(prev => !prev);
+  const toggleMediaOptions = () => setShowMediaOptions((prev) => !prev);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (mediaOptionsRef.current && !mediaOptionsRef.current.contains(event.target as Node)) {
+      if (
+        mediaOptionsRef.current &&
+        !mediaOptionsRef.current.contains(event.target as Node)
+      ) {
         setShowMediaOptions(false);
       }
     };
@@ -61,12 +64,11 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
     };
   }, [showMediaOptions]);
 
-
   const handleMediaInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setMediaForm(prev => ({ ...prev, [name]: value }));
+    setMediaForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleToggleSkill = () => {
@@ -105,7 +107,9 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
       <div className="w-[791px] bg-white rounded-lg shadow-md overflow-hidden relative">
         {/* Header */}
         <div className="bg-[#F5F5F5] rounded-t-lg flex items-center min-h-[60px] px-6 justify-between">
-          <h1 className="text-2xl font-semibold text-[#000000]">Add Education</h1>
+          <h1 className="text-2xl font-semibold text-[#000000]">
+            Add Education
+          </h1>
           <button
             onClick={() => setShowDiscardPopup(true)}
             className="p-2 hover:bg-gray-100 rounded-full"
@@ -116,74 +120,77 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
 
         {/* Form Body */}
         <div className="px-8 py-8">
-          <RenderInput 
-            label="School" 
-            name="school" 
-            placeholder="Ex: Boston University" 
-            value={form.school} 
-            onChange={(e) => setForm({...form, school: e.target.value})}
+          <RenderInput
+            label="School"
+            name="school"
+            placeholder="Ex: Boston University"
+            value={form.school}
+            onChange={(e) => setForm({ ...form, school: e.target.value })}
           />
-          <RenderInput 
-            label="Degree" 
-            name="degree" 
-            placeholder="Ex: Bachelor's" 
-            value={form.degree} 
-            onChange={(e) => setForm({...form, degree: e.target.value})}
+          <RenderInput
+            label="Degree"
+            name="degree"
+            placeholder="Ex: Bachelor's"
+            value={form.degree}
+            onChange={(e) => setForm({ ...form, degree: e.target.value })}
           />
-          <RenderInput 
-            label="Field of study" 
-            name="fieldOfStudy" 
-            placeholder="Ex: Business" 
-            value={form.fieldOfStudy} 
-            onChange={(e) => setForm({...form, fieldOfStudy: e.target.value})}
+          <RenderInput
+            label="Field of study"
+            name="fieldOfStudy"
+            placeholder="Ex: Business"
+            value={form.fieldOfStudy}
+            onChange={(e) => setForm({ ...form, fieldOfStudy: e.target.value })}
           />
-          <div className="flex justify-between gap-4 max-w-[530px] mx-auto">            <RenderInput 
-              label="Start date" 
-              name="startDate" 
+          <div className="flex justify-between gap-4 max-w-[530px] mx-auto">
+            {" "}
+            <RenderInput
+              label="Start date"
+              name="startDate"
               type="date"
               isDate={true}
-              value={form.startDate} 
-              onChange={(e) => setForm({...form, startDate: e.target.value})}
+              value={form.startDate}
+              onChange={(e) => setForm({ ...form, startDate: e.target.value })}
             />
-            <RenderInput 
-              label="End date (or expected)" 
-              name="endDate" 
+            <RenderInput
+              label="End date (or expected)"
+              name="endDate"
               type="date"
               isDate={true}
-              value={form.endDate} 
-              onChange={(e) => setForm({...form, endDate: e.target.value})}
+              value={form.endDate}
+              onChange={(e) => setForm({ ...form, endDate: e.target.value })}
             />
           </div>
-          <RenderInput 
-            label="Grade" 
-            name="grade" 
-            placeholder="Enter Grade" 
-            value={form.grade} 
-            onChange={(e) => setForm({...form, grade: e.target.value})}
+          <RenderInput
+            label="Grade"
+            name="grade"
+            placeholder="Enter Grade"
+            value={form.grade}
+            onChange={(e) => setForm({ ...form, grade: e.target.value })}
           />
-          <RenderInput 
-            label="Activities and societies" 
-            name="activities" 
-            placeholder="Enter Activities" 
-            value={form.activities} 
-            onChange={(e) => setForm({...form, activities: e.target.value})}
+          <RenderInput
+            label="Activities and societies"
+            name="activities"
+            placeholder="Enter Activities"
+            value={form.activities}
+            onChange={(e) => setForm({ ...form, activities: e.target.value })}
           />
-          <RenderInput 
-            label="Description" 
-            name="description" 
-            placeholder="Enter Description" 
-            type="text" 
-            isTextarea 
+          <RenderInput
+            label="Description"
+            name="description"
+            placeholder="Enter Description"
+            type="text"
+            isTextarea
             maxLength={150}
-            value={form.description} 
-            onChange={(e) => setForm({...form, description: e.target.value})}
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
           />
 
           {/* Skills Section */}
           <div className="w-full max-w-[530px] mx-auto mt-6">
             <h2 className="text-lg font-semibold text-black mb-2">Skills</h2>
             <p className="text-base text-[#6b7175] mb-4">
-              We recommend adding your top 5 used in this experience. They'll also appear in your Skills section.
+              We recommend adding your top 5 used in this experience. They'll
+              also appear in your Skills section.
             </p>
 
             {showSkillInput && (
@@ -316,12 +323,12 @@ const AddEducation = ({ onClose }: AddEducationProps) => {
             <MediaCard
               onClose={() => setShowMediaCard(false)}
               onSave={() => {
-                console.log('Media saved:', mediaForm);
+                console.log("Media saved:", mediaForm);
                 setShowMediaCard(false);
               }}
               onDelete={() => {
-                console.log('Media card deleted');
-                setMediaForm({ mediaLink: '' });
+                console.log("Media card deleted");
+                setMediaForm({ mediaLink: "" });
                 setShowMediaCard(false);
               }}
               form={mediaForm}

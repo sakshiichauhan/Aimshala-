@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import { Facebook, Linkedin, Forward } from "lucide-react";
 import { IoCamera } from "react-icons/io5";
 import Contactform1 from "../Popups/ProfileSection/Contactform";
 import EditProfile from "../Popups/ProfileSection/EditProfile";
@@ -18,6 +17,11 @@ import at from "@/assets/Icons/ConsultantProfile/mynaui_at.png";
 import { Separator } from "@/components/ui/separator";
 import pencil from "@/assets/Pencil.png";
 import tick from "@/assets/Tick.png";
+
+import img1 from "@/assets/Consultant/Profile/FacebookIcon.png";
+import img2 from "@/assets/Consultant/Profile/LinkedinIcon.png";
+import img3 from "@/assets/Consultant/Profile/ShareIcon.png";
+
 export default function Profile() {
   const tabs = [
     { label: "About", id: "about", path: "/consultant/profile/about" },
@@ -71,7 +75,6 @@ export default function Profile() {
 
   return (
     <section>
-      {/* Profile Header Section */}
       <div className="mt-20 border rounded-2xl font-poppins relative bg-white">
         {/* Cover */}
         <div className="relative">
@@ -121,14 +124,14 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="flex gap-2 absolute right-0 top-[160px] m-3">
-          {[Linkedin, Facebook, Forward].map((Icon, i) => (
+        {/* ✅ Custom Social Links with Images */}
+        <div className="flex gap-2 absolute right-0 top-[170px] m-3">
+          {[img1, img2, img3].map((src, i) => (
             <div
               key={i}
-              className="w-[40px] h-[40px] bg-white p-2 inline-flex justify-center items-center rounded-xl shadow-md hover:bg-gray-100"
+              className="w-[40px] h-[40px] bg-white p-2 inline-flex justify-center items-center rounded-[10px] shadow-md hover:bg-gray-100"
             >
-              <Icon />
+              <img src={src} alt={`social-icon-${i}`} className="w-[40px] h-[40px] object-cover" />
             </div>
           ))}
         </div>
@@ -136,7 +139,6 @@ export default function Profile() {
         {/* Name, Rating, Verified */}
         <div className="mt-30 ml-5 flex flex-wrap items-center gap-3">
           <span className="text-[24px] font-semibold">John Doe</span>
-
           <div className="inline-flex items-center gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -165,31 +167,32 @@ export default function Profile() {
           />
         </div>
 
-        {/* Short Headline */}
+        {/* Headline */}
         <p className="m-3 ml-5 text-[#4D4D4D] text-[16px] font-medium">
           Flipkart | Bain & Co. | Gold Medalist, IIT Madras | XLRI Jamshedpur ‑
           BM '24 | Accenture, Wipro (PPI)
         </p>
-        {/* Experience Info */}
-        <div className="m-5  flex items-center flex-wrap gap-4 text-[#4D4D4D] text-[16px]">
-          <span className=" flex items-center gap-1">
-            <img src={suitecase} alt="experience icon" className="h-5 w-5" />1
-            year of Experience
+
+        {/* Experience */}
+        <div className="m-5 flex items-center flex-wrap gap-4 text-[#4D4D4D] text-[16px]">
+          <span className="flex items-center gap-1">
+            <img src={suitecase} alt="experience icon" className="h-5 w-5" />
+            1 year of Experience
           </span>
           <Separator orientation="vertical" />
           <span className="flex items-center gap-1">
-            <img src={at} alt="experience icon" className="h-5 w-5" />
+            <img src={at} alt="username" className="h-5 w-5" />
             johndoe123
           </span>
           <Separator orientation="vertical" />
           <span className="flex items-center gap-1">
-            <img src={Bag} alt="experience icon" className="h-5 w-5" />
+            <img src={Bag} alt="field" className="h-5 w-5" />
             Business And Management
           </span>
         </div>
 
-        {/* Location */}
-        <div className=" ml-5 inline-flex items-center gap-2 text-[#787878] text-[18px]">
+        {/* Location and Contact */}
+        <div className="ml-5 inline-flex items-center gap-2 text-[#787878] text-[18px]">
           <span>Ambala, Haryana, India</span>
           <button
             className="text-[#93268F] font-medium text-[18px]"
@@ -200,7 +203,7 @@ export default function Profile() {
         </div>
 
         {/* Skills */}
-        <h3 className=" mt-1 mb-2 ml-5 text-[18px] font-medium">Skills</h3>
+        <h3 className="mt-1 mb-2 ml-5 text-[18px] font-medium">Skills</h3>
         <p className="ml-5 mb-4 text-[#4D4D4D] text-[16px]">
           Stream Selection &nbsp;|&nbsp; Career Path Guidance &nbsp;|&nbsp;
           College Selection &nbsp;|&nbsp; Exam Preparation &nbsp;|&nbsp; Study
@@ -208,18 +211,14 @@ export default function Profile() {
           Studies
         </p>
 
-        {/* About */}
+        {/* About Section */}
         <p className="m-4 ml-5 text-[#787878] text-[16px] leading-relaxed">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
 
-      {/* Tabs Navigation */}
+      {/* Tabs */}
       <div className="rounded-2xl p-4 bg-white/80 mt-4">
         <nav className="flex flex-wrap gap-6 ml-2 text-[#787878] text-[20px]">
           {tabs.map((tab) => (
@@ -236,12 +235,10 @@ export default function Profile() {
         </nav>
       </div>
 
-      {/* Add Popup Modals */}
+      {/* Modals */}
       {isContactFormOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto ">
-  
-            <Contactform1 onClose={() => setIsContactFormOpen(false)} />
-         
+        <div className="fixed top-0 left-0 w-full h-full bg-black/20 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <Contactform1 onClose={() => setIsContactFormOpen(false)} />
         </div>
       )}
 
@@ -253,6 +250,7 @@ export default function Profile() {
         </div>
       )}
 
+      {/* Routes */}
       <Routes>
         <Route index element={<About />} />
         <Route path="/about" element={<About />} />
