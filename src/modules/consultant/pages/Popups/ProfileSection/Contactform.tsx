@@ -27,8 +27,8 @@ const Contactform1 = ({ onClose }: ContactForm1Props) => {
     setShowDiscardPopup(true);
   };
   return (
-    <div className="flex items-center justify-center font-poppins">
-      <div className="w-[791px] bg-white rounded-lg shadow-md overflow-y-auto max-h-[100vh]">
+    <div className="flex items-center justify-center font-poppins mt-70">
+      <div className="w-[791px] bg-white rounded-lg shadow-md overflow-y-auto">
 
         {/* Header with Close Button */}
         <div className="bg-[#F5F5F5] rounded-t-lg flex items-center justify-between min-h-[60px] px-6 py-2">
@@ -38,7 +38,7 @@ const Contactform1 = ({ onClose }: ContactForm1Props) => {
           </button>
         </div>
 
-        <div className="px-6 space-y-2 mt-4">
+        <div className="px-6 space-y-2 mt-10">
           <RenderInput
             label="Email Address"
             name="email"
@@ -81,9 +81,6 @@ const Contactform1 = ({ onClose }: ContactForm1Props) => {
             placeholder="Enter City"
             className="w-1/2"
           />
-
-
-
           <RenderInput
             label="State"
             name="state"
@@ -92,7 +89,6 @@ const Contactform1 = ({ onClose }: ContactForm1Props) => {
             placeholder="Enter State"
             className="w-1/2"
           />
-
           <RenderInput
             label="Country"
             name="country"
@@ -101,7 +97,6 @@ const Contactform1 = ({ onClose }: ContactForm1Props) => {
             placeholder="Enter Country"
             className="w-1/2"
           />
-
           <div className="px-20 mb-6">
             <div className="text-left bg-[#93268F]/4 mb-2 flex items-center gap-2 py-1 px-1">
               <div className="w-[4px] h-[30px] bg-[#94278F]" />
@@ -135,8 +130,8 @@ const Contactform1 = ({ onClose }: ContactForm1Props) => {
         </div>
 
         {/* Save Button */}
-        <div className="bg-[#F5F5F5] px-6 py-2 flex justify-end rounded-b-lg">
-          <button className="w-[150px] h-[36px] bg-[#94278F] text-white text-sm font-medium rounded-[12px] hover:bg-[#7a1d72]">
+        <div className="bg-[#F5F5F5] px-6 py-4 flex justify-end rounded-b-lg">
+          <button className="w-[150px] h-[46px] bg-[#94278F] text-white text-sm font-medium rounded-[12px] hover:bg-[#7a1d72]">
             Save
           </button>
         </div>
