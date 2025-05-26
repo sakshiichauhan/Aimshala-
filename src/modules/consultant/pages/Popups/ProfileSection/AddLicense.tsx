@@ -89,7 +89,7 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen font-poppins ">
+    <div className="flex items-center justify-center  font-poppins ">
       <div className="w-[791px] bg-white rounded-lg shadow-md overflow-hidden">
 
         {/* Header */}
@@ -217,7 +217,7 @@ const AddLicense = ({ onClose }: AddLicenseProps) => {
             </div>
           </div>
 
-          {/* Media Section */}
+       
           <div className="w-full max-w-[530px] mx-auto mt-6">
             <h2 className="text-lg font-semibold text-black mb-2">Media</h2>
             <p className="text-base text-[#6b7175] mb-4">
