@@ -5,7 +5,7 @@ const ConsultantForm3 = () => {
   
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    // Add your form submission logic here
+   
   };
 
   return (
